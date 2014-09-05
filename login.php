@@ -24,8 +24,7 @@ if (isset($_GET['feedback'])) { $feedback = $_GET['feedback']; $feedbackValid = 
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/signin.css">
-	<script src="build/js/jquery.min.js"></script>
-	<script src="build/js/scripts.min.js"></script>
+	<script src="js/jquery.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Sign In</title>
 </head>
