@@ -9,7 +9,7 @@ require('model.php');
  */
 function connect_db() {
 	$prod = false;
-	$ubuntu = false;
+	$ubuntu = true;
 	
 	if ($prod) {
 		$host = "";
