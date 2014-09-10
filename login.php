@@ -1,4 +1,5 @@
 <?php
+
 /*=========================================================
  * Start the session and redirect if the user is logged in
  */
