@@ -1,5 +1,7 @@
 <?php
 
+require("scripts/dao.php");
+
 /*=========================================================
  * Start the session and redirect if the user is logged in
  */
@@ -34,11 +36,12 @@ if (isset($_GET['feedback'])) { $feedback = $_GET['feedback']; $feedbackValid = 
 
 	<div class="container">
 
-		<form class="form-signin" action="api/master_controller.php" method="post" role="form">
+		<form class="form-signin" action="scripts/controller_login.php" method="post" role="form">
 			<h1>Login</h1>
 <!--<img src="img/logo.png" class="img-responsive"> -->
-			<input type="text" class="form-control" id="username" placeholder="Username" required autofocus>
-			<input type="password" class="form-control" id="password" placeholder="Password" required>
+			<input type="hidden" name="controllerType" value="userLogin">
+			<input type="text" class="form-control" name="username" id="username" placeholder="Username" required autofocus>
+			<input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
 			<button class="btn btn-lg btn-primary btn-block" id="signInButton">Sign in</button>
 			<br /><br />
 			<div class="alert alert-danger" id="loginAlert" role="alert" style="display: none;"></div>
