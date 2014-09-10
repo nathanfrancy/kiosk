@@ -12,9 +12,7 @@ $admin_logged_in = false;
 $editor_logged_in = false;
 
 
-/** Check session variables for admin or editor id numbers. Here are some rules:
-     - if an editor
-*/
+/** Check session variables for admin or editor id numbers. Here are some rules: */
 if (isset($_SESSION['auth_admin_id']) || isset($_SESSION['auth_editor_id']) ) {
 	
     /** Get the userid number from session variables, determine what type of user is logged in **/
@@ -40,13 +38,21 @@ if (isset($_SESSION['auth_admin_id']) || isset($_SESSION['auth_editor_id']) ) {
 else { header("Location: login.php"); }
 
 
-/*==========================================================================================*/
+
+/*   At this point, it is determined who is logged in, and what type of user they are 
+|
+|      - If not logged in correctly, user is redirected to login.php, nothing under 
+|        here will be executed
+|      - 
+|                                                                                     */
+/*====================================================================================*/
+
 
 
 if ($editor_logged_in) {
-    echo "editor logged in";
+    require('home-editor.php');
 }
 
 else if ($admin_logged_in) {
-    echo "admin logged in";
+    require('home-admin.php');
 }

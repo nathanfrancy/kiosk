@@ -3,6 +3,7 @@ session_start();
 date_default_timezone_set('America/Chicago');
 
 require('model.php');
+require('dao_admin.php');
 
 /** ============================================================================
  * Function that provides a link to the database for data access and interaction
