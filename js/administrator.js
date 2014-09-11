@@ -1,4 +1,6 @@
 
+var current_delete_id = 0;
+
 $("#addDepartmentButton").click(function(e) {
 	e.preventDefault();
     var name = $("#adddepartment-name").val();
@@ -46,11 +48,36 @@ $("#editDepartmentButton").click(function(e) {
                 id : data.id,
                 name : data.name
             };
+            current_delete_id = data.id;
             $(".list-department-item[departmentid="+ department.id +"]").hide();
             appendDepartment(department);
             $("#editdepartment-name").val('');
             $('#editDepartmentModal').modal('hide');
             showAlertBox("Edited " + department.name + " successfully.", "success", 3);
+        },
+        error: function(data) {
+        	showAlertBox("Error processing department.", "danger", 3);
+        }
+	});
+});
+
+$("#deleteDepartmentButton").click(function(e) {
+	e.preventDefault();
+    var id = parseInt($("#editdepartment-id").val());
+	
+	$.ajax({
+		type : "POST",
+		url : "scripts/controller_administrator.php",
+		data : {
+			controllerType : "deleteDepartment",
+            id : id
+		},
+		dataType : "json",
+        success : function(data) {
+            $(".list-department-item[departmentid="+ id +"]").slideUp();
+            $("#editdepartment-name").val('');
+            $('#deleteDepartmentModal').modal('hide');
+            showAlertBox("Deleted department successfully.", "success", 3);
         },
         error: function(data) {
         	showAlertBox("Error processing department.", "danger", 3);

@@ -29,5 +29,9 @@ else if ($controllerType === "updateDepartment") {
     $department = updateDepartment($id, $name);
     echo json_encode($department);
 }
+else if ($controllerType === "deleteDepartment") {
+    $id = $_POST['id'];
+    echo json_encode(deleteDepartment($id));
+}
 
 ?>

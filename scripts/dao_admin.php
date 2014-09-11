@@ -74,4 +74,18 @@ function updateDepartment($id, $name) {
 	return $department;
 }
 
+function deleteDepartment($id) {
+	$link = connect_db();
+	$sql = "DELETE FROM `department` WHERE id = ?";
+	
+	// Create prepared statement and bind parameters
+	$stmt = $link->stmt_init();
+	$stmt->prepare($sql);
+	$stmt->bind_param('i', $id);
+    $stmt->execute();
+	mysqli_stmt_close($stmt);
+	$link->close();
+    return $id;
+}
+
 ?>

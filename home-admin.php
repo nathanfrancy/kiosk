@@ -18,23 +18,22 @@
         
         <div id="alertBox">
 		  <div id="alertBoxBody" class="alert" role="alert">This is an alert</div>
-	   </div>
+	    </div>
     
         <div class="container-fluid">
-            <h3>Administrator Dashboard</h3>
-            <nav class="nav-admin">
-                
-                <div class="btn-group pull-right">
-                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            
+            <div class="btn-group pull-right" style="margin-top: 10px;">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-user"></span> &nbsp;<?php echo $user->username; ?> &nbsp;<span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu">
+                </button>
+                <ul class="dropdown-menu" role="menu">
                     <li><a href="#">Update Profile</a></li>
                     <li class="divider"></li>
                     <li><a href="logout.php">Logout</a></li>
-                  </ul>
-                </div>
-
+                </ul>
+            </div>
+            <h3>Administrator Dashboard</h3>
+            <nav class="nav-admin">
                 <div class="btn-group">
                   <button type="button" class="btn btn-primary navigation active" openview="department">Department Manager</button>
                   <button type="button" class="btn btn-primary navigation" openview="user">User Manager</button>
@@ -45,7 +44,7 @@
                 <div class="view" id="view-department">
                     <div class="row">
                         <div class="col-sm-2">
-                            <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#addDepartmentModal"><span class="glyphicon glyphicon-plus-sign"></span> Add Department</button>
+                            <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#addDepartmentModal"><span class="glyphicon glyphicon-plus-sign"></span> Add Department</button><br />
                         </div>
                         <div class="col-sm-10">
                             <div class="panel panel-default">
@@ -129,8 +128,9 @@
                 </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="editDepartmentButton">Save changes</button>
+                <button type="button" class="btn btn-danger btn-sm pull-left" data-dismiss="modal" id="deleteDepartmentButton">Delete</button>
+                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-sm" id="editDepartmentButton">Save changes</button>
               </div>
             </div>
           </div>
