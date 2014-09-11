@@ -8,4 +8,10 @@ class User {
 	public $type;
 }
 
+class Department {
+    public $id;
+    public $name;
+    public $parent;
+}
+
 ?>
