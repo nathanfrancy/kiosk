@@ -1,7 +1,6 @@
 
 $("#addDepartmentButton").click(function(e) {
 	e.preventDefault();
-    
     var name = $("#adddepartment-name").val();
 	
 	$.ajax({
@@ -13,20 +12,45 @@ $("#addDepartmentButton").click(function(e) {
 		},
 		dataType : "json",
         success : function(data) {
-            // construct the book and add it to the table
             var department = {
                 id : data.id,
                 name : data.name
             };
-            
-            console.log(department);
             appendDepartment(department);
-            
-            // Clear the fields in case adding another one
             $("#adddepartment-name").val('');
-            
             $('#addDepartmentModal').modal('hide');
-            showAlertBox("Added '" + department.name + "'!", "success", 3);
+            showAlertBox("Added " + department.name + " successfully.", "success", 3);
+        },
+        error: function(data) {
+        	showAlertBox("Error processing department.", "danger", 3);
+        }
+	});
+});
+
+$("#editDepartmentButton").click(function(e) {
+	e.preventDefault();
+    var id = parseInt($("#editdepartment-id").val());
+    var name = $("#editdepartment-name").val();
+	
+	$.ajax({
+		type : "POST",
+		url : "scripts/controller_administrator.php",
+		data : {
+			controllerType : "updateDepartment",
+            id : id,
+			name : name
+		},
+		dataType : "json",
+        success : function(data) {
+            var department = {
+                id : data.id,
+                name : data.name
+            };
+            $(".list-department-item[departmentid="+ department.id +"]").hide();
+            appendDepartment(department);
+            $("#editdepartment-name").val('');
+            $('#editDepartmentModal').modal('hide');
+            showAlertBox("Edited " + department.name + " successfully.", "success", 3);
         },
         error: function(data) {
         	showAlertBox("Error processing department.", "danger", 3);
@@ -35,11 +59,38 @@ $("#addDepartmentButton").click(function(e) {
 });
 
 function appendDepartment(department) {
-    $("<a class='list-group-item' href='#' style='display: block;'><span class='label label-primary'>"+ department.id +"</span> "+ department.name +"</a>")
+    $("<a class='list-group-item list-department-item' href='#' style='display: block;' departmentid='" + department.id + "'><h5 class='list-group-item-heading'><span class='label label-primary'>" + department.id + "</span> " + department.name + "</h5></a>")
     .hide().appendTo("#list-department").slideDown();
 }
 
 /* Click handlers for navigation buttons and showing views */
+
+$(document).on("click",".list-department-item", function(e) {
+    e.preventDefault();
+    var id = parseInt($(this).attr("departmentid"));
+    $.ajax({
+		type : "POST",
+		url : "scripts/controller_administrator.php",
+		data : {
+			controllerType : "getDepartment",
+			id : id
+		},
+		dataType : "json",
+        success : function(data) {
+            var department = {
+                id : data.id,
+                name : data.name
+            };
+            $("#editdepartment-id").val(department.id);
+            $("#editdepartment-name").val(department.name);
+            $('#editDepartmentModal').modal('show');
+        },
+        error: function(data) {
+        	showAlertBox("Error processing department.", "danger", 3);
+        }
+	});
+});
+
 $(".navigation").click(function() {
     resetNavs();
     $(this).addClass("active");
