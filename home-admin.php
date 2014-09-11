@@ -71,7 +71,31 @@
                 </div>
                 
                 <div class="view" id="view-user">
-                    user
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#addUserModal"><span class="glyphicon glyphicon-plus-sign"></span> Add User</button><br />
+                        </div>
+                        <div class="col-sm-10">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">All Users</h3>
+                                </div>
+                                <div class="panel-body">
+                                <?php 
+                                    $users = getAllUsers();
+                                    $userList = "<div class='list-group' id='list-user'>";
+                                    $counter = 0;
+                                    foreach($users as $user) {
+                                        $userList .= "<a class='list-group-item list-user-item' href='#' userid='" . $user->id . "'><h5 class='list-group-item-heading'><span class='label label-primary'>". $user->id ."</span> ". $user->nicename ."</h5></a>";
+                                        $counter++;
+                                    }
+                                    $userList .= "</div>" . $counter . " Results";
+                                    echo $userList;
+                                ?>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div> 
         </div>
@@ -131,6 +155,56 @@
                 <button type="button" class="btn btn-danger btn-sm pull-left" data-dismiss="modal" id="deleteDepartmentButton">Delete</button>
                 <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary btn-sm" id="editDepartmentButton">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+		
+		
+		
+		<!-- Add User Modal -->
+        <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                <h4 class="modal-title" id="myModalLabel">Add User</h4>
+              </div>
+              <div class="modal-body">
+                <form role="form">
+				  <div class="form-group">
+                    <label for="adduser-username">Name</label>
+                    <input type="text" class="form-control" id="adduser-nicename" placeholder="Enter full name of the user">
+                  </div>
+                  <div class="form-group">
+                    <label for="adduser-username">Username</label>
+                    <input type="text" class="form-control" id="adduser-username" placeholder="Enter username">
+                  </div>
+				  <div class="form-group">
+                    <label for="adduser-username">Password</label>
+                    <input type="text" class="form-control" id="adduser-password" placeholder="Enter password">
+                  </div>
+				  <div class="form-group">
+                    <label for="adduser-username">Email</label>
+                    <input type="text" class="form-control" id="adduser-email" placeholder="Enter user's email">
+                  </div>
+				  <div class="form-group">
+                    <label for="adduser-username">Type</label>
+                    <select class="form-control" id="adduser-username">
+						<option value="editor">Editor</option>
+						<option value="poster">Poster</option>
+						<option value="editorposter">Editor and Poster</option>
+						<option value="admin">Administrator</option>
+					</select>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="addUserButton">Save changes</button>
               </div>
             </div>
           </div>

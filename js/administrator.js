@@ -116,6 +116,58 @@ $(document).on("click",".list-department-item", function(e) {
 	});
 });
 
+
+
+$("#addUserButton").click(function(e) {
+	e.preventDefault();
+	var username = $("#adduser-username").val();
+    var nicename = $("#adduser-nicename").val();
+	var password = $("#adduser-password").val();
+	var email = $("#adduser-email").val();
+	var type = $("#adduser-type").val();
+	
+	$.ajax({
+		type : "POST",
+		url : "scripts/controller_administrator.php",
+		data : {
+			controllerType : "addUser",
+			username : username,
+			nicename : nicename,
+			email : email,
+			password : password,
+			type : type
+		},
+		dataType : "json",
+        success : function(data) {
+            var user = {
+                id : data.id,
+                nicename : data.nicename,
+				email : data.email,
+				username : data.username,
+				type : data.type
+            };
+            
+			appendUser(user);
+            $("#adduser-nicename").val('');
+			$("#adduser-password").val('');
+			$("#adduser-email").val('');
+			$("#adduser-username").val('');
+            $('#addUserModal').modal('hide');
+			
+            showAlertBox("Added " + user.nicename + " successfully.", "success", 3);
+        },
+        error: function(data) {
+        	showAlertBox("Error processing department.", "danger", 3);
+        }
+	});
+});
+
+function appendUser(user) {
+    $("<a class='list-group-item list-department-item' href='#' style='display: block;' userid='" + user.id + "'><h5 class='list-group-item-heading'><span class='label label-primary'>" + user.id + "</span> " + user.nicename + "</h5></a>")
+    .hide().appendTo("#list-user").slideDown();
+}
+
+
 $(".navigation").click(function() {
     resetNavs();
     $(this).addClass("active");

@@ -33,5 +33,16 @@ else if ($controllerType === "deleteDepartment") {
     $id = $_POST['id'];
     echo json_encode(deleteDepartment($id));
 }
+else if ($controllerType === "addUser") {
+	$nicename = $_POST['nicename'];
+	$password = $_POST['password'];
+	$email = $_POST['email'];
+	$type = $_POST['type'];
+	$username = $_POST['username'];
+	
+	$userid = addUser($username, $password, $nicename, $email, $type);
+	$user = getUser($userid);
+	echo json_encode($user);
+}
 
 ?>
