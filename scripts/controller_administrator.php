@@ -44,5 +44,16 @@ else if ($controllerType === "addUser") {
 	$user = getUser($userid);
 	echo json_encode($user);
 }
+else if ($controllerType === "getUser") {
+	$id = $_POST['id'];
+	$user = getUser($id);
+	echo json_encode($user);
+}
+else if ($controllerType === "updateUser") {
+	$id = $_POST['id'];
+	$username = $_POST['username'];
+	$nicename = $_POST['nicename'];
+	$email = $_POST['email'];
+}
 
 ?>

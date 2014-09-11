@@ -57,7 +57,7 @@
                                     $departmentList = "<div class='list-group' id='list-department'>";
                                     $counter = 0;
                                     foreach($departments as $department) {
-                                        $departmentList .= "<a class='list-group-item list-department-item' href='#' departmentid='" . $department->id . "'><h5 class='list-group-item-heading'><span class='label label-primary'>". $department->id ."</span> ". $department->name ."</h5></a>";
+                                        $departmentList .= "<a class='list-group-item list-department-item' href='#' departmentid='" . $department->id . "'><h5 class='list-group-item-heading'><span class='label label-primary pull-right'>". $department->id ."</span> ". $department->name ."</h5></a>";
                                         $counter++;
                                     }
                                     $departmentList .= "</div>" . $counter . " Results";
@@ -86,7 +86,7 @@
                                     $userList = "<div class='list-group' id='list-user'>";
                                     $counter = 0;
                                     foreach($users as $user) {
-                                        $userList .= "<a class='list-group-item list-user-item' href='#' userid='" . $user->id . "'><h5 class='list-group-item-heading'><span class='label label-primary'>". $user->id ."</span> ". $user->nicename ."</h5></a>";
+                                        $userList .= "<a class='list-group-item list-user-item' href='#' userid='" . $user->id . "'><h5 class='list-group-item-heading'><span class='label label-primary pull-right'>". $user->id ."</span> ". $user->nicename ."&nbsp;<small>" . $user->username . "</small></h5></a>";
                                         $counter++;
                                     }
                                     $userList .= "</div>" . $counter . " Results";

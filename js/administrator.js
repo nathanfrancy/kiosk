@@ -84,7 +84,7 @@ $("#deleteDepartmentButton").click(function(e) {
 });
 
 function appendDepartment(department) {
-    $("<a class='list-group-item list-department-item' href='#' style='display: block;' departmentid='" + department.id + "'><h5 class='list-group-item-heading'><span class='label label-primary'>" + department.id + "</span> " + department.name + "</h5></a>")
+    $("<a class='list-group-item list-department-item' href='#' style='display: block;' departmentid='" + department.id + "'><h5 class='list-group-item-heading'><span class='label label-primary pull-right'>" + department.id + "</span> " + department.name + "</h5></a>")
     .hide().appendTo("#list-department").slideDown();
 }
 
@@ -163,7 +163,7 @@ $("#addUserButton").click(function(e) {
 });
 
 function appendUser(user) {
-    $("<a class='list-group-item list-department-item' href='#' style='display: block;' userid='" + user.id + "'><h5 class='list-group-item-heading'><span class='label label-primary'>" + user.id + "</span> " + user.nicename + "</h5></a>")
+    $("<a class='list-group-item list-department-item' href='#' style='display: block;' userid='" + user.id + "'><h5 class='list-group-item-heading'><span class='label label-primary pull-right'>" + user.id + "</span> " + user.nicename + "<small>" + user.username + "</small></h5></a>")
     .hide().appendTo("#list-user").slideDown();
 }
 
