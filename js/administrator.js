@@ -89,7 +89,7 @@ function appendDepartment(department) {
 }
 
 function appendUser(user) {
-    $("<a class='list-group-item list-user-item' href='#' userid='" + user.id + "'><h5 class='list-group-item-heading'><span class='label label-primary pull-right'>" + user.id + "</span> " + user.nicename + "&nbsp;&nbsp;<small>" + user.username + "</small></h5></a>")
+    $("<a class='list-group-item list-user-item' href='#' userid='" + user.id + "'><h5 class='list-group-item-heading'><span class='label label-primary pull-right'>" + user.id + "</span> " + user.nicename + "&nbsp;&nbsp; <small>" + user.username + "</small></h5></a>")
     .hide().appendTo("#list-user").slideDown();
 }
 

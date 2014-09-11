@@ -13,6 +13,7 @@ $editor_logged_in = false;
 $poster_logged_in = false;
 $editor_poster_logged_in = false;
 
+$enabled_user = false;
 
 
 /** Check session variables for admin or editor id numbers. Here are some rules: */
@@ -37,6 +38,10 @@ if (isset($_SESSION['auth_id'])) {
             $poster_logged_in = true;
         }
         
+        if ($user->status === "enabled") {
+            $enabled_user = true;
+        }
+        
 	}
 	else { header("Location: login.php"); }
 }
@@ -48,25 +53,39 @@ else { header("Location: login.php"); }
 |
 |      - If not logged in correctly, user is redirected to login.php, nothing under 
 |        here will be executed
+|      - If the user is not 'enabled' (in their user->status) they will not see any view
+|        even if they entered correct credentials. The user is logged in, but $enabled_user
+|        will be false below (the very first check), so no view will open. Instead a 
+|        message that their account is currently disabled will appear for 15 seconds, 
+|        then sign them out automatically.
 |      - Based on which boolean is true above, the correct view will be pulled prefixed
 |        with home-****.php. 
 |                                                                                     */
 /*====================================================================================*/
 
+if ($enabled_user) {
+    
+    if ($editor_logged_in) {
+        require('home-editor.php');
+    }
 
+    else if ($editor_poster_logged_in) {
+        require("home-editorposter.php");
+    }
 
-if ($editor_logged_in) {
-    require('home-editor.php');
+    else if ($poster_logged_in) {
+        require("home-poster.php");
+    }
+
+    else if ($admin_logged_in) {
+        require('home-admin.php');
+    }
 }
 
-else if ($editor_poster_logged_in) {
-    require("home-editorposter.php");
+else {
+    echo "<h2>Account Inactive</h2>";
+    echo "<p>Welcome back " . $user->nicename . ". Unfortunately, your user account is currently inactive. Please contact the system administrator to re-enable it. <a href='logout.php'>Logout</a></p>";
+    echo "<p>You will be automatically signed out in 15 seconds.</p>";
+    echo '<meta http-equiv="refresh" content="15; url=logout.php">';
 }
 
-else if ($poster_logged_in) {
-    require("home-poster.php");
-}
-
-else if ($admin_logged_in) {
-    require('home-admin.php');
-}
