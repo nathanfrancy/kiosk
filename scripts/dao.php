@@ -9,8 +9,13 @@ require('dao_admin.php');
  * Function that provides a link to the database for data access and interaction
  */
 function connect_db() {
-	$prod = false;
+	$prod = true;
 	$ubuntu = false;
+	
+	$host = "";
+	$username = "";
+	$password = "";
+	$db = "";
 	
 	if ($prod) {
 		$host = "";
