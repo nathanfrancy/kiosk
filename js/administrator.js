@@ -116,6 +116,39 @@ $(document).on("click",".list-department-item", function(e) {
 	});
 });
 
+$(document).on("click",".list-user-item", function(e) {
+    e.preventDefault();
+    var id = parseInt($(this).attr("userid"));
+    
+    $.ajax({
+		type : "POST",
+		url : "scripts/controller_administrator.php",
+		data : {
+			controllerType : "getUser",
+			id : id
+		},
+		dataType : "json",
+        success : function(data) {
+            var user = {
+                id : data.id,
+                username : data.username,
+                nicename : data.nicename,
+                email : data.email,
+                type : data.type
+            };
+            $("#edituser-id").val(user.id);
+            $("#edituser-nicename").val(user.nicename);
+            $("#edituser-username").val(user.username);
+            $("#edituser-email").val(user.email);
+            $("#edituser-type").val(user.type);
+            
+            $('#editUserModal').modal('show');
+        },
+        error: function(data) {
+        	showAlertBox("Error processing department.", "danger", 3);
+        }
+	});
+});
 
 
 $("#addUserButton").click(function(e) {

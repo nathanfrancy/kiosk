@@ -103,7 +103,7 @@
 
         <!-- Add Department Modal -->
         <div class="modal fade" id="addDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-sm">
+          <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">
@@ -130,7 +130,7 @@
         
         <!-- Edit Department Modal -->
         <div class="modal fade" id="editDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-sm">
+          <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">
@@ -164,7 +164,7 @@
 		
 		<!-- Add User Modal -->
         <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-sm">
+          <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">
@@ -205,6 +205,57 @@
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" id="addUserButton">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+        <!-- Edit User Modal -->
+        <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                <h4 class="modal-title" id="myModalLabel">Edit User</h4>
+              </div>
+              <div class="modal-body">
+                <form role="form">
+                  <div class="form-group">
+                    <label for="adddepartment-name">ID Number</label>
+                    <input type="text" class="form-control" id="edituser-id" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label for="edituser-nicename">Name</label>
+                    <input type="text" class="form-control" id="edituser-nicename" placeholder="Enter full name">
+                  </div>
+                  <div class="form-group">
+                    <label for="edituser-username">Username</label>
+                    <input type="text" class="form-control" id="edituser-username" placeholder="Enter username">
+                  </div>
+                  <div class="form-group">
+                    <label for="edituser-email">Email</label>
+                    <input type="text" class="form-control" id="edituser-email" placeholder="Enter email">
+                  </div>
+                  <div class="form-group">
+                    <label for="edituser-type">Type</label>
+                    <select class="form-control" id="edituser-type">
+						<option value="editor">Editor</option>
+						<option value="poster">Poster</option>
+						<option value="editorposter">Editor and Poster</option>
+						<option value="admin">Administrator</option>
+					</select>
+                  </div>
+                  
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-sm pull-left" data-dismiss="modal" id="deleteDepartmentButton">Delete</button>
+                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-sm" id="editDepartmentButton">Save changes</button>
               </div>
             </div>
           </div>
