@@ -1,6 +1,4 @@
 
-var current_delete_id = 0;
-
 $("#addDepartmentButton").click(function(e) {
 	e.preventDefault();
     var name = $("#adddepartment-name").val();
