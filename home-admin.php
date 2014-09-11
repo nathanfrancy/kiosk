@@ -175,36 +175,53 @@
               </div>
               <div class="modal-body">
                 <form role="form">
-				  <div class="form-group">
-                    <label for="adduser-username">Name</label>
-                    <input type="text" class="form-control" id="adduser-nicename" placeholder="Enter full name of the user">
-                  </div>
-                  <div class="form-group">
-                    <label for="adduser-username">Username</label>
-                    <input type="text" class="form-control" id="adduser-username" placeholder="Enter username">
-                  </div>
-				  <div class="form-group">
-                    <label for="adduser-username">Password</label>
-                    <input type="text" class="form-control" id="adduser-password" placeholder="Enter password">
-                  </div>
-				  <div class="form-group">
-                    <label for="adduser-username">Email</label>
-                    <input type="text" class="form-control" id="adduser-email" placeholder="Enter user's email">
-                  </div>
-				  <div class="form-group">
-                    <label for="adduser-username">Type</label>
-                    <select class="form-control" id="adduser-username">
-						<option value="editor">Editor</option>
-						<option value="poster">Poster</option>
-						<option value="editorposter">Editor and Poster</option>
-						<option value="admin">Administrator</option>
-					</select>
-                  </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="adduser-username">Name</label>
+                                <input type="text" class="form-control" id="adduser-nicename" placeholder="Enter full name of the user">
+                              </div>
+                              <div class="form-group">
+                                <label for="adduser-username">Username</label>
+                                <input type="text" class="form-control" id="adduser-username" placeholder="Enter username">
+                              </div>
+                              <div class="form-group">
+                                <label for="adduser-password">Password</label>
+                                <input type="password" class="form-control" id="adduser-password" placeholder="Enter password">
+                              </div>
+                              <div class="form-group">
+                                <label for="adduser-email">Email</label>
+                                <input type="text" class="form-control" id="adduser-email" placeholder="Enter user's email">
+                              </div>
+                        </div>
+                        <div class="col-sm-6">
+                                <div class="panel panel-primary">
+                                  <div class="panel-heading">
+                                    <h3 class="panel-title">Access Level</h3>
+                                  </div>
+                                  <div class="panel-body">
+                                    <div class="form-group">
+                                        <label for="adduser-type">Type</label>
+                                        <select class="form-control" id="adduser-type">
+                                            <option value="editor">Editor</option>
+                                            <option value="poster">Poster</option>
+                                            <option value="editorposter">Editor and Poster</option>
+                                            <option value="admin">Administrator</option>
+                                        </select>
+                                    </div>
+                                    <div class="btn-group" id="adduser-status">
+                                      <button type="button" class="btn btn-default active" id="adduser-status-enabled">Enabled</button>
+                                      <button type="button" class="btn btn-default" id="adduser-status-disabled">Disabled</button>
+                                    </div>
+                                  </div>
+                                </div>
+                        </div>
+                    </div>
                 </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="addUserButton">Save changes</button>
+                <button type="button" class="btn btn-primary pull-left" id="addUserButton">Save changes</button>
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>
@@ -224,38 +241,75 @@
               </div>
               <div class="modal-body">
                 <form role="form">
-                  <div class="form-group">
-                    <label for="adddepartment-name">ID Number</label>
-                    <input type="text" class="form-control" id="edituser-id" readonly>
+                  <div class="row">
+                    <div class="col-sm-6">
+                          <div class="form-group">
+                            <label for="edituser-id">ID Number</label>
+                            <input type="text" class="form-control" id="edituser-id" readonly>
+                          </div>
+                          <div class="form-group">
+                            <label for="edituser-nicename">Name</label>
+                            <input type="text" class="form-control" id="edituser-nicename" placeholder="Enter full name">
+                          </div>
+                          <div class="form-group">
+                            <label for="edituser-username">Username</label>
+                            <input type="text" class="form-control" id="edituser-username" placeholder="Enter username">
+                          </div>
+                          <div class="form-group">
+                            <label for="edituser-email">Email</label>
+                            <input type="text" class="form-control" id="edituser-email" placeholder="Enter email">
+                          </div>
+                        
+                          
+                    </div>  
+                    <div class="col-sm-6">
+                        <div class="panel panel-primary">
+                          <div class="panel-heading">
+                            <h3 class="panel-title">Access Level</h3>
+                          </div>
+                          <div class="panel-body">
+                            <div class="form-group">
+                                <label for="edituser-type">Type</label>
+                                <select class="form-control" id="edituser-type">
+                                    <option value="editor">Editor</option>
+                                    <option value="poster">Poster</option>
+                                    <option value="editorposter">Editor and Poster</option>
+                                    <option value="admin">Administrator</option>
+                                </select>
+                            </div>
+                            <div class="btn-group" id="edituser-status">
+                              <button type="button" class="btn btn-default" id="edituser-status-enabled">Enabled</button>
+                              <button type="button" class="btn btn-default" id="edituser-status-disabled">Disabled</button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel panel-primary">
+                          <div class="panel-heading">
+                            <h3 class="panel-title">Password Reset</h3>
+                          </div>
+                          <div class="panel-body">
+                                <div class="form-group">
+                                    <label for="edituser-nicename">Password</label>
+                                    <input type="password" class="form-control" id="edituser-password1" placeholder="Enter password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="edituser-nicename">Re-enter Password</label>
+                                    <input type="password" class="form-control" id="edituser-password2" placeholder="Re-enter password">
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-default" id="edituser-passwordresetbutton">Reset Password</button>
+                                </div>
+                          </div>
+                        </div>
+                        <button type="button" class="btn btn-danger btn-sm btn-block" data-dismiss="modal" id="deleteUserButton">Delete User</button>
+                    </div>
                   </div>
-                  <div class="form-group">
-                    <label for="edituser-nicename">Name</label>
-                    <input type="text" class="form-control" id="edituser-nicename" placeholder="Enter full name">
-                  </div>
-                  <div class="form-group">
-                    <label for="edituser-username">Username</label>
-                    <input type="text" class="form-control" id="edituser-username" placeholder="Enter username">
-                  </div>
-                  <div class="form-group">
-                    <label for="edituser-email">Email</label>
-                    <input type="text" class="form-control" id="edituser-email" placeholder="Enter email">
-                  </div>
-                  <div class="form-group">
-                    <label for="edituser-type">Type</label>
-                    <select class="form-control" id="edituser-type">
-						<option value="editor">Editor</option>
-						<option value="poster">Poster</option>
-						<option value="editorposter">Editor and Poster</option>
-						<option value="admin">Administrator</option>
-					</select>
-                  </div>
-                  
                 </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-danger btn-sm pull-left" data-dismiss="modal" id="deleteDepartmentButton">Delete</button>
-                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary btn-sm" id="editDepartmentButton">Save changes</button>
+                
+                <button type="button" class="btn btn-primary btn-sm pull-left" id="editUserButton">Save changes</button>
+                <button type="button" class="btn btn-default btn-sm pull-left" data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>

@@ -39,8 +39,8 @@ else if ($controllerType === "addUser") {
 	$email = $_POST['email'];
 	$type = $_POST['type'];
 	$username = $_POST['username'];
-	
-	$userid = addUser($username, $password, $nicename, $email, $type);
+    $status = $_POST['status'];
+	$userid = addUser($username, $password, $nicename, $email, $type, $status);
 	$user = getUser($userid);
 	echo json_encode($user);
 }
@@ -54,6 +54,32 @@ else if ($controllerType === "updateUser") {
 	$username = $_POST['username'];
 	$nicename = $_POST['nicename'];
 	$email = $_POST['email'];
+    $type = $_POST['type'];
+    $status = $_POST['status'];
+    $user = updateUser($id, $nicename, $username, $email, $type, $status);
+    echo json_encode($user);
 }
+else if ($controllerType === "deleteUser") {
+    $id = $_POST['id'];
+    echo json_encode(deleteUser($id));
+}
+else if ($controllerType === "getAllUsers") {
+    echo json_encode(getAllUsers());
+}
+else if ($controllerType === "resetPassword") {
+    $id = $_POST['id'];
+    $password = $_POST['password'];
+    $newuser = null;
+    
+    if ($password1 === $password2) {
+        $newuser = resetPassword($id, $password);
+    }
+    echo json_encode($newuser);
+}
+
+
+
+
+
 
 ?>

@@ -6,6 +6,7 @@ class User {
 	public $nicename;
 	public $email;
 	public $type;
+    public $status;
 }
 
 class Department {
