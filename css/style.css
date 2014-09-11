@@ -1,0 +1,2 @@
+#alertBox { display: none; position: fixed; top: 5px; z-index: 2000; width: 100%; opacity: 1; }
+#alertBoxBody { width: 400px; max-width: 80%; margin: 0 auto; }
