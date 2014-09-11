@@ -6,8 +6,7 @@ require("scripts/dao.php");
  * Start the session and redirect if the user is logged in
  */
 session_start();
-if (isset($_SESSION['auth_editor_id'])) { header("Location: home.php"); }
-if (isset($_SESSION['auth_admin_id'])) { header("Location: home.php"); }
+if (isset($_SESSION['auth_id'])) { header("Location: home.php"); }
 
 /*=========================================================
  * If there is feedback, save in variable for later
@@ -35,7 +34,6 @@ if (isset($_GET['feedback'])) { $feedback = $_GET['feedback']; $feedbackValid = 
 <body>
 
 	<div class="container">
-
 		<form class="form-signin" action="scripts/controller_login.php" method="post" role="form">
 			<h1>Login</h1>
 <!--<img src="img/logo.png" class="img-responsive"> -->

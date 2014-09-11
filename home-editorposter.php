@@ -1,0 +1,1 @@
+Welcome editor/poster! <a href="logout.php">Logout</a>

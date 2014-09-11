@@ -61,14 +61,7 @@ function validateUser($input_username, $input_password) {
 	
 	// If the user id doesn't equal zero, assume login is valid and returned a valid id number from user table
 	if ($userid !== 0 && $counter !== 0) {
-		
-		if ($usertype === "admin") {
-			$_SESSION['auth_admin_id'] = $userid;
-		}
-		else if ($usertype === "editor") {
-			$_SESSION['auth_editor_id'] = $userid;
-		}
-		
+		$_SESSION['auth_id'] = $userid;
 	}
 	
 	mysqli_stmt_close($stmt);
