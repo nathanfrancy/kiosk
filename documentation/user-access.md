@@ -21,12 +21,16 @@ Upon valid credentials being entered and submitted, a session variable called `a
 ####Where do users go when they are authenticated?
 <strong>All users</strong> are redirected to `home.php`. This script acts as a controller for finding out who the user is, what type of user they are, if they are enabled or disabled, and finally displaying the view pertinent to that user. Every time a page is reloaded, the database is queried to find these things out. For instance, if a user is an administrator, `home-admin.php` will be required (by PHP) into the page. It's built this way to help simplify the arrangement of pages, and not confuse users to where they need to go. Instead of being confusing, all users simply go to `home.php`.
 
+Here is a breakdown for which pages are 'required' into `home.php` upon being of a certain user type:
 - Administrator: `home-admin.php`
 - Personnel Information Coordinators: `home-editor.php`
 - News Posting Coordinators: `home-poster.php`
 - Personnel Information Coordinators AND News Posting Coordinators: `home-editorposter.php`
 
 It should be noted that there are checks in place on these individual pages to ensure users don't try to access these pages <em>directly</em>.
+
+####What does it mean to be enabled/disabled
+In the `user` table of the database there is a field called `status`. Every user in the database will have a `status` of either `enabled` or `disabled`. This is another attribute that is loaded as a part of the `home.php` routine of querying the database and figuring out who the user is and what they nee.d If a user is `enabled`, the regular view can be loaded. However, if the user is `disabled`, the user will be temporarily logged in and shown a message that their account is currently `disabled`, and that they need to contact the System Administrator to re-enable their account if they need access. The page currently has a meta refresh, set to redirect the page to `logout.php` after 15 seconds (which effectively ends their session).
 
 ####How do users logout?
 A user logs out by executing `logout.php`. This script simply destroys the current session and unsets `auth_id` session variable, then redirects the window to `index.php`. A user can easily return to `login.php` to re-establish a login session.
