@@ -14,7 +14,7 @@
     * 1.5 View maps of each floor of Dockery, if available
     * 1.6 Obtain directions to WDE 1600
 2. A Personnel Information Coordinator will be able to:
-    * 2.1 Gain access to the system with given username and password
+    * 2.1 <s>Gain access to the system with given username and password</s>
     * 2.2 Change their access password
     * 2.3 Enter the course prefix, number and title of each course in their (academic) department (one time)
     * 2.4 Edit/Delete the course prefix, number and title of each course in their (academic) department (occasionally)
@@ -38,7 +38,7 @@
     * 2.8 Delete entire entry for faculty/staff
     * 2.9 Associate a faculty member with courses currently taught
 3. A News Posting Coordinator will be able to
-    * 3.1 Gain access to the system with given user name and password
+    * 3.1 <s>Gain access to the system with given user name and password</s>
     * 3.2 Change their access password
     * 3.3 Upload a file for posting
     * 3.4 Review/Modify the postings
@@ -47,16 +47,16 @@
         * 3.4.3 Delete the posting from the system
         * Note: Posting content will not be edited. It may only be replaced.
 4. The Administrator will be able to:
-    * <s>4.1 Gain access to the system via credentials (username and password)</s>
-        * <s>4.1.1 Change the password for administrator access</s>
-    * <s>4.2 Establish departments</s>
-        * <s>4.2.1 Add/edit department names</s>
-    * <s>4.3 Establish access for each user</s>
-        * <s>4.3.1 Create user name</s>
-        * <s>4.3.2 Create initial password</s>
-    * <s>4.4 Reset passwords for all users</s>
-    * <s>4.5 Establish the capability for each user (Personnel Information Coordinator, News Posting Coordinator, both)</s>
-        * <s>4.5.1 Establish what these users have access to department-wise</s>
+    * 4.1 <s>Gain access to the system via credentials (username and password)</s>
+        * 4.1.1 <s>Change the password for administrator access</s>
+    * 4.2 <s>Establish departments</s>
+        * 4.2.1 <s>Add/edit department names</s>
+    * 4.3 <s>Establish access for each user</s>
+        * 4.3.1 <s>Create user name</s>
+        * 4.3.2 <s>Create initial password</s>
+    * 4.4 <s>Reset passwords for all users</s>
+    * 4.5 <s>Establish the capability for each user (Personnel Information Coordinator, News Posting Coordinator, both)</s>
+        * 4.5.1 <s>Establish what these users have access to department-wise</s>
     * 4.6 Upload maps
 5. Additional functional requirements:
     * 5.1 System administrator should be able to access the system and reset password for all other users
