@@ -198,4 +198,50 @@ function deleteUser($id) {
     return $id;
 }
 
+function grantDepartmentAccess($userid, $departmentid) {
+    $link = connect_db();
+	$sql = "INSERT INTO  `access_department` (`user_id`, `department_id`) VALUES (?, ?)";
+	$stmt = $link->stmt_init();
+	$stmt->prepare($sql);
+	$stmt->bind_param('ii', $userid, $departmentid);
+	$stmt->execute();
+	mysqli_stmt_close($stmt);
+	$link->close();
+	
+	return $userid;
+}
+
+function revokeDepartmentAccess($userid, $departmentid) {
+    $link = connect_db();
+	$sql = "DELETE FROM `access_department` WHERE `user_id` = ? AND `department_id` = ?";
+	$stmt = $link->stmt_init();
+	$stmt->prepare($sql);
+	$stmt->bind_param('ii', $userid, $departmentid);
+	$stmt->execute();
+	mysqli_stmt_close($stmt);
+	$link->close();
+	
+	return $userid;
+}
+
+function getGrantedDepartmentIds($userid) {
+    $departments = array();
+	
+	// Connect and initialize sql and prepared statement template
+	$link = connect_db();
+	$sql = "SELECT * FROM `access_department` WHERE `user_id` = $userid";
+	$stmt = $link->stmt_init();
+	$stmt->prepare($sql);
+	$stmt->execute();
+	$result = $stmt->get_result();
+	
+	// Bind result to Book object and push each one on the end of $books array
+    while ($row = $result->fetch_array(MYSQLI_BOTH)) {
+		array_push($departments, $row['department_id']);
+	}
+	
+	mysqli_stmt_close($stmt);
+	return $departments;
+}
+
 ?>

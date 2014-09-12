@@ -76,6 +76,24 @@ else if ($controllerType === "resetPassword") {
     }
     echo json_encode($newuser);
 }
+else if ($controllerType === "grantDepartmentAccess") {
+    $departmentid = $_POST['departmentid'];
+    $userid = $_POST['userid'];
+    $userid = grantDepartmentAccess($userid, $departmentid);
+    echo json_encode($userid);
+}
+else if ($controllerType === "revokeDepartmentAccess") {
+    $departmentid = $_POST['departmentid'];
+    $userid = $_POST['userid'];
+    $userid = revokeDepartmentAccess($userid, $departmentid);
+    echo json_encode($userid);
+}   
+else if ($controllerType === "getGrantedDepartmentIds") {
+    $userid = $_POST['userid'];
+    $departments = getGrantedDepartmentIds($userid);
+    echo json_encode($departments);
+}
+    
 
 
 

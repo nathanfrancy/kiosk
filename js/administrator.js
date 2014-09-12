@@ -124,7 +124,9 @@ $(document).on("click",".list-department-item", function(e) {
 $(document).on("click",".list-user-item", function(e) {
     e.preventDefault();
     $("#edituser-status-enabled, #edituser-status-disabled").removeClass("active");
+    $(".addaccess-department").prop('checked', false);
     var id = parseInt($(this).attr("userid"));
+    $("#edituser-departmentaccess").hide();
     
     $.ajax({
 		type : "POST",
@@ -149,11 +151,35 @@ $(document).on("click",".list-user-item", function(e) {
             $("#edituser-email").val(user.email);
             $("#edituser-type").val(user.type);
             
+            // Check if user is enabled or disabled
             if (user.status === "enabled") {
                 $("#edituser-status-enabled").addClass("active");
             }
             else if (user.status === "disabled") {
                 $("#edituser-status-disabled").addClass("active");
+            }
+            
+            // Check if the user is any type of editor, show and hide the editor panel
+            if (user.type === "editor" || user.type === "editorposter") {
+                $("#edituser-departmentaccess").show();
+                $.ajax({
+                    type : "POST",
+                    url : "scripts/controller_administrator.php",
+                    data : {
+                        controllerType : "getGrantedDepartmentIds",
+                        userid : id
+                    },
+                    dataType : "json",
+                    success : function(data) {
+                        $.each(data, function(i, item) {
+                            var deptid = item;
+                            $(".addaccess-department[value="+ deptid +"]").prop('checked', true);
+                        });
+                    },
+                    error: function(data) {
+                        showAlertBox("Error processing department.", "danger", 3);
+                    }
+                });
             }
             
             $('#editUserModal').modal('show');
@@ -162,6 +188,8 @@ $(document).on("click",".list-user-item", function(e) {
         	showAlertBox("Error processing department.", "danger", 3);
         }
 	});
+    
+    
 });
 
 
@@ -346,6 +374,51 @@ $("#edituser-passwordresetbutton").click(function() {
     else {
         showAlertBox("Passwords do not match.", "danger", 3);
     }
+});
+
+$(".addaccess-department").change(function() {
+    var departmentid = parseInt($(this).val());
+    var userid = parseInt($("#edituser-id").val());
+    var checked = $(this).prop('checked');
+    
+    if (checked) {
+        $.ajax({
+            type : "POST",
+            url : "scripts/controller_administrator.php",
+            data : {
+                controllerType : "grantDepartmentAccess",
+                userid : userid,
+                departmentid : departmentid
+            },
+            dataType : "json",
+            success : function(data) {
+                showAlertBox("Access granted successfully.", "success", 3);
+            },
+            error: function(data) {
+                showAlertBox("Error granting access.", "danger", 3);
+            }
+        });
+    }
+    else {
+        $.ajax({
+            type : "POST",
+            url : "scripts/controller_administrator.php",
+            data : {
+                controllerType : "revokeDepartmentAccess",
+                userid : userid,
+                departmentid : departmentid
+            },
+            dataType : "json",
+            success : function(data) {
+                showAlertBox("Access revoked successfully.", "success", 3);
+            },
+            error: function(data) {
+                showAlertBox("Error revoking access.", "danger", 3);
+            }
+        });
+    }
+    
+    
 });
 
 $("#edituser-status-enabled, #edituser-status-disabled").click(function() {

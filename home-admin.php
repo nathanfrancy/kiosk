@@ -215,6 +215,7 @@
                                     </div>
                                   </div>
                                 </div>
+                            <div class="alert alert-info" role="alert"><strong>Looking for department access controls?</strong> Establish the user account first, then edit the user account to give an editor permissions to specific departments.</div>
                         </div>
                     </div>
                 </form>
@@ -259,8 +260,24 @@
                             <label for="edituser-email">Email</label>
                             <input type="text" class="form-control" id="edituser-email" placeholder="Enter email">
                           </div>
-                        
-                          
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h3 class="panel-title">Password Reset</h3>
+                          </div>
+                          <div class="panel-body">
+                                <div class="form-group">
+                                    <label for="edituser-nicename">Password</label>
+                                    <input type="password" class="form-control" id="edituser-password1" placeholder="Enter password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="edituser-nicename">Re-enter Password</label>
+                                    <input type="password" class="form-control" id="edituser-password2" placeholder="Re-enter password">
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-default" id="edituser-passwordresetbutton">Reset Password</button>
+                                </div>
+                          </div>
+                        </div>
                     </div>  
                     <div class="col-sm-6">
                         <div class="panel panel-primary">
@@ -283,24 +300,21 @@
                             </div>
                           </div>
                         </div>
-                        <div class="panel panel-primary">
+                        <div class="panel panel-primary" id="edituser-departmentaccess">
                           <div class="panel-heading">
-                            <h3 class="panel-title">Password Reset</h3>
+                            <h3 class="panel-title">Department Access</h3>
                           </div>
                           <div class="panel-body">
-                                <div class="form-group">
-                                    <label for="edituser-nicename">Password</label>
-                                    <input type="password" class="form-control" id="edituser-password1" placeholder="Enter password">
-                                </div>
-                                <div class="form-group">
-                                    <label for="edituser-nicename">Re-enter Password</label>
-                                    <input type="password" class="form-control" id="edituser-password2" placeholder="Re-enter password">
-                                </div>
-                                <div class="form-group">
-                                    <button type="button" class="btn btn-default" id="edituser-passwordresetbutton">Reset Password</button>
-                                </div>
+                            <div class="form-group">
+                                <?php
+                                    foreach ($departments as $department) {
+                                        echo '<div class="checkbox"><label><input class="addaccess-department" type="checkbox" value="'. $department->id .'" name="department[]">'. $department->name .'</label></div>';
+                                    }
+                                ?>
+                            </div>
                           </div>
                         </div>
+                        
                         <button type="button" class="btn btn-danger btn-sm btn-block" data-dismiss="modal" id="deleteUserButton">Delete User</button>
                     </div>
                   </div>
