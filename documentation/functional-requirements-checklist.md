@@ -55,7 +55,7 @@
         * <s>4.3.1 Create user name</s>
         * <s>4.3.2 Create initial password</s>
     * <s>4.4 Reset passwords for all users</s>
-    * <s>4.5 Establish the capability for each user (Personnel Information Coordinator, News Posting Coordinator, both)</s>s>
+    * <s>4.5 Establish the capability for each user (Personnel Information Coordinator, News Posting Coordinator, both)</s>
         * <s>4.5.1 Establish what these users have access to department-wise</s>
     * 4.6 Upload maps
 5. Additional functional requirements:
