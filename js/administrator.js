@@ -137,22 +137,28 @@ $(document).on("click",".list-user-item", function(e) {
 		},
 		dataType : "json",
         success : function(data) {
-            var user = {
-                id : data.id,
-                username : data.username,
-                nicename : data.nicename,
-                email : data.email,
-                type : data.type,
-                status : data.status
-            };
-            $("#edituser-id").val(user.id);
-            $("#edituser-nicename").val(user.nicename);
-            $("#edituser-username").val(user.username);
-            $("#edituser-email").val(user.email);
-            $("#edituser-type").val(user.type);
+            console.log(data);
+        },
+        error: function(data) {
+        	showAlertBox("Error getting user.", "danger", 3);
+        }
+	}).done(function(data) {
+		var user = {
+        	id : data.id,
+            username : data.username,
+            nicename : data.nicename,
+            email : data.email,
+            type : data.type,
+            status : data.status
+        };
+        $("#edituser-id").val(user.id);
+        $("#edituser-nicename").val(user.nicename);
+        $("#edituser-username").val(user.username);
+        $("#edituser-email").val(user.email);
+        $("#edituser-type").val(user.type);
             
-            // Check if user is enabled or disabled
-            if (user.status === "enabled") {
+        	// Check if user is enabled or disabled
+        	if (user.status === "enabled") {
                 $("#edituser-status-enabled").addClass("active");
             }
             else if (user.status === "disabled") {
@@ -183,11 +189,7 @@ $(document).on("click",".list-user-item", function(e) {
             }
             
             $('#editUserModal').modal('show');
-        },
-        error: function(data) {
-        	showAlertBox("Error processing department.", "danger", 3);
-        }
-	});
+		});
     
     
 });
@@ -434,53 +436,28 @@ $("#adduser-status-enabled, #adduser-status-disabled").click(function() {
 $("#list-user-filter button").click(function(e) {
 	e.preventDefault();
 	var type = $(this).attr("filtertype");
+	$("#list-user-filter button").removeClass("active");
+	$(this).addClass("active");
 	
-	var previousall = false;
-	if ($("#list-user-filter button[filtertype=all]").hasClass("active")) { previousall = true; }
-	
-	$("#list-user-filter button[filtertype=all]").removeClass("active");
-	$(this).toggleClass("active");
-	
-	if (type === "all") {
-		$("#list-user-filter button").removeClass("active");
-		$("#list-user-filter button[filtertype=all]").addClass("active");
-		$(".list-user-item").show();
+	if (type === "editor") {
+		$(".list-user-item").hide();
+		$(".list-user-item[usertype=editor]").show();
+		$(".list-user-item[usertype=editorposter]").show();
+	}
+	else if (type === "poster") {
+		$(".list-user-item").hide();
+		$(".list-user-item[usertype=poster]").show();
+		$(".list-user-item[usertype=editorposter]").show();
+	}
+	else if (type === "admin") {
+		$(".list-user-item").hide();
+		$(".list-user-item[usertype=admin]").show();
 	}
 	else {
-		if (previousall) {
-			$(".list-user-item").hide();
-		}
-		
-		if (type === "editor") {
-			if ($(this).hasClass("active")) {
-				$(".list-user-item[usertype=editor]").show();
-				$(".list-user-item[usertype=editorposter]").show();
-			}
-			else {
-				$(".list-user-item[usertype=editor]").hide();
-				$(".list-user-item[usertype=editorposter]").hide();
-			}
-		}
-		else if (type === "admin") {
-			if ($(this).hasClass("active")) {
-				$(".list-user-item[usertype=admin]").show();
-			}
-			else {
-				$(".list-user-item[usertype=admin]").hide();
-			}
-		}
-		else if (type === "poster") {
-			if ($(this).hasClass("active")) {
-				$(".list-user-item[usertype=poster]").show();
-				$(".list-user-item[usertype=editorposter]").show();
-			}
-			else {
-				$(".list-user-item[usertype=poster]").hide();
-				$(".list-user-item[usertype=editorposter]").hide();
-			}
-		}
+		$(".list-user-item").show();
 	}
 	
+	$("#list-user-filter button").blur();
 });
 
 $(".navigation").click(function() {

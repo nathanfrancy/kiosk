@@ -31,7 +31,7 @@
 					</li>
 				</ul>
 			</div>
-			<h3>Administrator Dashboard</h3>
+			<h2>Administrator Dashboard</h2>
 			<nav class="nav-admin">
 				<div class="btn-group">
 					<button type="button" class="btn btn-primary navigation active" openview="department">Department Manager</button>
@@ -44,15 +44,8 @@
             <div class="container-body">
                 <div class="view" id="view-department">
                     <div class="row">
-                        <div class="col-sm-2">
-                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addDepartmentModal"><span class="glyphicon glyphicon-plus-sign"></span> Add Department</button><br />
-                        </div>
                         <div class="col-sm-10">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">All Departments</h3>
-                                </div>
-                                <div class="panel-body">
+                            <h3 style="margin-top: 0px; margin-bottom: 20px;">Department Manager</h3>
                                 <?php 
                                     $departments = getAllDepartments();
                                     $departmentList = "<div class='list-group' id='list-department'>";
@@ -61,11 +54,12 @@
                                         $departmentList .= "<a class='list-group-item list-department-item' href='#' departmentid='" . $department->id . "'><h4 class='list-group-item-heading'><span class='label label-primary pull-right'>". $department->id ."</span> ". $department->name ."</h4></a>";
                                         $counter++;
                                     }
-                                    $departmentList .= "</div>" . $counter . " Results";
+                                    $departmentList .= "</div>";
                                     echo $departmentList;
                                 ?>
-                              </div>
-                            </div>
+                        </div>
+						<div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addDepartmentModal"><span class="glyphicon glyphicon-plus-sign"></span> Add Department</button><br />
                         </div>
                     </div>
                     
@@ -73,11 +67,9 @@
                 
                 <div class="view" id="view-user">
                     <div class="row">
-                        <div class="col-sm-2">
-                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addUserModal"><span class="glyphicon glyphicon-plus-sign"></span> Add User</button><br />
-                        </div>
+                        
                         <div class="col-sm-10">
-							
+							<h3 style="margin-top: 0px;">User Manager</h3>
 									<div class="btn-group" id="list-user-filter" style="margin-bottom: 20px;">
 										<button type="button" class="btn btn-default btn-sm active" filtertype="all">All Users</button>
 										<button type="button" class="btn btn-default btn-sm" filtertype="admin">Administrator</button>
@@ -103,6 +95,9 @@
                                     echo $userList;
                                 ?>
 									
+                        </div>
+						<div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addUserModal"><span class="glyphicon glyphicon-plus-sign"></span> Add User</button><br />
                         </div>
                     </div>
                 </div>
