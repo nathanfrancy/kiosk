@@ -27,8 +27,6 @@
                     <span class="glyphicon glyphicon-user"></span> &nbsp;<?php echo $user->username; ?> &nbsp;<span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Update Profile</a></li>
-                    <li class="divider"></li>
                     <li><a href="logout.php">Logout</a></li>
                 </ul>
             </div>
@@ -44,7 +42,7 @@
                 <div class="view" id="view-department">
                     <div class="row">
                         <div class="col-sm-2">
-                            <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#addDepartmentModal"><span class="glyphicon glyphicon-plus-sign"></span> Add Department</button><br />
+                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addDepartmentModal"><span class="glyphicon glyphicon-plus-sign"></span> Add Department</button><br />
                         </div>
                         <div class="col-sm-10">
                             <div class="panel panel-default">
@@ -57,7 +55,7 @@
                                     $departmentList = "<div class='list-group' id='list-department'>";
                                     $counter = 0;
                                     foreach($departments as $department) {
-                                        $departmentList .= "<a class='list-group-item list-department-item' href='#' departmentid='" . $department->id . "'><h5 class='list-group-item-heading'><span class='label label-primary pull-right'>". $department->id ."</span> ". $department->name ."</h5></a>";
+                                        $departmentList .= "<a class='list-group-item list-department-item' href='#' departmentid='" . $department->id . "'><h4 class='list-group-item-heading'><span class='label label-primary pull-right'>". $department->id ."</span> ". $department->name ."</h4></a>";
                                         $counter++;
                                     }
                                     $departmentList .= "</div>" . $counter . " Results";
@@ -73,7 +71,7 @@
                 <div class="view" id="view-user">
                     <div class="row">
                         <div class="col-sm-2">
-                            <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#addUserModal"><span class="glyphicon glyphicon-plus-sign"></span> Add User</button><br />
+                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addUserModal"><span class="glyphicon glyphicon-plus-sign"></span> Add User</button><br />
                         </div>
                         <div class="col-sm-10">
                             <div class="panel panel-default">
@@ -81,17 +79,31 @@
                                     <h3 class="panel-title">All Users</h3>
                                 </div>
                                 <div class="panel-body">
+									<div class="btn-group" id="list-user-filter" style="margin-bottom: 20px;">
+										<button type="button" class="btn btn-default btn-sm active" filtertype="all">All Users</button>
+										<button type="button" class="btn btn-default btn-sm" filtertype="admin">Administrator</button>
+										<button type="button" class="btn btn-default btn-sm" filtertype="editor">Editor</button>
+										<button type="button" class="btn btn-default btn-sm" filtertype="poster">News Poster</button>
+									</div>
+									
                                 <?php 
                                     $users = getAllUsers();
                                     $userList = "<div class='list-group' id='list-user'>";
-                                    $counter = 0;
+
                                     foreach($users as $user) {
-                                        $userList .= "<a class='list-group-item list-user-item' href='#' userid='" . $user->id . "'><h5 class='list-group-item-heading'><span class='label label-primary pull-right'>". $user->id ."</span> ". $user->nicename ."&nbsp;<small>" . $user->username . "</small></h5></a>";
-                                        $counter++;
+										$usertype = $user->type;
+										$niceusertype = "";
+										if ($usertype === "admin") { $niceusertype = "Administrator"; }
+										if ($usertype === "editor") { $niceusertype = "Editor"; }
+										if ($usertype === "poster") { $niceusertype = "News Poster"; }
+										if ($usertype === "editorposter") { $niceusertype = "Editor/News Poster"; }
+										
+                                        $userList .= "<a class='list-group-item list-user-item' href='#' usertype='" . $usertype . "' userid='" . $user->id . "' style=''><h4 class='list-group-item-heading'><span class='label label-primary pull-right'>". $user->id ."</span>". $user->nicename ."&nbsp;<small>" . $user->username . "</small></h4><p class='list-group-item-text'>" . $niceusertype . "</p></a>";
                                     }
-                                    $userList .= "</div>" . $counter . " Results";
+                                    $userList .= "</div>";
                                     echo $userList;
                                 ?>
+									
                               </div>
                             </div>
                         </div>
@@ -152,9 +164,9 @@
                 </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-danger btn-sm pull-left" data-dismiss="modal" id="deleteDepartmentButton">Delete</button>
-                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary btn-sm" id="editDepartmentButton">Save changes</button>
+                <button type="button" class="btn btn-danger pull-left" data-dismiss="modal" id="deleteDepartmentButton">Delete</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="editDepartmentButton">Save changes</button>
               </div>
             </div>
           </div>
@@ -315,15 +327,15 @@
                           </div>
                         </div>
                         
-                        <button type="button" class="btn btn-danger btn-sm btn-block" data-dismiss="modal" id="deleteUserButton">Delete User</button>
+                        <button type="button" class="btn btn-danger btn-block" data-dismiss="modal" id="deleteUserButton">Delete User</button>
                     </div>
                   </div>
                 </form>
               </div>
               <div class="modal-footer">
                 
-                <button type="button" class="btn btn-primary btn-sm pull-left" id="editUserButton">Save changes</button>
-                <button type="button" class="btn btn-default btn-sm pull-left" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary pull-left" id="editUserButton">Save changes</button>
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>

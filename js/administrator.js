@@ -431,6 +431,58 @@ $("#adduser-status-enabled, #adduser-status-disabled").click(function() {
     $(this).addClass("active");
 });
 
+$("#list-user-filter button").click(function(e) {
+	e.preventDefault();
+	var type = $(this).attr("filtertype");
+	
+	var previousall = false;
+	if ($("#list-user-filter button[filtertype=all]").hasClass("active")) { previousall = true; }
+	
+	$("#list-user-filter button[filtertype=all]").removeClass("active");
+	$(this).toggleClass("active");
+	
+	if (type === "all") {
+		$("#list-user-filter button").removeClass("active");
+		$("#list-user-filter button[filtertype=all]").addClass("active");
+		$(".list-user-item").show();
+	}
+	else {
+		if (previousall) {
+			$(".list-user-item").hide();
+		}
+		
+		if (type === "editor") {
+			if ($(this).hasClass("active")) {
+				$(".list-user-item[usertype=editor]").show();
+				$(".list-user-item[usertype=editorposter]").show();
+			}
+			else {
+				$(".list-user-item[usertype=editor]").hide();
+				$(".list-user-item[usertype=editorposter]").hide();
+			}
+		}
+		else if (type === "admin") {
+			if ($(this).hasClass("active")) {
+				$(".list-user-item[usertype=admin]").show();
+			}
+			else {
+				$(".list-user-item[usertype=admin]").hide();
+			}
+		}
+		else if (type === "poster") {
+			if ($(this).hasClass("active")) {
+				$(".list-user-item[usertype=poster]").show();
+				$(".list-user-item[usertype=editorposter]").show();
+			}
+			else {
+				$(".list-user-item[usertype=poster]").hide();
+				$(".list-user-item[usertype=editorposter]").hide();
+			}
+		}
+	}
+	
+});
+
 $(".navigation").click(function() {
     resetNavs();
     $(this).addClass("active");
