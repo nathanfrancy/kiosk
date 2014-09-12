@@ -16,3 +16,4 @@ All other documentation (which will be much more specific) will be available on 
 ####Links to Important Documents
 - [Functional Requirements](https://github.com/CIS4690-Fall2014/kiosk-php/blob/master/documentation/functional-requirements.md)
 - [User Groups](https://github.com/CIS4690-Fall2014/kiosk-php/blob/master/documentation/user-groups.md)
+- [User Access](https://github.com/CIS4690-Fall2014/kiosk-php/blob/master/documentation/user-access.md) (Logging in and out, sessions, and access)
