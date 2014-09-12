@@ -17,27 +17,30 @@
     <body>
         
         <div id="alertBox">
-		  <div id="alertBoxBody" class="alert" role="alert">This is an alert</div>
+		  <div id="alertBoxBody" class="alert" role="alert"></div>
 	    </div>
     
-        <div class="container-fluid">
-            
-            <div class="btn-group pull-right" style="margin-top: 10px;">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                    <span class="glyphicon glyphicon-user"></span> &nbsp;<?php echo $user->username; ?> &nbsp;<span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="logout.php">Logout</a></li>
-                </ul>
-            </div>
-            <h3>Administrator Dashboard</h3>
-            <nav class="nav-admin">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-primary navigation active" openview="department">Department Manager</button>
-                  <button type="button" class="btn btn-primary navigation" openview="user">User Manager</button>
-                </div>
-            </nav>
-            
+		<div class="container-fluid" style="background-color: #f5f5f5; border-bottom: 1px rgb(221, 221, 221) solid;">
+			<div class="btn-group pull-right" style="margin-top: 10px;">
+				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+					<span class="glyphicon glyphicon-user"></span> &nbsp;
+					<?php echo $user->username; ?> &nbsp;<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="logout.php">Logout</a>
+					</li>
+				</ul>
+			</div>
+			<h3>Administrator Dashboard</h3>
+			<nav class="nav-admin">
+				<div class="btn-group">
+					<button type="button" class="btn btn-primary navigation active" openview="department">Department Manager</button>
+					<button type="button" class="btn btn-primary navigation" openview="user">User Manager</button>
+				</div>
+			</nav>
+		</div>
+		
+        <div class="container-fluid"> 
             <div class="container-body">
                 <div class="view" id="view-department">
                     <div class="row">
@@ -74,11 +77,7 @@
                             <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addUserModal"><span class="glyphicon glyphicon-plus-sign"></span> Add User</button><br />
                         </div>
                         <div class="col-sm-10">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">All Users</h3>
-                                </div>
-                                <div class="panel-body">
+							
 									<div class="btn-group" id="list-user-filter" style="margin-bottom: 20px;">
 										<button type="button" class="btn btn-default btn-sm active" filtertype="all">All Users</button>
 										<button type="button" class="btn btn-default btn-sm" filtertype="admin">Administrator</button>
@@ -104,8 +103,6 @@
                                     echo $userList;
                                 ?>
 									
-                              </div>
-                            </div>
                         </div>
                     </div>
                 </div>

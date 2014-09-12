@@ -61,4 +61,3 @@
 5. Additional functional requirements:
     * 5.1 System administrator should be able to access the system and reset password for all other users
     * 5.2 Information for all instructors and full-time staff in Dockery and all full-time personnel in WDE 1600 (HCBPS Suite) should be supported.
-    
