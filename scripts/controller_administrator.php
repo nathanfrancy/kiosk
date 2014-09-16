@@ -15,8 +15,9 @@ $controllerType = $_POST['controllerType'];
 if ($controllerType === "addDepartment") {
     $name = $_POST['name'];
     $newid = addDepartment($name);
-    $department = getDepartment($newid);
-    echo json_encode($department);
+    echo $newid;
+    //$department = getDepartment($newid);
+    //echo json_encode($department);
 }
 else if ($controllerType === "getDepartment") {
     $id = $_POST['id'];
@@ -93,11 +94,6 @@ else if ($controllerType === "getGrantedDepartmentIds") {
     $departments = getGrantedDepartmentIds($userid);
     echo json_encode($departments);
 }
-    
-
-
-
-
 
 
 ?>

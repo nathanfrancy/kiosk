@@ -1,6 +1,7 @@
 $("#addDepartmentButton").click(function (e) {
 	e.preventDefault();
 	var name = $("#adddepartment-name").val();
+	console.log(name);
 
 	$.ajax({
 		type: "POST",
@@ -11,6 +12,7 @@ $("#addDepartmentButton").click(function (e) {
 		},
 		dataType: "json",
 		success: function (data) {
+			console.log(data);
 			var department = {
 				id: data.id,
 				name: data.name
@@ -83,7 +85,7 @@ $("#deleteDepartmentButton").click(function (e) {
 });
 
 function appendDepartment(department) {
-	$("<a class='list-group-item list-department-item' href='#' style='display: block;' departmentid='" + department.id + "'><h5 class='list-group-item-heading'><span class='label label-primary pull-right'>" + department.id + "</span> " + department.name + "</h5></a>")
+	$("<a class='list-group-item list-department-item' href='#' style='display: block;' departmentid='" + department.id + "'><h4 class='list-group-item-heading'><span class='label label-primary pull-right'>" + department.id + "</span> " + department.name + "</h4></a>")
 		.hide().appendTo("#list-department").slideDown();
 }
 
@@ -304,7 +306,7 @@ $("#editUserButton").click(function (e) {
 });
 
 function appendUser(user) {
-	$("<a class='list-group-item list-user-item' href='#' style='display: block;' userid='" + user.id + "'><h5 class='list-group-item-heading'><span class='label label-primary pull-right'>" + user.id + "</span> " + user.nicename + "<small>" + user.username + "</small></h5></a>")
+	$("<a class='list-group-item list-user-item' href='#' style='display: block;' userid='" + user.id + "'><h4 class='list-group-item-heading'><span class='label label-primary pull-right'>" + user.id + "</span> " + user.nicename + "<small>" + user.username + "</small></h4></a>")
 		.hide().appendTo("#list-user").slideDown();
 }
 
