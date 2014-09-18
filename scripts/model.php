@@ -12,7 +12,6 @@ class User {
 class Department {
     public $id;
     public $name;
-    public $parent;
 }
 
 ?>
