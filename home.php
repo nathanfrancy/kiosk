@@ -16,6 +16,13 @@ $editor_poster_logged_in = false;
 $enabled_user = false;
 
 
+// page variable that might need to be resolved
+$page = "";
+if (!empty($_GET['page'])) {
+    $page = $_GET['page'];
+}
+
+
 /** Check session variables for admin or editor id numbers. Here are some rules: */
 if (isset($_SESSION['auth_id'])) {
     
@@ -58,8 +65,8 @@ else { header("Location: login.php"); }
 |        will be false below (the very first check), so no view will open. Instead a 
 |        message that their account is currently disabled will appear for 15 seconds, 
 |        then sign them out automatically.
-|      - Based on which boolean is true above, the correct view will be pulled prefixed
-|        with home-****.php. 
+|      
+|      
 |                                                                                     */
 /*====================================================================================*/
 
@@ -78,7 +85,14 @@ if ($enabled_user) {
     }
 
     else if ($admin_logged_in) {
-        require('home-admin.php');
+        $admin_whitelist = array("department", "user");
+        
+        if (in_array($page, $admin_whitelist)) {
+            require('views/admin/home-admin-'. $page .'.php');
+        }
+        else {
+            require('views/admin/home-admin-department.php');
+        }
     }
 }
 
