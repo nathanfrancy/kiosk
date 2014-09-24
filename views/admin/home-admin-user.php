@@ -207,6 +207,7 @@ require("header.php");
                           <div class="panel-body">
                             <div class="form-group">
                                 <?php
+                                    $departments = getAllDepartments();
                                     foreach ($departments as $department) {
                                         echo '<div class="checkbox"><label><input class="addaccess-department" type="checkbox" value="'. $department->id .'" name="department[]">'. $department->name .'</label></div>';
                                     }

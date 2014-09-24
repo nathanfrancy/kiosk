@@ -1,3 +1,15 @@
 .nav-editor {
     padding-bottom: 20px;
 }
+
+.container-body {
+    padding-top: 20px;
+}
+
+.panel-department > .panel-body { 
+    display: none; 
+}
+
+.panel-heading {
+    cursor: pointer;
+}

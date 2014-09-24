@@ -73,7 +73,14 @@ else { header("Location: login.php"); }
 if ($enabled_user) {
     
     if ($editor_logged_in) {
-        require('home-editor.php');
+        $editor_whitelist = array("professor");
+        
+        if (in_array($page, $editor_whitelist)) {
+            require('views/editor/home-editor-'. $page .'.php');
+        }
+        else {
+            require('views/editor/home-editor-professor.php');
+        }
     }
 
     else if ($editor_poster_logged_in) {

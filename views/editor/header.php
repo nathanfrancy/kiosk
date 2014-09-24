@@ -34,21 +34,9 @@
 			<h2>Information Coordinator Dashboard</h2>
 			<nav class="nav-editor">
 				<div class="btn-group">
-					<button type="button" class="btn btn-primary navigation active" openview="department">Department Manager</button>
-					<button type="button" class="btn btn-primary navigation" openview="user">User Manager</button>
+					<button type="button" class="btn btn-primary navigation active">Professor Manager</button>
 				</div>
 			</nav>
 		</div>
 		
-        <div class="container-fluid"> 
-            <div class="container-body">
-			
-				
-			</div>
-		</div>
-	</body>
-	
-	<script type="text/javascript" src="js/editor.js"></script>
-    <script type="text/javascript" src="js/sitewide.js"></script>
-	
-</html>
+        <div class="container-fluid">

@@ -14,4 +14,17 @@ class Department {
     public $name;
 }
 
+class Professor {
+    public $id;
+    public $department_id;
+    public $firstname;
+    public $lastname;
+    public $title;
+    public $officebuilding;
+    public $officeroom;
+    public $phonenumber;
+    public $email;
+    public $pictureurl;
+}
+
 ?>
