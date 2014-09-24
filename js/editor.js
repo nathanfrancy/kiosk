@@ -1,6 +1,6 @@
 
-$(".panel-department").click(function() {
-    var departmentid = parseInt($(this).attr("departmentid"));
+$(".panel-heading").click(function() {
+    var departmentid = parseInt($(this).parent(".panel-department").attr("departmentid"));
     
     $.ajax({
 		type: "POST",
@@ -14,7 +14,7 @@ $(".panel-department").click(function() {
             var professorHTML = "<div class='list-group'>";
             var count = 0;
             for (var i = 0; i < data.length; i++) {
-                professorHTML += '<a href="#" class="list-group-item"><h4 class="list-group-item-heading">'+ data[i].lastname + ', ' + data[i].firstname +'</h4><!--<p class="list-group-item-text"></p>--></a>';
+                professorHTML += '<a href="#" class="list-group-item list-professor" professorid="' + data[i].professorid + '"><h4 class="list-group-item-heading">'+ data[i].lastname + ', ' + data[i].firstname +'</h4><!--<p class="list-group-item-text"></p>--></a>';
                 count++;
             }
             professorHTML += "</div>";
@@ -28,4 +28,25 @@ $(".panel-department").click(function() {
 		}
 	});
     
+});
+
+$(document).on("click", ".list-professor", function(e) {
+    var id = $(this).attr("professorid");
+    
+    // Load up the professor's attributes
+    $.ajax({
+		type: "POST",
+		url: "scripts/controller_editor.php",
+		data: {
+			controllerType: "getProfessor",
+			professorid : id
+		},
+		dataType: "json",
+		success: function (data) {
+            console.log(data);
+		},
+		error: function (data) {
+			showAlertBox("Error loading professor data.", "danger", 3);
+		}
+	});
 });

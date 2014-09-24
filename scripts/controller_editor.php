@@ -12,5 +12,10 @@ if ($controllerType === "getDepartmentsProfessors") {
     $professors = getDepartmentsProfessors($departmentid);
     echo json_encode($professors);
 }
+else if ($controllerType === "getProfessor") {
+    $professorid = $_POST['professorid'];
+    $professor = getProfessor($professorid);
+    echo json_encode($professor);
+}
 
 ?>
