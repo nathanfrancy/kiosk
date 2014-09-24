@@ -11,7 +11,7 @@ require('dao_editor.php');
  */
 function connect_db() {
 	$prod = false;
-	$ubuntu = true;
+	$ubuntu = false;
 	
 	$host = "";
 	$username = "";
@@ -20,7 +20,6 @@ function connect_db() {
 	
 	if ($prod) {
 		// place production variables here
-		
 	}
 	else {
 		$host = "localhost";

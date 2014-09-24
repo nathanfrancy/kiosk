@@ -1,4 +1,12 @@
 
+// global variables
+var edit = false;
+
+$("#addProfessorButton").click(function() {
+	$("#addEditProfessorModal").modal('show');
+	prepareAddProfessor();
+});
+
 $(".panel-heading").click(function() {
     var departmentid = parseInt($(this).parent(".panel-department").attr("departmentid"));
     
@@ -31,6 +39,7 @@ $(".panel-heading").click(function() {
 });
 
 $(document).on("click", ".list-professor", function(e) {
+	prepareEditProfessor();
     var id = $(this).attr("professorid");
     
     // Load up the professor's attributes
@@ -43,10 +52,35 @@ $(document).on("click", ".list-professor", function(e) {
 		},
 		dataType: "json",
 		success: function (data) {
-            console.log(data);
+            $("#addeditprofessor-id").val(data.id);
+			$("#addeditprofessor-firstname").val(data.firstname);
+			$("#addeditprofessor-lastname").val(data.lastname);
+			$("#addeditprofessor-officebuilding").val(data.officebuilding);
+			$("#addeditprofessor-officeroom").val(data.officeroom);
+			$("#addeditprofessor-phonenumber").val(data.phonenumber);
+			$("#addeditprofessor-email").val(data.email);
+			$("#addeditprofessor-pictureurl").val(data.pictureurl);
 		},
 		error: function (data) {
 			showAlertBox("Error loading professor data.", "danger", 3);
 		}
 	});
+	
+	$("#addEditProfessorModal").modal('show');
 });
+
+function prepareAddProfessor() {
+	$("#addeditprofessor-id-container").hide();
+	$("#addEditProfessorModal input").val('');
+	$("#addUserButton").html("Add Professor");
+	$(".panel-classschedule .panel-body").html("Save this professor to add these values.");
+	$(".panel-officehours .panel-body").html("Save this professor to add these values.");
+	edit = false;
+}
+
+function prepareEditProfessor() {
+	$("#addeditprofessor-id-container").show();
+	$("#addUserButton").html("Save Changes");
+	edit = true;
+}
+
