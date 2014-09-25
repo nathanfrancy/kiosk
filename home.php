@@ -16,7 +16,7 @@ $editor_poster_logged_in = false;
 $enabled_user = false;
 
 
-// page variable that might need to be resolved
+// if a page variable exists, get it
 $page = "";
 if (!empty($_GET['page'])) {
     $page = $_GET['page'];
