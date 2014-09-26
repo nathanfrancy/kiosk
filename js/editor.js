@@ -22,7 +22,7 @@ $(".panel-heading").click(function() {
             var professorHTML = "<div class='list-group'>";
             var count = 0;
             for (var i = 0; i < data.length; i++) {
-                professorHTML += '<a href="#" class="list-group-item list-professor" professorid="' + data[i].professorid + '"><h4 class="list-group-item-heading">'+ data[i].lastname + ', ' + data[i].firstname +'</h4><!--<p class="list-group-item-text"></p>--></a>';
+                professorHTML += '<a href="#" class="list-group-item list-professor" professorid="' + data[i].professorid + '" departmentid="' + departmentid + '"><h4 class="list-group-item-heading">'+ data[i].lastname + ', ' + data[i].firstname +'</h4><!--<p class="list-group-item-text"></p>--></a>';
                 count++;
             }
             professorHTML += "</div>";

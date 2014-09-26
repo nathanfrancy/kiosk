@@ -104,8 +104,18 @@ require("header.php");
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="addeditprofessor-pictureurl">ID</label>
+								<label for="addeditprofessor-pictureurl">Image URL</label>
 								<input type="text" class="form-control" id="addeditprofessor-pictureurl" placeholder="Picture URL">
+							</div>
+							<div class="form-group">
+								<label for="addeditprofessor-">Department</label>
+								<select id="addeditprofessor-departmentid" class="form-control">
+									<?php
+										foreach ($departments as $department) {
+											echo '<option value="'. $department['id'] .'">' . $department['name'] . '</option>';	
+										}
+									?>
+								</select>
 							</div>
                         	
                         </div>

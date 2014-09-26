@@ -17,5 +17,8 @@ else if ($controllerType === "getProfessor") {
     $professor = getProfessor($professorid);
     echo json_encode($professor);
 }
+else if ($controllerType === "addProfessor") {
+	
+}
 
 ?>
