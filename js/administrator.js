@@ -89,11 +89,6 @@ function appendDepartment(department) {
 		.hide().appendTo("#list-department").slideDown();
 }
 
-function appendUser(user) {
-	$("<a class='list-group-item list-user-item' href='#' userid='" + user.id + "'><h5 class='list-group-item-heading'><span class='label label-primary pull-right'>" + user.id + "</span> " + user.nicename + "&nbsp;&nbsp; <small>" + user.username + "</small></h5></a>")
-		.hide().appendTo("#list-user").slideDown();
-}
-
 /* Click handlers for navigation buttons and showing views */
 
 $(document).on("click", ".list-department-item", function (e) {
@@ -306,8 +301,8 @@ $("#editUserButton").click(function (e) {
 });
 
 function appendUser(user) {
-	$("<a class='list-group-item list-user-item' href='#' style='display: block;' userid='" + user.id + "'><h4 class='list-group-item-heading'><span class='label label-primary pull-right'>" + user.id + "</span> " + user.nicename + "<small>" + user.username + "</small></h4></a>")
-		.hide().appendTo("#list-user").slideDown();
+	$("<a class='list-group-item list-user-item' href='#' style='display: block;' userid='" + user.id + "'><h4 class='list-group-item-heading'><span class='label label-primary pull-right'>" + user.id + "</span> " + user.nicename + "&nbsp;<small>" + user.username + "</small></h4><p class='list-group-item-text'>"+ cap(user.type) +"</p></a>")
+		.hide().appendTo("#list-user").fadeIn();
 }
 
 $("#deleteUserButton").click(function (e) {
@@ -462,4 +457,8 @@ $(".navigation").click(function () {
 
 function resetNavs() {
 	$(".navigation").removeClass("active");
+}
+
+function cap(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }

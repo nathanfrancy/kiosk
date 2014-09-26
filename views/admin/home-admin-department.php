@@ -25,7 +25,7 @@ require("header.php");
                 <div class="view" id="view-department">
                     <div class="row">
 						<div class="col-sm-2">
-                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addDepartmentModal"><span class="glyphicon glyphicon-plus-sign"></span> Add Department</button><br />
+                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addDepartmentModal"><span class="glyphicon glyphicon-plus-sign"></span> Add Department</button><br /><br />
                         </div>
                         <div class="col-sm-10">
                             <h3 style="margin-top: 0px; margin-bottom: 20px;">Department Manager</h3>

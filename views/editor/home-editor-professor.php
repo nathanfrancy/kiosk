@@ -9,7 +9,7 @@ require("header.php");
             <div class="view" id="view-department">
                 <div class="row">
 					<div class="col-sm-2">
-						<button id="addProfessorButton" class="btn btn-default btn-block">Add Professor</button>
+						<button id="addProfessorButton" class="btn btn-primary btn-block">Add Professor</button><br /><br />
 					</div>
                     <div class="col-sm-10">
                         <h3 style="margin-top: 0px; margin-bottom: 20px;">Professor Manager</h3>
