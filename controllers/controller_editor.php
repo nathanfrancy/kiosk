@@ -1,9 +1,5 @@
 <?php
-require('dao.php');
-
-/*
-    
-*/
+require('../dao/dao.php');
 
 $controllerType = $_POST['controllerType'];
 

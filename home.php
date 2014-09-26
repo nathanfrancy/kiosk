@@ -1,6 +1,7 @@
 <?php
 
-require("scripts/dao.php");
+require("dao/dao.php");
+require("models/model.php");
 session_start();
 
 // User attributes

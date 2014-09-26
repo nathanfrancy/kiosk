@@ -12,7 +12,8 @@
     and redirects back to the index page.
 */
 
-require('dao.php');
+require('../dao/dao.php');
+require_once('../models/model.php');
 
 $controllerType = $_POST['controllerType'];
 $userid = 0;

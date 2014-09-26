@@ -5,14 +5,13 @@ $("#addDepartmentButton").click(function (e) {
 
 	$.ajax({
 		type: "POST",
-		url: "scripts/controller_administrator.php",
+		url: "controllers/controller_administrator.php",
 		data: {
 			controllerType: "addDepartment",
 			name: name
 		},
 		dataType: "json",
 		success: function (data) {
-			console.log(data);
 			var department = {
 				id: data.id,
 				name: data.name
@@ -35,7 +34,7 @@ $("#editDepartmentButton").click(function (e) {
 
 	$.ajax({
 		type: "POST",
-		url: "scripts/controller_administrator.php",
+		url: "controllers/controller_administrator.php",
 		data: {
 			controllerType: "updateDepartment",
 			id: id,
@@ -66,7 +65,7 @@ $("#deleteDepartmentButton").click(function (e) {
 
 	$.ajax({
 		type: "POST",
-		url: "scripts/controller_administrator.php",
+		url: "controllers/controller_administrator.php",
 		data: {
 			controllerType: "deleteDepartment",
 			id: id
@@ -96,7 +95,7 @@ $(document).on("click", ".list-department-item", function (e) {
 	var id = parseInt($(this).attr("departmentid"));
 	$.ajax({
 		type: "POST",
-		url: "scripts/controller_administrator.php",
+		url: "controllers/controller_administrator.php",
 		data: {
 			controllerType: "getDepartment",
 			id: id
@@ -126,7 +125,7 @@ $(document).on("click", ".list-user-item", function (e) {
 
 	$.ajax({
 		type: "POST",
-		url: "scripts/controller_administrator.php",
+		url: "controllers/controller_administrator.php",
 		data: {
 			controllerType: "getUser",
 			id: id
@@ -165,7 +164,7 @@ $(document).on("click", ".list-user-item", function (e) {
 			$("#edituser-departmentaccess").show();
 			$.ajax({
 				type: "POST",
-				url: "scripts/controller_administrator.php",
+				url: "controllers/controller_administrator.php",
 				data: {
 					controllerType: "getGrantedDepartmentIds",
 					userid: id
@@ -209,7 +208,7 @@ $("#addUserButton").click(function (e) {
 
 	$.ajax({
 		type: "POST",
-		url: "scripts/controller_administrator.php",
+		url: "controllers/controller_administrator.php",
 		data: {
 			controllerType: "addUser",
 			username: username,
@@ -262,7 +261,7 @@ $("#editUserButton").click(function (e) {
 
 	$.ajax({
 		type: "POST",
-		url: "scripts/controller_administrator.php",
+		url: "controllers/controller_administrator.php",
 		data: {
 			controllerType: "updateUser",
 			id: id,
@@ -311,7 +310,7 @@ $("#deleteUserButton").click(function (e) {
 
 	$.ajax({
 		type: "POST",
-		url: "scripts/controller_administrator.php",
+		url: "controllers/controller_administrator.php",
 		data: {
 			controllerType: "deleteUser",
 			id: id
@@ -344,7 +343,7 @@ $("#edituser-passwordresetbutton").click(function () {
 			$(this).addClass("disabled");
 			$.ajax({
 				type: "POST",
-				url: "scripts/controller_administrator.php",
+				url: "controllers/controller_administrator.php",
 				data: {
 					controllerType: "resetPassword",
 					id: id,
@@ -377,7 +376,7 @@ $(".addaccess-department").change(function () {
 	if (checked) {
 		$.ajax({
 			type: "POST",
-			url: "scripts/controller_administrator.php",
+			url: "controllers/controller_administrator.php",
 			data: {
 				controllerType: "grantDepartmentAccess",
 				userid: userid,
@@ -394,7 +393,7 @@ $(".addaccess-department").change(function () {
 	} else {
 		$.ajax({
 			type: "POST",
-			url: "scripts/controller_administrator.php",
+			url: "controllers/controller_administrator.php",
 			data: {
 				controllerType: "revokeDepartmentAccess",
 				userid: userid,

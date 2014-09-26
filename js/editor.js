@@ -12,7 +12,7 @@ $(".panel-heading").click(function() {
     
     $.ajax({
 		type: "POST",
-		url: "scripts/controller_editor.php",
+		url: "controllers/controller_editor.php",
 		data: {
 			controllerType: "getDepartmentsProfessors",
 			departmentid : departmentid
@@ -45,7 +45,7 @@ $(document).on("click", ".list-professor", function(e) {
     // Load up the professor's attributes
     $.ajax({
 		type: "POST",
-		url: "scripts/controller_editor.php",
+		url: "controllers/controller_editor.php",
 		data: {
 			controllerType: "getProfessor",
 			professorid : id
@@ -86,7 +86,7 @@ $("#addProfessorButtonSubmit").click(function() {
 	
 	$.ajax({
 		type: "POST",
-		url: "scripts/controller_editor.php",
+		url: "controllers/controller_editor.php",
 		data: {
 			controllerType: "addProfessor",
 			firstname : firstname,
@@ -115,7 +115,7 @@ $("#addProfessorButtonSubmit").click(function() {
 function fillOfficeHours(professorid) {
 	$.ajax({
 		type: "POST",
-		url: "scripts/controller_editor.php",
+		url: "controllers/controller_editor.php",
 		data: {
 			controllerType: "getOfficeHours",
 			professorid : professorid

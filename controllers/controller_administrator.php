@@ -1,5 +1,5 @@
 <?php
-require('dao.php');
+require('../dao/dao.php');
 
 /*
     This script is mainly used as a controller for ajax operations 
