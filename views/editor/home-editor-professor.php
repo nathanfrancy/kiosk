@@ -111,6 +111,7 @@ require("header.php");
 								<label for="addeditprofessor-">Department</label>
 								<select id="addeditprofessor-departmentid" class="form-control">
 									<?php
+										// Use the departments from above, only show those departments the user has access to manage
 										foreach ($departments as $department) {
 											echo '<option value="'. $department['id'] .'">' . $department['name'] . '</option>';	
 										}
@@ -133,7 +134,9 @@ require("header.php");
                                     <h3 class="panel-title">Office Hours</h3>
                                   </div>
                                   <div class="panel-body">
-                                  	
+                                  	<div id="professor-officehours">
+										<ul id="professor-officehours-list"></ul>
+									</div>
                                   </div>
                                 </div>
                             <!--<div class="alert alert-info" role="alert"><strong></strong></div>-->
@@ -142,7 +145,7 @@ require("header.php");
                 </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-primary pull-left" id="addUserButton">Save changes</button>
+                <button type="button" class="btn btn-primary pull-left" id="addProfessorButtonSubmit">Save changes</button>
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
               </div>
             </div>

@@ -27,4 +27,11 @@ class Professor {
     public $pictureurl;
 }
 
+class OfficeHours {
+	public $id;
+	public $days;
+	public $times;
+	public $professor_id;
+}
+
 ?>

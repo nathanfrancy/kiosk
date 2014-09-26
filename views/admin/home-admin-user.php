@@ -25,7 +25,9 @@ require("header.php");
                 
                 <div class="view" id="view-user">
                     <div class="row">
-                        
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addUserModal"><span class="glyphicon glyphicon-plus-sign"></span> Add User</button><br />
+                        </div>
                         <div class="col-sm-10">
 							<h3 style="margin-top: 0px;">User Manager</h3>
 									<div class="btn-group" id="list-user-filter" style="margin-bottom: 20px;">
@@ -54,9 +56,7 @@ require("header.php");
                                 ?>
 									
                         </div>
-						<div class="col-sm-2">
-                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addUserModal"><span class="glyphicon glyphicon-plus-sign"></span> Add User</button><br />
-                        </div>
+						
                     </div>
                 </div>
             </div> 

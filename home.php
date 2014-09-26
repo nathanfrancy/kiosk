@@ -66,12 +66,26 @@ else { header("Location: login.php"); }
 |        message that their account is currently disabled will appear for 15 seconds, 
 |        then sign them out automatically.
 |      
+|	   - For each user group, there is a string array, which is a whitelist of views that
+|	  	 will be available to only that user group. Views are stored in views/[user group]/
+|		 Within the conditionals below for each user group, the requested $page is checked 
+|		 against this whitelist. If it is in the array, it loads that view. If not, 
+|		 it loads the default view in the [else]. 
 |      
 |                                                                                     */
 /*====================================================================================*/
 
+
+
+/*
+* Check if the user is an enabled user. Don't display anything if not.
+========================================================================*/
 if ($enabled_user) {
     
+	
+	/*
+	 * Editor user group
+	 ====================================================*/
     if ($editor_logged_in) {
         $editor_whitelist = array("professor");
         
@@ -83,14 +97,26 @@ if ($enabled_user) {
         }
     }
 
+	
+	/*
+	 * Editor/Poster user groups
+	 ====================================================*/
     else if ($editor_poster_logged_in) {
         require("home-editorposter.php");
     }
 
+	
+	/*
+	 * Poster user group
+	 ====================================================*/
     else if ($poster_logged_in) {
         require("home-poster.php");
     }
 
+	
+	/*
+	 * Admin user groups
+	 ====================================================*/
     else if ($admin_logged_in) {
         $admin_whitelist = array("department", "user");
         

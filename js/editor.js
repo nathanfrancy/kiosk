@@ -60,6 +60,8 @@ $(document).on("click", ".list-professor", function(e) {
 			$("#addeditprofessor-phonenumber").val(data.phonenumber);
 			$("#addeditprofessor-email").val(data.email);
 			$("#addeditprofessor-pictureurl").val(data.pictureurl);
+			$("#addeditprofessor-departmentid").val(data.department_id);
+			fillOfficeHours(data.id);
 		},
 		error: function (data) {
 			showAlertBox("Error loading professor data.", "danger", 3);
@@ -68,6 +70,67 @@ $(document).on("click", ".list-professor", function(e) {
 	
 	$("#addEditProfessorModal").modal('show');
 });
+
+$("#addProfessorButtonSubmit").click(function() {
+	
+	// Compile all of the submitted values into variables to prepare for the ajax call
+	//var id = $("#addeditprofessor-id").val();
+	var firstname = $("#addeditprofessor-firstname").val();
+	var lastname = $("#addeditprofessor-lastname").val();
+	var officebuilding = $("#addeditprofessor-officebuilding").val();
+	var officeroom = $("#addeditprofessor-officeroom").val();
+	var phonenumber = parseInt($("#addeditprofessor-phonenumber").val());
+	var email = $("#addeditprofessor-email").val();
+	var pictureurl = $("#addeditprofessor-pictureurl").val();
+	var departmentid = parseInt($("#addeditprofessor-departmentid").val());
+	
+	$.ajax({
+		type: "POST",
+		url: "scripts/controller_editor.php",
+		data: {
+			controllerType: "addProfessor",
+			firstname : firstname,
+			lastname : lastname,
+			officebuilding : officebuilding,
+			officeroom : officeroom,
+			phonenumber : phonenumber,
+			email : email,
+			imageurl : pictureurl,
+			departmentid : departmentid
+		},
+		dataType: "json",
+		success: function (data) {
+			$("#addeditprofessor-id-container").slideDown();
+			$("#addeditprofessor-id").val(data.id);
+			prepareEditProfessor();
+			$(".panel-department[departmentid="+ departmentid +"] .list-group").append('<a href="#" class="list-group-item list-professor" professorid="' + data.professorid + '" departmentid="' + departmentid + '"><h4 class="list-group-item-heading">'+ data.lastname + ', ' + data.firstname +'</h4><!--<p class="list-group-item-text"></p>--></a>');
+			showAlertBox("Added professor successfully!.", "success", 3);
+		},
+		error: function (data) {
+			showAlertBox("Error loading professor data.", "danger", 3);
+		}
+	});
+});
+
+function fillOfficeHours(professorid) {
+	$.ajax({
+		type: "POST",
+		url: "scripts/controller_editor.php",
+		data: {
+			controllerType: "getOfficeHours",
+			professorid : professorid
+		},
+		dataType: "json",
+		success: function (data) {
+			for (var i = 0; i < data.length; i++) {
+				$("#professor-officehours-list").append("<li>" + data[i].days + ", " + data[i].times + "</li>");
+			}
+		},
+		error: function (data) {
+			showAlertBox("Error loading professor data.", "danger", 3);
+		}
+	});
+}
 
 function prepareAddProfessor() {
 	$("#addeditprofessor-id-container").hide();
@@ -79,6 +142,7 @@ function prepareAddProfessor() {
 }
 
 function prepareEditProfessor() {
+	$("#professor-officehours-list").html('');
 	$("#addeditprofessor-id-container").show();
 	$("#addUserButton").html("Save Changes");
 	edit = true;

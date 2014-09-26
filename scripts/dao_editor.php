@@ -63,4 +63,58 @@ function getProfessor($id) {
 	return $theProfessor;
 }
 
+function addProfessor($firstname, $lastname, $officebuilding, $officeroom, $phonenumber, $email, $imageurl, $departmentid) {
+	$link = connect_db();
+	$sql = "INSERT INTO  `professor` (`department_id`, `firstname`, `lastname`, `officebuilding`, `officeroom`, `phonenumber`, `email`, `pictureurl`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	$stmt = $link->stmt_init();
+	$stmt->prepare($sql);
+	$stmt->bind_param('issssiss', $departmentid, 
+					  $link->real_escape_string($firstname),
+					  $link->real_escape_string($lastname),
+					  $link->real_escape_string($officebuilding),
+					  $link->real_escape_string($officeroom),
+					  $phonenumber,
+					  $link->real_escape_string($email),
+					  $link->real_escape_string($imageurl));
+	$stmt->execute();
+	$id = $link->insert_id;
+	mysqli_stmt_close($stmt);
+	$link->close();
+	
+	$professor = getProfessor($id);
+	
+	return $professor;
+}
+
+function getOfficeHours($professorid) {
+	$officehours = array();
+
+    $link = connect_db();
+    $sql = "SELECT * FROM `professor_officehours` WHERE `professor_officehours`.`professor_id` = ?";
+    $stmt = $link->stmt_init();
+    $stmt->prepare($sql);
+    $stmt->bind_param('i', $professorid);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    while ($officehour = $result->fetch_object('OfficeHours')) {
+        $theOfficeHours = $officehour;
+        array_push($officehours, $theOfficeHours);
+    }
+
+    mysqli_stmt_close($stmt);
+    
+    return $officehours;
+}
+
+
+
+
+
+
+
+
+
+
+
 ?>
