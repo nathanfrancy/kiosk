@@ -103,7 +103,14 @@ if ($enabled_user) {
 	 * Editor/Poster user groups
 	 ====================================================*/
     else if ($editor_poster_logged_in) {
-        require("home-editorposter.php");
+        $admin_whitelist = array("professor");
+        
+        if (in_array($page, $admin_whitelist)) {
+            require('views/editorposter/home-poster-'. $page .'.php');
+        }
+        else {
+            require('views/editorposter/home-poster-professor.php');
+        }
     }
 
 	
@@ -111,7 +118,14 @@ if ($enabled_user) {
 	 * Poster user group
 	 ====================================================*/
     else if ($poster_logged_in) {
-        require("home-poster.php");
+        $admin_whitelist = array("posts");
+        
+        if (in_array($page, $admin_whitelist)) {
+            require('views/poster/home-poster-'. $page .'.php');
+        }
+        else {
+            require('views/poster/home-poster-posts.php');
+        }
     }
 
 	
