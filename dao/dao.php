@@ -1,10 +1,16 @@
 <?php
+
 session_start();
 date_default_timezone_set('America/Chicago');
 
-require('model.php');
 require('dao_admin.php');
 require('dao_editor.php');
+
+// if the model.php file exists relative to this location, we need it for some operations
+// this is primarily for ajax calls
+if (file_exists("../models/model.php")) {
+	require("../models/model.php");
+}
 
 /** ============================================================================
  * Function that provides a link to the database for data access and interaction
@@ -91,5 +97,20 @@ function getUserObject($userid) {
 	mysqli_stmt_close($stmt);
 	return $theUser;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ?>
