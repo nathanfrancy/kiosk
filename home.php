@@ -91,10 +91,10 @@ if ($enabled_user) {
         $editor_whitelist = array("professor");
         
         if (in_array($page, $editor_whitelist)) {
-            require('views/editor/home-editor-'. $page .'.php');
+            require('views/editor/editor-'. $page .'.php');
         }
         else {
-            require('views/editor/home-editor-professor.php');
+            require('views/editor/editor-professor.php');
         }
     }
 
@@ -106,10 +106,10 @@ if ($enabled_user) {
         $admin_whitelist = array("professor");
         
         if (in_array($page, $admin_whitelist)) {
-            require('views/editorposter/home-poster-'. $page .'.php');
+            require('views/editorposter/editorposter-'. $page .'.php');
         }
         else {
-            require('views/editorposter/home-poster-professor.php');
+            require('views/editorposter/editorposter-professor.php');
         }
     }
 
@@ -121,10 +121,10 @@ if ($enabled_user) {
         $admin_whitelist = array("posts");
         
         if (in_array($page, $admin_whitelist)) {
-            require('views/poster/home-poster-'. $page .'.php');
+            require('views/poster/poster-'. $page .'.php');
         }
         else {
-            require('views/poster/home-poster-posts.php');
+            require('views/poster/poster-posts.php');
         }
     }
 
@@ -136,10 +136,10 @@ if ($enabled_user) {
         $admin_whitelist = array("department", "user");
         
         if (in_array($page, $admin_whitelist)) {
-            require('views/admin/home-admin-'. $page .'.php');
+            require('views/admin/admin-'. $page .'.php');
         }
         else {
-            require('views/admin/home-admin-department.php');
+            require('views/admin/admin-department.php');
         }
     }
 }

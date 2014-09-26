@@ -34,8 +34,7 @@
 			<h2>News Posting Coordinator Dashboard</h2>
 			<nav class="nav-poster">
 				<div class="btn-group">
-					<button type="button" class="btn btn-primary navigation active" openview="department">Department Manager</button>
-					<button type="button" class="btn btn-primary navigation" openview="user">User Manager</button>
+					<a href="home.php?page=posts" type="button" class="btn btn-primary navigation active">Postings Manager</a>
 				</div>
 			</nav>
 		</div>
