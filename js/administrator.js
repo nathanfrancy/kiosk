@@ -283,7 +283,7 @@ $("#editUserButton").click(function (e) {
 				status: data.status
 			};
 
-			$(".list-user-item[userid=" + user.id + "]").hide();
+			$(".list-user-item[userid=" + user.id + "]").remove();
 			appendUser(user);
 
 			$("#edituser-id").val('');
