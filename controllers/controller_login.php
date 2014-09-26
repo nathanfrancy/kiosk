@@ -12,7 +12,7 @@
     and redirects back to the index page.
 */
 
-require('../dao/dao.php');
+require_once('../dao/dao.php');
 require_once('../models/model.php');
 
 $controllerType = $_POST['controllerType'];
