@@ -7,6 +7,7 @@ class User {
 	public $email;
 	public $type;
     public $status;
+	public $theme;
 }
 
 class Department {
