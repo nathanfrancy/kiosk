@@ -41,15 +41,15 @@ require("header.php");
                                     $users = getAllUsers();
                                     $userList = "<div class='list-group' id='list-user'>";
 
-                                    foreach($users as $user) {
-										$usertype = $user->type;
+                                    foreach($users as $userobj) {
+										$usertype = $userobj->type;
 										$niceusertype = "";
 										if ($usertype === "admin") { $niceusertype = "Administrator"; }
 										if ($usertype === "editor") { $niceusertype = "Editor"; }
 										if ($usertype === "poster") { $niceusertype = "News Poster"; }
 										if ($usertype === "editorposter") { $niceusertype = "Editor/News Poster"; }
 										
-                                        $userList .= "<a class='list-group-item list-user-item' href='#' usertype='" . $usertype . "' userid='" . $user->id . "' style=''><h4 class='list-group-item-heading'><span class='label label-primary pull-right'>". $user->id ."</span>". $user->nicename ."&nbsp;<small>" . $user->username . "</small></h4><p class='list-group-item-text'>" . $niceusertype . "</p></a>";
+                                        $userList .= "<a class='list-group-item list-user-item' href='#' usertype='" . $usertype . "' userid='" . $userobj->id . "' style=''><h4 class='list-group-item-heading'><span class='label label-primary pull-right'>". $userobj->id ."</span>". $userobj->nicename ."&nbsp;<small>" . $userobj->username . "</small></h4><p class='list-group-item-text'>" . $niceusertype . "</p></a>";
                                     }
                                     $userList .= "</div>";
                                     echo $userList;
