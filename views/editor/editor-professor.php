@@ -112,7 +112,7 @@ require("header.php");
 								</div>
 								<div class="col-sm-2">
 									<div id="imagebox-professor">
-										<img src="#">
+										<img src="assets/img/no-image-available.png">
 									</div>
 								</div>
 							</div>

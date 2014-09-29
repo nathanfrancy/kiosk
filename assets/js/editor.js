@@ -212,6 +212,7 @@ function prepareAddProfessor() {
 	$("#professor-classschedule-list").html("Save this professor to add these values.");
 	$("#professor-officehours-list").html("Save this professor to add these values.");
 	$("#addofficehours-container").hide();
+	$("#imagebox-professor img").attr("src", "assets/img/no-image-available.png");
 	edit = false;
 }
 
