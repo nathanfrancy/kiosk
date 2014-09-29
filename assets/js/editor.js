@@ -7,9 +7,10 @@ $("#addProfessorButton").click(function() {
 	prepareAddProfessor();
 });
 
-$(".panel-heading").click(function() {
-    var departmentid = parseInt($(this).parent(".panel-department").attr("departmentid"));
-    
+$(".panel-department").click(function() {
+    var departmentid = parseInt($(this).attr("departmentid"));
+    $(".panel-department").removeClass("active");
+	$(this).addClass("active");
     $.ajax({
 		type: "POST",
 		url: "controllers/controller_editor.php",
@@ -29,7 +30,7 @@ $(".panel-heading").click(function() {
             
             if (count === 0) { professorHTML = "No professors found for this department."; }
             
-            $(".panel-department[departmentid="+ departmentid + "]").children(".panel-body").html(professorHTML).slideDown();
+            $("#filldepartmentprofessors").html(professorHTML).slideDown();
 		},
 		error: function (data) {
 			showAlertBox("Error loading professors.", "danger", 3);

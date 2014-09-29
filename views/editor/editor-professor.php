@@ -8,33 +8,42 @@ require("header.php");
         <div class="container-body">
             <div class="view" id="view-department">
                 <div class="row">
+					<!--
 					<div class="col-sm-2">
-						<button id="addProfessorButton" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus-sign"></span> Add</button><br /><br />
+						<button id="" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus-sign"></span> Add</button><br /><br />
 					</div>
-                    <div class="col-sm-10">
-                        <h3 style="margin-top: 0px; margin-bottom: 20px;">Professor Manager</h3>
+					-->
+                    <div class="col-sm-6">
+                        <h3 style="margin-top: 0px; margin-bottom: 20px;">Departments</h3>
                         
-                        
+                        <div class="list-group">
                         <?php
                             $departments = getAccessedDepartments($user->id);
                             
                             foreach ($departments as $department) {
                             ?>
-                                <div class="panel panel-default panel-department" departmentid="<?php echo $department['id']; ?>">
+								  <a href="#" class="list-group-item panel-department" departmentid="<?php echo $department['id']; ?>">
+									<h4 class="list-group-item-heading"><?php echo $department['name']; ?></h4>
+								  </a>
+								
+								<!--
+                                <div class="panel panel-default panel-department" departmentid="<?php //echo $department['id']; ?>">
                                   <div class="panel-heading">
-                                    <h3 class="panel-title"><span class="glyphicon glyphicon-refresh pull-right"></span> <?php echo $department['name']; ?></h3>
+                                    <h3 class="panel-title"><span class="glyphicon glyphicon-refresh pull-right"></span> <?php //echo $department['name']; ?></h3>
                                   </div>
                                   <div class="panel-body"></div>
                                 </div>
+								-->
                             <?php
                             }
-
                         ?>
+							</div>
                         
                     </div>
-                    <div class="col-sm-2">
-                    
-                    </div>
+					<div class="col-sm-6">
+						<h3 style="margin-top: 0px; margin-bottom: 20px;">Professors <button class="btn btn-default btn-sm" id="addProfessorButton"><span class="glyphicon glyphicon-plus-sign"></span></button></h3>
+						<div  id="filldepartmentprofessors"><p>Click on a department to begin.</p></div>
+					</div>
                 </div>
             </div>
         </div>

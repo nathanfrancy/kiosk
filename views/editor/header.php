@@ -33,7 +33,7 @@
 			<h2>Information Coordinator Dashboard</h2>
 			<nav class="nav-editor">
 				<div class="btn-group">
-					<button type="button" class="btn btn-primary navigation active">Professor Manager</button>
+					<a href="home.php?page=professor" class="btn btn-primary navigation active">Professor Manager</a>
 				</div>
 			</nav>
 		</div>
