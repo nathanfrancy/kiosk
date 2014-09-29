@@ -446,6 +446,16 @@ $("#list-user-filter button").click(function (e) {
 	$("#list-user-filter button").blur();
 });
 
+$("#changeThemeButton").click(function() {
+	$('#changeThemeModal').modal('show');
+});
+
+$("#changeThemeInput").change(function() {
+	var requested = $(this).val();
+	console.log(requested);
+	$("#bootstrapsource").attr("href", "assets/css/bootstrap/" + requested + ".css");
+});
+
 $(".navigation").click(function () {
 	resetNavs();
 	$(this).addClass("active");
