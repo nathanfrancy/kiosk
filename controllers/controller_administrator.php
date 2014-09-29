@@ -69,11 +69,7 @@ else if ($controllerType === "getAllUsers") {
 else if ($controllerType === "resetPassword") {
     $id = $_POST['id'];
     $password = $_POST['password'];
-    $newuser = null;
-    
-    if ($password1 === $password2) {
-        $newuser = resetPassword($id, $password);
-    }
+    $newuser = resetPassword($id, $password);
     echo json_encode($newuser);
 }
 else if ($controllerType === "grantDepartmentAccess") {

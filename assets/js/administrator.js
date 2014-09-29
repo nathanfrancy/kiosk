@@ -446,40 +446,6 @@ $("#list-user-filter button").click(function (e) {
 	$("#list-user-filter button").blur();
 });
 
-$("#changeThemeButton").click(function() {
-	$('#changeThemeModal').modal('show');
-});
-
-$("#changeThemeInput").change(function() {
-	var requested = $(this).val();
-	$("#bootstrapsource").attr("href", "assets/css/bootstrap/" + requested + ".css");
-});
-
-$("#saveTheme").click(function() {
-	var userid = parseInt($("#changeTheme-userid").val());
-	var requestedtheme = $("#changeThemeInput").val();
-	
-	console.log(userid + " wants " + requestedtheme + " theme");
-	
-	$.ajax({
-		type: "POST",
-		url: "controllers/controller_administrator.php",
-		data: {
-			controllerType: "changeTheme",
-			userid: userid,
-			theme: requestedtheme
-		},
-		dataType: "json",
-		success: function (data) {
-			showAlertBox("Changed theme successfully.", "success", 3);
-			$("#changeThemeModal").modal('hide');
-		},
-		error: function (data) {
-			showAlertBox("Error changing theme.", "danger", 3);
-		}
-	});
-});
-
 $(".navigation").click(function () {
 	resetNavs();
 	$(this).addClass("active");

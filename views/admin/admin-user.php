@@ -7,8 +7,8 @@ require("header.php");
 					<?php echo $user->username; ?> &nbsp;<span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu" role="menu">
-					<li><a href="logout.php">Logout</a>
-					</li>
+					<li><a id="changeThemeButton" data-target="#changeThemeModal" href="#">Change Theme</a></li>
+					<li><a href="logout.php">Logout</a></li>
 				</ul>
 			</div>
 			<h2>Administrator Dashboard</h2>
