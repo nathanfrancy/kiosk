@@ -8,9 +8,7 @@
         <link rel="stylesheet" href="assets/css/bootstrap/<?php echo $user->theme; ?>.css" id="bootstrapsource">
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="assets/css/editor.css">
-        <script src="assets/js/jquery.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-		<script src="assets/js/sitewide.js"></script>
+		<!--<link rel="stylesheet" href="assets/css/bootstrap-timepicker.min.css">-->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Information Coordinator Dashboard</title>
     </head>

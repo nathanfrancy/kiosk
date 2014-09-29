@@ -61,6 +61,7 @@ $(document).on("click", ".list-professor", function(e) {
 			$("#addeditprofessor-email").val(data.email);
 			$("#addeditprofessor-pictureurl").val(data.pictureurl);
 			$("#addeditprofessor-departmentid").val(data.department_id);
+			$("#imagebox-professor img").attr("src", data.pictureurl);
 			fillOfficeHours(data.id);
 		},
 		error: function (data) {
@@ -83,6 +84,7 @@ $("#addProfessorButtonSubmit").click(function() {
 	var email = $("#addeditprofessor-email").val();
 	var pictureurl = $("#addeditprofessor-pictureurl").val();
 	var departmentid = parseInt($("#addeditprofessor-departmentid").val());
+	$("#imagebox-professor img").attr("src", pictureurl);
 	
 	$.ajax({
 		type: "POST",
@@ -104,7 +106,7 @@ $("#addProfessorButtonSubmit").click(function() {
 			$("#addeditprofessor-id").val(data.id);
 			prepareEditProfessor();
 			$(".panel-department[departmentid="+ departmentid +"] .list-group").append('<a href="#" class="list-group-item list-professor" professorid="' + data.professorid + '" departmentid="' + departmentid + '"><h4 class="list-group-item-heading">'+ data.lastname + ', ' + data.firstname +'</h4><!--<p class="list-group-item-text"></p>--></a>');
-			showAlertBox("Added professor successfully!.", "success", 3);
+			showAlertBox("Added professor successfully!", "success", 3);
 		},
 		error: function (data) {
 			showAlertBox("Error loading professor data.", "danger", 3);
@@ -113,6 +115,7 @@ $("#addProfessorButtonSubmit").click(function() {
 });
 
 function fillOfficeHours(professorid) {
+	$("#professor-officehours-list").html('');
 	$.ajax({
 		type: "POST",
 		url: "controllers/controller_editor.php",
@@ -122,8 +125,13 @@ function fillOfficeHours(professorid) {
 		},
 		dataType: "json",
 		success: function (data) {
-			for (var i = 0; i < data.length; i++) {
-				$("#professor-officehours-list").append("<li>" + data[i].days + ", " + data[i].times + "</li>");
+			if (data.length !== 0) {
+				for (var i = 0; i < data.length; i++) {
+					$("<li class='list-group-item'><button class='btn btn-danger btn-xs deleteOfficeHoursButton pull-right' officehoursid='"+ data[i].id +"'>Delete</button>" + data[i].days + " (" + data[i].times + ")</li>").appendTo("#professor-officehours-list");
+				}
+			}
+			else {
+				$("#professor-officehours-list").append("No office hours found.");
 			}
 		},
 		error: function (data) {
@@ -132,12 +140,78 @@ function fillOfficeHours(professorid) {
 	});
 }
 
+$("#addofficehours-button").click(function() {
+	var professorid = parseInt($("#addeditprofessor-id").val());
+	var days = $("#addedofficehours-days").val();
+	var times = $("#addedofficehours-times").val();
+	$.ajax({
+		type: "POST",
+		url: "controllers/controller_editor.php",
+		data: {
+			controllerType: "addOfficeHours",
+			professorid : professorid,
+			days : days,
+			times : times
+		},
+		dataType: "json",
+		success: function (data) {
+			var rows = $("#professor-officehours-list > li").length;
+			if (rows === 0) {
+				$("#professor-officehours-list").html("<li class='list-group-item'><button class='btn btn-danger btn-xs deleteOfficeHoursButton pull-right' officehoursid='"+ data +"'>Delete</button>" + days + " (" + times + ")</li>");
+			}
+			else {
+				$("<li class='list-group-item'><button class='btn btn-danger btn-xs deleteOfficeHoursButton pull-right' officehoursid='"+ data +"'>Delete</button>" + days + " (" + times + ")</li>").appendTo("#professor-officehours-list");
+			}
+			
+			$("#addedofficehours-days").val("");
+			$("#addedofficehours-times").val("");
+			showAlertBox("Successfully added office hours.", "success", 3);
+		},
+		error: function (data) {
+			showAlertBox("Error deleting office hours.", "danger", 3);
+		}
+	});
+});
+
+$(document).on("click", ".deleteOfficeHoursButton", function(e) {
+	e.preventDefault();
+	var id = parseInt($(this).attr("officehoursid"));
+	deleteOfficeHours(id);
+});
+
+function deleteOfficeHours(id) {
+	$.ajax({
+		type: "POST",
+		url: "controllers/controller_editor.php",
+		data: {
+			controllerType: "deleteOfficeHours",
+			id : id
+		},
+		dataType: "json",
+		success: function (data) {
+			$(".list.group-item").find(".deleteOfficeHoursButton[officehoursid=" + id + "]").remove();
+			showAlertBox("Successfully deleted office hours.", "success", 3);
+			var professorid = parseInt($("#addeditprofessor-id").val());
+			fillOfficeHours(professorid);
+		},
+		error: function (data) {
+			showAlertBox("Error deleting office hours.", "danger", 3);
+		}
+	});
+}
+
+$("#addeditprofessor-pictureurl").change(function() {
+	var url = $(this).val();
+	$("#imagebox-professor img").attr("src", url);
+});
+
 function prepareAddProfessor() {
 	$("#addeditprofessor-id-container").hide();
 	$("#addEditProfessorModal input").val('');
 	$("#addUserButton").html("Add Professor");
-	$(".panel-classschedule .panel-body").html("Save this professor to add these values.");
-	$(".panel-officehours .panel-body").html("Save this professor to add these values.");
+	$("#professor-classschedule-list").html("Save this professor to add these values.");
+	$("#professor-officehours-list").html("Save this professor to add these values.");
+	$("#addofficehours-container").hide();
 	edit = false;
 }
 
@@ -145,6 +219,7 @@ function prepareEditProfessor() {
 	$("#professor-officehours-list").html('');
 	$("#addeditprofessor-id-container").show();
 	$("#addUserButton").html("Save Changes");
+	$("#addofficehours-container").show();
 	edit = true;
 }
 

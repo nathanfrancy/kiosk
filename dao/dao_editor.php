@@ -86,6 +86,23 @@ function addProfessor($firstname, $lastname, $officebuilding, $officeroom, $phon
 	return $professor;
 }
 
+function addOfficeHours($days, $times, $professorid) {
+	$link = connect_db();
+	$sql = "INSERT INTO  `professor_officehours` (`days`, `times`, `professor_id`) VALUES (?, ?, ?)";
+	$stmt = $link->stmt_init();
+	$stmt->prepare($sql);
+	$stmt->bind_param('ssi',
+					  $link->real_escape_string($days),
+					  $link->real_escape_string($times),
+					 $professorid);
+	$stmt->execute();
+	$id = $link->insert_id;
+	mysqli_stmt_close($stmt);
+	$link->close();
+	
+	return $id;
+}
+
 function getOfficeHours($professorid) {
 	$officehours = array();
 
@@ -105,6 +122,21 @@ function getOfficeHours($professorid) {
     mysqli_stmt_close($stmt);
     
     return $officehours;
+}
+
+function deleteOfficeHours($id) {
+	$link = connect_db();
+	$sql = "DELETE FROM `professor_officehours` WHERE id = ?";
+	
+	// Create prepared statement and bind parameters
+	$stmt = $link->stmt_init();
+	$stmt->prepare($sql);
+	$stmt->bind_param('i', $id);
+    $stmt->execute();
+	$rows = $link->affected_rows;
+	mysqli_stmt_close($stmt);
+	$link->close();
+    return $rows;
 }
 
 

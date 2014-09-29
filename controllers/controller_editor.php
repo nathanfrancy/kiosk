@@ -30,5 +30,24 @@ else if ($controllerType === "getOfficeHours") {
 	$officehours = getOfficeHours($professorid);
 	echo json_encode($officehours);
 }
+else if ($controllerType === "deleteOfficeHours") {
+	$id = $_POST['id'];
+	$message['affected'] = deleteOfficeHours($id);
+	if ($message['affected'] !== 0) {
+		$message['message'] = "Successfully deleted office hours.";
+	}
+	else {
+		$message['message'] = "Unsuccessfully deleted office hours.";
+	}
+	
+	echo json_encode($message);
+}
+else if ($controllerType === "addOfficeHours") {
+	$professorid = $_POST['professorid'];
+	$days = $_POST['days'];
+	$times = $_POST['times'];
+	$id = addOfficeHours($days, $times, $professorid);
+	echo json_encode($id);
+}
 
 ?>

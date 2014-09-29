@@ -35,6 +35,9 @@
 
 	</body>
 	
+	<script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+	<!--<script src="assets/js/bootstrap-timepicker.min.js"></script>-->
 	<script type="text/javascript" src="assets/js/editor.js"></script>
     <script type="text/javascript" src="assets/js/sitewide.js"></script>
 	

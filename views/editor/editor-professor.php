@@ -9,7 +9,7 @@ require("header.php");
             <div class="view" id="view-department">
                 <div class="row">
 					<div class="col-sm-2">
-						<button id="addProfessorButton" class="btn btn-primary btn-block">Add Professor</button><br /><br />
+						<button id="addProfessorButton" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus-sign"></span> Add</button><br /><br />
 					</div>
                     <div class="col-sm-10">
                         <h3 style="margin-top: 0px; margin-bottom: 20px;">Professor Manager</h3>
@@ -103,9 +103,18 @@ require("header.php");
 									</div>
 								</div>
 							</div>
-							<div class="form-group">
-								<label for="addeditprofessor-pictureurl">Image URL</label>
-								<input type="text" class="form-control" id="addeditprofessor-pictureurl" placeholder="Picture URL">
+							<div class="row">
+								<div class="col-sm-10">
+									<div class="form-group">
+										<label for="addeditprofessor-pictureurl">Image URL</label>
+										<input type="text" class="form-control" id="addeditprofessor-pictureurl" placeholder="Picture URL">
+									</div>
+								</div>
+								<div class="col-sm-2">
+									<div id="imagebox-professor">
+										<img src="#">
+									</div>
+								</div>
 							</div>
 							<div class="form-group">
 								<label for="addeditprofessor-">Department</label>
@@ -135,7 +144,24 @@ require("header.php");
                                   </div>
                                   <div class="panel-body">
                                   	<div id="professor-officehours">
-										<ul id="professor-officehours-list"></ul>
+										<ul class="list-group" id="professor-officehours-list"></ul>
+										
+										<div id="addofficehours-container">
+											<div class="row">
+												<div class="col-sm-6">
+													<input type="text" class="form-control" id="addedofficehours-days" placeholder="Days">
+												</div>
+												<div class="col-sm-6">
+													<input type="text" class="form-control" id="addedofficehours-times" placeholder="Times">
+												</div>
+											</div>
+											<br />
+											<div class="form-group">
+												<button type="button" class="btn btn-primary btn-block" id="addofficehours-button">Add Office Hours</button>
+											</div>
+										</div>
+										<br />
+										
 									</div>
                                   </div>
                                 </div>

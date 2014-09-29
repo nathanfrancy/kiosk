@@ -13,3 +13,14 @@
 .panel-heading {
     cursor: pointer;
 }
+
+#imagebox-professor {
+	height: 70px !important;
+	max-height: 70px !important;
+	max-width: 100% !important;
+}
+
+#imagebox-professor img {
+	height: 100% !important;
+	max-width: 100% !important;
+}
