@@ -5,7 +5,7 @@ function getAllDepartments() {
 	
 	// Connect and initialize sql and prepared statement template
 	$link = connect_db();
-	$sql = "SELECT * FROM department";
+	$sql = "SELECT * FROM department ORDER BY name";
 	$stmt = $link->stmt_init();
 	$stmt->prepare($sql);
 	$stmt->execute();
