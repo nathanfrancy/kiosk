@@ -11,7 +11,7 @@ if (isset($_SESSION['auth_id'])) { header("Location: ../home.php"); }
  */
 $feedback = "";
 $feedbackValid = false;
-if (isset($_GET['feedback'])) { $feedback = $_GET['feedback']; $feedbackValid = true; }
+if (isset($_GET['feedback']) && ($_GET['feedback'] !== "")) { $feedback = $_GET['feedback']; $feedbackValid = true; }
 
 ?>
 <!DOCTYPE html>
@@ -21,7 +21,7 @@ if (isset($_GET['feedback'])) { $feedback = $_GET['feedback']; $feedbackValid = 
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../assets/css/bootstrap.css">
 	<link rel="stylesheet" href="../assets/css/style.css">
 	<link rel="stylesheet" href="../assets/css/signin.css">
 	<script src="../assets/js/jquery.js"></script>
@@ -32,15 +32,22 @@ if (isset($_GET['feedback'])) { $feedback = $_GET['feedback']; $feedbackValid = 
 <body>
 
 	<div class="container">
+			<center>
+				<img src="../assets/img/logofull.png" class="img-responsive" style="width: 450px;">
+			</center>
+			
 		<form class="form-signin" action="../controllers/controller_login.php" method="post" role="form">
-			<h1>Login</h1>
-<!--<img src="img/logo.png" class="img-responsive"> -->
+			<br />
+			<?php if ($feedbackValid) { ?>
+			<div class="alert alert-danger" id="loginAlert" role="alert">
+				<?php echo $feedback; ?>
+			</div>
+			<?php } ?>
 			<input type="hidden" name="controllerType" value="userLogin">
 			<input type="text" class="form-control" name="username" id="username" placeholder="Username" required autofocus>
 			<input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
-			<button class="btn btn-lg btn-primary btn-block" id="signInButton">Sign in</button>
+			<button class="btn btn-lg btn-default btn-block" id="signInButton">Sign in</button>
 			<br /><br />
-			<div class="alert alert-danger" id="loginAlert" role="alert" style="display: none;"></div>
 		</form>
 
 	</div>
