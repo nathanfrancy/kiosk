@@ -97,7 +97,7 @@ function addUser($username, $password, $nicename, $email, $type, $status) {
 	$stmt->prepare($sql);
 	$stmt->bind_param('ssssss', 
 					  $link->real_escape_string($username),
-					  $link->real_escape_string($password),
+					  $link->real_escape_string(sha1($password)),
 					  $link->real_escape_string($nicename),
 					  $link->real_escape_string($email),
 					  $link->real_escape_string($type),
@@ -135,7 +135,7 @@ function resetPassword($id, $password) {
 	// Create prepared statement and bind parameters
 	$stmt = $link->stmt_init();
 	$stmt->prepare($sql);
-	$stmt->bind_param('si', $link->real_escape_string($password), $id);
+	$stmt->bind_param('si', $link->real_escape_string(sha1($password)), $id);
     
     $stmt->execute();
 	mysqli_stmt_close($stmt);
