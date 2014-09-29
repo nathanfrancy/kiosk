@@ -120,6 +120,7 @@ require("header.php");
                 <h4 class="modal-title" id="myModalLabel">Change Theme</h4>
               </div>
               <div class="modal-body">
+				  <input type="hidden" id="changeTheme-userid" value="<?php echo $user->id; ?>">
 				  <select class="form-control" id="changeThemeInput">
 				  	<?php
 						foreach ($boots as $boot) {
@@ -134,7 +135,7 @@ require("header.php");
 				  </select>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-primary pull-left" id="addUserButton">Save theme</button>
+                <button type="button" class="btn btn-primary pull-left" id="saveTheme">Save theme</button>
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
               </div>
             </div>

@@ -16,9 +16,6 @@ $editor_poster_logged_in = false;
 
 $enabled_user = false;
 
-// whitelist of bootstrap themes available
-$boots = array("cerulean", "cosmo", "cyborg", "darkly", "flatly", "journal", "lumen", "paper", "readable", "sandstone", "simplex", "slate", "spacelab", "superhero", "united", "yeti");
-
 
 // if a page variable exists, get it
 $page = "";

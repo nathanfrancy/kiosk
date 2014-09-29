@@ -12,6 +12,9 @@ if (file_exists("../models/model.php")) {
 	require("../models/model.php");
 }
 
+// whitelist of bootstrap themes available
+$boots = array("cerulean", "cosmo", "cyborg", "darkly", "flatly", "journal", "lumen", "paper", "readable", "sandstone", "simplex", "slate", "spacelab", "superhero", "united", "yeti");
+
 /** ============================================================================
  * Function that provides a link to the database for data access and interaction
  */
@@ -98,6 +101,24 @@ function getUserObject($userid) {
 	return $theUser;
 }
 
+function updateTheme($id, $theme) {
+	$link = connect_db();
+	$sql = "UPDATE  `user` SET `theme`=? WHERE id = ?";
+	
+	// Create prepared statement and bind parameters
+	$stmt = $link->stmt_init();
+	$stmt->prepare($sql);
+	$stmt->bind_param('si', $link->real_escape_string($theme), $id);
+	
+    // Execute the query, get the last inserted id
+    $stmt->execute();
+	$rows = $link->affected_rows;
+	mysqli_stmt_close($stmt);
+	$link->close();
+    $user = getUser($id);
+	
+	return $user;
+}
 
 
 

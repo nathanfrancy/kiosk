@@ -93,6 +93,12 @@ else if ($controllerType === "getGrantedDepartmentIds") {
     $departments = getGrantedDepartmentIds($userid);
     echo json_encode($departments);
 }
+else if ($controllerType === "changeTheme") {
+	$userid = $_POST['userid'];
+	$theme = $_POST['theme'];
+	$newuser = updateTheme($userid, $theme);
+	echo json_encode($newuser);
+}
 
 
 ?>
