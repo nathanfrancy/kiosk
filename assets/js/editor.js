@@ -1,17 +1,30 @@
 
 // global variables
 var edit = false;
+var edit_departmentid = 0;
 
 $("#addProfessorButton").click(function() {
 	$("#addEditProfessorModal").modal('show');
 	prepareAddProfessor();
+	
+	if (edit_departmentid !== 0) {
+		$("#addeditprofessor-departmentid").val(edit_departmentid);
+	}
 });
 
 $(".panel-department").click(function() {
     var departmentid = parseInt($(this).attr("departmentid"));
     $(".panel-department").removeClass("active");
+	edit_departmentid = departmentid;
 	$(this).addClass("active");
-    $.ajax({
+	$("#container-department, #container-professor").removeClass();
+	$("#container-department").addClass("col-sm-4");
+	$("#container-professor").addClass("col-sm-8");
+    fillDepartmentsProfessors(departmentid);
+});
+
+function fillDepartmentsProfessors(departmentid) {
+	$.ajax({
 		type: "POST",
 		url: "controllers/controller_editor.php",
 		data: {
@@ -23,21 +36,20 @@ $(".panel-department").click(function() {
             var professorHTML = "<div class='list-group'>";
             var count = 0;
             for (var i = 0; i < data.length; i++) {
-                professorHTML += '<a href="#" class="list-group-item list-professor" professorid="' + data[i].professorid + '" departmentid="' + departmentid + '"><h4 class="list-group-item-heading">'+ data[i].lastname + ', ' + data[i].firstname +'</h4><!--<p class="list-group-item-text"></p>--></a>';
+                professorHTML += '<a href="#" class="list-group-item list-professor" professorid="' + data[i].professorid + '" departmentid="' + departmentid + '"><h4 class="list-group-item-heading"><span class="glyphicon glyphicon-user"></span> '+ data[i].lastname + ', ' + data[i].firstname +'<img src="' + data[i].pictureurl + '" class="img-responsive pull-right img-thumbnail img-thumbs"></h4><p class="list-group-item-text">'+ data[i].officebuilding +' '+ data[i].officeroom +'</p></a>';
                 count++;
             }
             professorHTML += "</div>";
             
             if (count === 0) { professorHTML = "No professors found for this department."; }
             
-            $("#filldepartmentprofessors").html(professorHTML).slideDown();
+            $("#filldepartmentprofessors").html(professorHTML).hide().fadeIn();
 		},
 		error: function (data) {
 			showAlertBox("Error loading professors.", "danger", 3);
 		}
 	});
-    
-});
+}
 
 $(document).on("click", ".list-professor", function(e) {
 	prepareEditProfessor();
@@ -87,32 +99,69 @@ $("#addProfessorButtonSubmit").click(function() {
 	var departmentid = parseInt($("#addeditprofessor-departmentid").val());
 	$("#imagebox-professor img").attr("src", pictureurl);
 	
-	$.ajax({
-		type: "POST",
-		url: "controllers/controller_editor.php",
-		data: {
-			controllerType: "addProfessor",
-			firstname : firstname,
-			lastname : lastname,
-			officebuilding : officebuilding,
-			officeroom : officeroom,
-			phonenumber : phonenumber,
-			email : email,
-			imageurl : pictureurl,
-			departmentid : departmentid
-		},
-		dataType: "json",
-		success: function (data) {
-			$("#addeditprofessor-id-container").slideDown();
-			$("#addeditprofessor-id").val(data.id);
-			prepareEditProfessor();
-			$(".panel-department[departmentid="+ departmentid +"] .list-group").append('<a href="#" class="list-group-item list-professor" professorid="' + data.professorid + '" departmentid="' + departmentid + '"><h4 class="list-group-item-heading">'+ data.lastname + ', ' + data.firstname +'</h4><!--<p class="list-group-item-text"></p>--></a>');
-			showAlertBox("Added professor successfully!", "success", 3);
-		},
-		error: function (data) {
-			showAlertBox("Error loading professor data.", "danger", 3);
-		}
-	});
+	if (edit === false) {
+		$.ajax({
+			type: "POST",
+			url: "controllers/controller_editor.php",
+			data: {
+				controllerType: "addProfessor",
+				firstname : firstname,
+				lastname : lastname,
+				officebuilding : officebuilding,
+				officeroom : officeroom,
+				phonenumber : phonenumber,
+				email : email,
+				imageurl : pictureurl,
+				departmentid : departmentid
+			},
+			dataType: "json",
+			success: function (data) {
+				$("#addeditprofessor-id-container").slideDown();
+				$("#addeditprofessor-id").val(data.id);
+				prepareEditProfessor();
+				$(".panel-department[departmentid="+ departmentid +"] .list-group").append('<a href="#" class="list-group-item list-professor" professorid="' + data.professorid + '" departmentid="' + departmentid + '"><h4 class="list-group-item-heading">'+ data.lastname + ', ' + data.firstname +'</h4><!--<p class="list-group-item-text"></p>--></a>');
+				showAlertBox("Added professor successfully!", "success", 3);
+			},
+			error: function (data) {
+				showAlertBox("Error loading professor data.", "danger", 3);
+			}
+		});
+	}
+	else {
+		var id = parseInt($("#addeditprofessor-id").val());
+		$.ajax({
+			type: "POST",
+			url: "controllers/controller_editor.php",
+			data: {
+				id: id,
+				controllerType: "editProfessor",
+				firstname : firstname,
+				lastname : lastname,
+				officebuilding : officebuilding,
+				officeroom : officeroom,
+				phonenumber : phonenumber,
+				email : email,
+				imageurl : pictureurl,
+				departmentid : departmentid
+			},
+			dataType: "json",
+			success: function (data) {
+				$("#addeditprofessor-id-container").slideDown();
+				$("#addeditprofessor-id").val(data.id);
+				prepareEditProfessor();
+				$(".panel-department[departmentid="+ departmentid +"] .list-group").append('<a href="#" class="list-group-item list-professor" professorid="' + data.professorid + '" departmentid="' + departmentid + '"><h4 class="list-group-item-heading">'+ data.lastname + ', ' + data.firstname +'</h4><!--<p class="list-group-item-text"></p>--></a>');
+				showAlertBox("Edited professor successfully!", "success", 3);
+			},
+			error: function (data) {
+				showAlertBox("Error loading professor data.", "danger", 3);
+			}
+		});
+	}
+	// Refill the professors to ensure data is accurate back to the view
+	if (edit_departmentid !== 0) {
+		fillDepartmentsProfessors(departmentid);
+	}
+	fillOfficeHours(id);
 });
 
 function fillOfficeHours(professorid) {

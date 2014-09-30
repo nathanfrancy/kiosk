@@ -86,6 +86,32 @@ function addProfessor($firstname, $lastname, $officebuilding, $officeroom, $phon
 	return $professor;
 }
 
+function updateProfessor($id, $firstname, $lastname, $officebuilding, $officeroom, $phonenumber, $email, $imageurl, $departmentid) {
+	$link = connect_db();
+	$sql = "UPDATE  `professor` SET `firstname`=?, `lastname`=?, `officebuilding`=?, `officeroom`=?, `phonenumber`=?, `email`=?, `pictureurl`=?, `department_id`=? WHERE id = ?";
+	
+	// Create prepared statement and bind parameters
+	$stmt = $link->stmt_init();
+	$stmt->prepare($sql);
+	$stmt->bind_param('ssssissii', 
+					  $link->real_escape_string($firstname), 
+					  $link->real_escape_string($lastname), 
+					  $link->real_escape_string($officebuilding), 
+					  $link->real_escape_string($officeroom), 
+					  $phonenumber,
+					  $link->real_escape_string($email),
+					  $link->real_escape_string($imageurl), 
+					  $departmentid, $id);
+	
+    // Execute the query, get the new user object from the database
+    $stmt->execute();
+	mysqli_stmt_close($stmt);
+	$link->close();
+    $professor = getProfessor($id);
+	
+	return $professor;
+}
+
 function addOfficeHours($days, $times, $professorid) {
 	$link = connect_db();
 	$sql = "INSERT INTO  `professor_officehours` (`days`, `times`, `professor_id`) VALUES (?, ?, ?)";

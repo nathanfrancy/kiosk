@@ -25,6 +25,19 @@ else if ($controllerType === "addProfessor") {
 	$newprofessor = addProfessor($firstname, $lastname, $officebuilding, $officeroom, $phonenumber, $email, $imageurl, $departmentid);
 	echo json_encode($newprofessor);
 }
+else if ($controllerType === "editProfessor") {
+	$id = $_POST['id'];
+	$firstname = $_POST['firstname'];
+	$lastname = $_POST['lastname'];
+	$officebuilding = $_POST['officebuilding'];
+	$officeroom = $_POST['officeroom'];
+	$phonenumber = $_POST['phonenumber'];
+	$email = $_POST['email'];
+	$imageurl = $_POST['imageurl'];
+	$departmentid = $_POST['departmentid'];
+	$newprofessor = updateProfessor($id, $firstname, $lastname, $officebuilding, $officeroom, $phonenumber, $email, $imageurl, $departmentid);
+	echo json_encode($newprofessor);
+}
 else if ($controllerType === "getOfficeHours") {
 	$professorid = $_POST['professorid'];
 	$officehours = getOfficeHours($professorid);

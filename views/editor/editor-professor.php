@@ -13,9 +13,14 @@ require("header.php");
 						<button id="" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus-sign"></span> Add</button><br /><br />
 					</div>
 					-->
-                    <div class="col-sm-6">
-                        <h3 style="margin-top: 0px; margin-bottom: 20px;">Departments</h3>
-                        
+                    <div class="col-sm-8" id="container-department">
+						
+						<div class="panel panel-default">
+						  <div class="panel-heading">
+							<h3 class="panel-title">Departments</h3>
+						  </div>
+						  <div class="panel-body">
+							
                         <div class="list-group">
                         <?php
                             $departments = getAccessedDepartments($user->id);
@@ -38,11 +43,26 @@ require("header.php");
                             }
                         ?>
 							</div>
-                        
+						  </div>
+						</div>
                     </div>
-					<div class="col-sm-6">
-						<h3 style="margin-top: 0px; margin-bottom: 20px;">Professors <button class="btn btn-default btn-sm" id="addProfessorButton"><span class="glyphicon glyphicon-plus-sign"></span></button></h3>
-						<div  id="filldepartmentprofessors"><p>Click on a department to begin.</p></div>
+					<div class="col-sm-4" id="container-professor">
+						<div class="panel panel-default">
+						  <div class="panel-heading">
+							<h3 class="panel-title">Professors</h3>
+						  </div>
+						  <div class="panel-body">
+							  <div class="row">
+								  <div class="col-sm-12">
+								  	<button class="btn btn-default" id="addProfessorButton">
+										  <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;&nbsp; Add
+									</button><br />
+								  	<div id="filldepartmentprofessors"><p>Click on a department to begin.</p></div>
+								  </div>
+							  </div>
+							  
+						</div>
+						</div>
 					</div>
                 </div>
             </div>
@@ -121,7 +141,7 @@ require("header.php");
 								</div>
 								<div class="col-sm-2">
 									<div id="imagebox-professor">
-										<img src="assets/img/no-image-available.png">
+										<img src="assets/img/no-image-available.png" class="img-thumbnail">
 									</div>
 								</div>
 							</div>
