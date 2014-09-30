@@ -3,11 +3,12 @@
 /* The variable $extend is created in home.php and will equal 1 if the page
  * is being included into home.php. If this page is requested on its own
  * $extend will not equal 1 and will redirect back to the homepage.
+ * Also checking to make sure the pagename (or filename) is equal to home.php.
  * Therefore, this page will only render if it is required by home.php.
  *
  * ==========================================================================
  */
-if ($extend !== 1) {
+if (($extend !== 1) || (basename($_SERVER['PHP_SELF']) !== "home.php")) {
 	header("Location: ../../index.php");
 }
 ?>

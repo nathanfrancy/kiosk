@@ -1,3 +1,9 @@
+<?php
+if (($extend !== 1) || (basename($_SERVER['PHP_SELF']) !== "home.php")) {
+	echo '<meta http-equiv="refresh" content="0; url=../../index.php">';
+}
+?>
+
 </div>
 
 		<div class="modal fade" id="changeThemeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
