@@ -1,3 +1,9 @@
+<?php
+if ($extend !== 1) {
+	header("Location: ../../index.php");
+}
+?>
+
 <!doctype html>
 <html>
 

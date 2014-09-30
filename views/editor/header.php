@@ -1,3 +1,17 @@
+<?php
+
+/* The variable $extend is created in home.php and will equal 1 if the page
+ * is being included into home.php. If this page is requested on its own
+ * $extend will not equal 1 and will redirect back to the homepage.
+ * Therefore, this page will only render if it is required by home.php.
+ *
+ * ==========================================================================
+ */
+if ($extend !== 1) {
+	header("Location: ../../index.php");
+}
+?>
+
 <!doctype html>
 <html>
 

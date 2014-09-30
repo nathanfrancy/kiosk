@@ -16,12 +16,14 @@ $editor_poster_logged_in = false;
 
 $enabled_user = false;
 
-
 // if a page variable exists, get it
 $page = "";
 if (!empty($_GET['page'])) {
     $page = $_GET['page'];
 }
+
+// use this variable on the views
+$extend = 1;
 
 
 /** Check session variables for admin or editor id numbers. Here are some rules: */
