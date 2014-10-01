@@ -1,0 +1,29 @@
+{
+	"professor": {
+		"id": 121,
+		"department_id": 42,
+		"firstname": "Kerry",
+		"lastname": "Henson",
+		"title": null,
+		"officebuilding": "Dockery",
+		"officeroom": "300C",
+		"phonenumber": 6604222705,
+		"email": "dochenson@charter.net",
+		"pictureurl": "https:\/\/www.ucmo.edu\/cis\/faculty\/images\/henson.jpg"
+	},
+	"officehours": [
+		{
+			"id": 25,
+			"days": "Monday, Wednesday",
+			"times": "11:30 AM - 12:30 PM",
+			"professor_id": 121
+		}, 
+		{
+			"id": 26,
+			"days": "Thursday",
+			"times": "10:00 Am - 11:00 AM",
+			"professor_id": 121
+		}
+	],
+	"message": "Successful operation."
+}

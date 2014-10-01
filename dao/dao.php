@@ -5,6 +5,7 @@ date_default_timezone_set('America/Chicago');
 
 require('dao_admin.php');
 require('dao_editor.php');
+require('dao_public.php');
 
 // if the model.php file exists relative to this location, we need it for some operations
 // this is primarily for ajax calls
