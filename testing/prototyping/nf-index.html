@@ -17,7 +17,45 @@
 		.container-fluid {
 			height: 100%;
 		}
+		#search-lastname,
+		#department-professors {
+			display: none;
+		}
 	</style>
+
+	<script>
+		$(document).ready(function () {
+
+			$("#department").click(function () {
+				resetNav();
+				$("#search-department").show();
+				$(this).addClass("active");
+			});
+			$("#lastname").click(function () {
+				resetNav();
+				$("#search-lastname").show();
+				$(this).addClass("active");
+			});
+
+			function resetNav() {
+				$("#nav > button").removeClass("active");
+				$("#search-department, #search-lastname").hide();
+			}
+
+			$("#search-department, #search-lastname").click(function () {
+				$("#department-professors").fadeIn();
+			});
+
+			$("#department-professors").click(function () {
+				$("#professor").modal('show');
+			});
+
+			$("#news-postings").click(function () {
+				$("#newspost").modal('show');
+			});
+
+		});
+	</script>
 
 </head>
 
@@ -34,77 +72,88 @@
 
 			<!-- Professor browse -->
 			<div class="col-sm-9">
-				<h2>Search Professors by
-				<div class="btn-group">
-				  <button type="button" class="btn btn-default active">By Department</button>
-				  <button type="button" class="btn btn-default">By Last Name</button>
+
+
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Panel title</h3>
+					</div>
+					<div class="panel-body">
+						<div class="btn-group" id="nav">
+						  <button type="button" class="btn btn-default active" id="department">By Department</button>
+						  <button type="button" class="btn btn-default" id="lastname">By Last Name</button>
+						</div>
+						<br />
+						
+						<div class="row" style="margin-top: 15px;">
+
+							<div class="col-sm-4">
+								<div class="list-group" id="search-department">
+									<a href="#" class="list-group-item">Accounting</a>
+									<a href="#" class="list-group-item">Aviation</a>
+									<a href="#" class="list-group-item">Business Law</a>
+									<a href="#" class="list-group-item">Computer Information Systems</a>
+									<a href="#" class="list-group-item">Economics</a>
+									<a href="#" class="list-group-item">Finance</a>
+									<a href="#" class="list-group-item">Management</a>
+									<a href="#" class="list-group-item">Marketing</a>
+								</div>
+								<div class="list-group" id="search-lastname">
+									<a href="#" class="list-group-item">A-F</a>
+									<a href="#" class="list-group-item">G-J</a>
+									<a href="#" class="list-group-item">K-O</a>
+									<a href="#" class="list-group-item">P-T</a>
+									<a href="#" class="list-group-item">S-Z</a>
+								</div>
+							</div>
+
+							<div class="col-sm-8" id="department-professors">
+								<div class="list-group">
+									<a href="#" class="list-group-item">
+										<h4 class="list-group-item-heading"><span class="glyphicon glyphicon-user"></span> Faja, Silvana</h4>
+										<p class="list-group-item-text">Dockery 403E</p>
+									</a>
+									<a href="#" class="list-group-item">
+										<h4 class="list-group-item-heading"><span class="glyphicon glyphicon-user"></span> Henson, Kerry</h4>
+										<p class="list-group-item-text">Dockery 403A</p>
+									</a>
+									<a href="#" class="list-group-item">
+										<h4 class="list-group-item-heading"><span class="glyphicon glyphicon-user"></span> Lynam, Linda</h4>
+										<p class="list-group-item-text">Dockery 403B</p>
+									</a>
+									<a href="#" class="list-group-item">
+										<h4 class="list-group-item-heading"><span class="glyphicon glyphicon-user"></span> Kamal, Mustafa</h4>
+										<p class="list-group-item-text">Dockery 403F</p>
+									</a>
+									<a href="#" class="list-group-item">
+										<h4 class="list-group-item-heading"><span class="glyphicon glyphicon-user"></span> Kesh, Someswar</h4>
+										<p class="list-group-item-text">Dockery 403C</p>
+									</a>
+									<a href="#" class="list-group-item">
+										<h4 class="list-group-item-heading"><span class="glyphicon glyphicon-user"></span> Ma, Qingxiong</h4>
+										<p class="list-group-item-text">Dockery 403D</p>
+									</a>
+									<a href="#" class="list-group-item">
+										<h4 class="list-group-item-heading"><span class="glyphicon glyphicon-user"></span> Ploch, Jason</h4>
+										<p class="list-group-item-text">Dockery 403G</p>
+									</a>
+									<a href="#" class="list-group-item">
+										<h4 class="list-group-item-heading"><span class="glyphicon glyphicon-user"></span> Ramanujan, Sam</h4>
+										<p class="list-group-item-text">Dockery 403H</p>
+									</a>
+									<a href="#" class="list-group-item">
+										<h4 class="list-group-item-heading"><span class="glyphicon glyphicon-user"></span> Ratnatasingam, Pauline</h4>
+										<p class="list-group-item-text">Dockery 403I</p>
+									</a>
+								</div>
+							</div>
+
+						</div>
+						
+					</div>
 				</div>
-				</h2>
+
 				
-				<div class="row">
-
-					<div class="col-sm-4" id="department-listings">
-						<div class="list-group">
-							<a href="#" class="list-group-item">Accounting</a>
-							<a href="#" class="list-group-item">Aviation</a>
-							<a href="#" class="list-group-item">Business Law</a>
-							<a href="#" class="list-group-item">Computer Information Systems</a>
-							<a href="#" class="list-group-item">Economics</a>
-							<a href="#" class="list-group-item">Finance</a>
-							<a href="#" class="list-group-item">Management</a>
-							<a href="#" class="list-group-item">Marketing</a>
-						</div>
-						<div class="list-group">
-							<a href="#" class="list-group-item">A-F</a>
-							<a href="#" class="list-group-item">G-J</a>
-							<a href="#" class="list-group-item">K-O</a>
-							<a href="#" class="list-group-item">P-T</a>
-							<a href="#" class="list-group-item">S-Z</a>
-						</div>
-					</div>
-
-					<div class="col-sm-8" id="department-professors">
-						<div class="list-group">
-							<a href="#" class="list-group-item">
-								<h4 class="list-group-item-heading"><span class="glyphicon glyphicon-user"></span> Faja, Silvana</h4>
-								<p class="list-group-item-text">Dockery 403E</p>
-							</a>
-							<a href="#" class="list-group-item">
-								<h4 class="list-group-item-heading"><span class="glyphicon glyphicon-user"></span> Henson, Kerry</h4>
-								<p class="list-group-item-text">Dockery 403A</p>
-							</a>
-							<a href="#" class="list-group-item">
-								<h4 class="list-group-item-heading"><span class="glyphicon glyphicon-user"></span> Lynam, Linda</h4>
-								<p class="list-group-item-text">Dockery 403B</p>
-							</a>
-							<a href="#" class="list-group-item">
-								<h4 class="list-group-item-heading"><span class="glyphicon glyphicon-user"></span> Kamal, Mustafa</h4>
-								<p class="list-group-item-text">Dockery 403F</p>
-							</a>
-							<a href="#" class="list-group-item">
-								<h4 class="list-group-item-heading"><span class="glyphicon glyphicon-user"></span> Kesh, Someswar</h4>
-								<p class="list-group-item-text">Dockery 403C</p>
-							</a>
-							<a href="#" class="list-group-item">
-								<h4 class="list-group-item-heading"><span class="glyphicon glyphicon-user"></span> Ma, Qingxiong</h4>
-								<p class="list-group-item-text">Dockery 403D</p>
-							</a>
-							<a href="#" class="list-group-item">
-								<h4 class="list-group-item-heading"><span class="glyphicon glyphicon-user"></span> Ploch, Jason</h4>
-								<p class="list-group-item-text">Dockery 403G</p>
-							</a>
-							<a href="#" class="list-group-item">
-								<h4 class="list-group-item-heading"><span class="glyphicon glyphicon-user"></span> Ramanujan, Sam</h4>
-								<p class="list-group-item-text">Dockery 403H</p>
-							</a>
-							<a href="#" class="list-group-item">
-								<h4 class="list-group-item-heading"><span class="glyphicon glyphicon-user"></span> Ratnatasingam, Pauline</h4>
-								<p class="list-group-item-text">Dockery 403I</p>
-							</a>
-						</div>
-					</div>
-
-				</div>
 
 			</div>
 
@@ -127,11 +176,63 @@
 						<a href="#" class="list-group-item"><span class="label label-primary pull-right">Economics</span>Title article 11</a>
 					</div>
 				</div>
-				
+
 			</div>
 
 		</div>
 
+	</div>
+
+
+	<div class="modal fade" id="professor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<h1 style="padding-top: 0px;">Kerry, Henson</h1>
+					<div class="row">
+						<div class="col-sm-9">
+							<p>Office: Dockery 300B</p>
+							<p>Phone: 508340324832</p>
+							<p>Email: henson@ucmo.edu</p>
+						</div>
+						<div class="col-sm-3">
+							<img src="https://www.ucmo.edu/cis/faculty/images/Henson_wb.jpg" class="img-responsive img-thumbnail">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<h3>Classes</h3>
+							<ul>
+								<li>User Interaction Design (CIS 3670)</li>
+								<li>Data Comm and LAN (CIS 2665)</li>
+								<li>Web Programming (CIS 4635)</li>
+								<li>CIS Capstone (CIS 4690)</li>
+							</ul>
+						</div>
+						<div class="col-sm-6">
+							<h3>Office Hours</h3>
+							<ul>
+								<li>Monday, Wednesday, Friday: 2:30 PM - 4:00 PM</li>
+								<li>Tuesday: 11:30 AM - 1:00 PM</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="newspost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<h1>News Article Title</h1>
+					<h2>Finance <small>October 2nd, 2014</small></h2>
+					<p>Donec venenatis commodo imperdiet. Nullam at libero dapibus, ullamcorper massa non, gravida ex. Cras facilisis, justo eget condimentum tempor, metus tellus efficitur libero, faucibus pretium purus elit at mauris. Integer at urna sem. Morbi ut sem sem. Donec vehicula tortor at gravida finibus. Nulla quis lobortis urna. Maecenas ac nibh eu sapien bibendum mattis.</p>
+					<p>Donec venenatis commodo imperdiet. Nullam at libero dapibus, ullamcorper massa non, gravida ex. Cras facilisis, justo eget condimentum tempor, metus tellus efficitur libero, faucibus pretium purus elit at mauris. Integer at urna sem. Morbi ut sem sem. Donec vehicula tortor at gravida finibus. Nulla quis lobortis urna. Maecenas ac nibh eu sapien bibendum mattis.</p>
+				</div>
+			</div>
+		</div>
 	</div>
 
 </body>
