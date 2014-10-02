@@ -10,7 +10,8 @@ if ( (session_status() == PHP_SESSION_NONE) || (session_id() == '') ) {
 
 // User attributes
 $userid = 0;
-$user = "";
+$user = null;
+$theme = null;
 
 // Logged in variables
 $admin_logged_in = false;
@@ -39,6 +40,13 @@ if (isset($_SESSION['auth_id'])) {
 	if ($userid !== 0) {
 		$user = getUserObject($userid);
         
+        if (in_array($user->theme, $boots)){
+            $theme = $user->theme;
+        }
+        else {
+            $theme = "yeti";
+        }
+
 		if ($user->type === "admin") {
 			$admin_logged_in = true;
 		}
@@ -89,7 +97,7 @@ else { header("Location: login.php"); }
 ========================================================================*/
 if ($enabled_user) {
     
-	
+
 	/*
 	 * Editor user group
 	 ====================================================*/
