@@ -112,6 +112,11 @@ else if ($requestType === "getProfessor") {
 	echo json_encode($response);
 }
 
+else {
+    $response['message'] = "No requestType defined or invalid requestType.";
+    echo json_encode($response);
+}
+
 
 
 ?>
