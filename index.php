@@ -1,7 +1,13 @@
 <?php
-session_start();
 
-if ( isset($_SESSION['auth_editor_id']) || isset($_SESSION['auth_admin_id']) ) { 
+// Start a session if one doesn't already exist
+if ( (session_status() == PHP_SESSION_NONE) || (session_id() == '') ) {
+    session_start();
+}
+
+
+// See if logged in and give link for each case
+if ( isset($_SESSION['auth_id']) ) { 
     echo "<a href='home.php'>Go home</a>"; 
 }
 else {

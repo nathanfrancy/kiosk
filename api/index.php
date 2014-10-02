@@ -46,8 +46,17 @@ if ($requestType === "getDepartment") {
 
 else if ($requestType === "getDepartments") {
 	$response = null;
-	$response['departments'] = getAllDepartments();
-	$response['message'] = "Successful";
+    
+    $departments = getAllDepartments();
+    
+    if ($departments !== null) {
+        $response['message'] = "Successful";
+        $response['departments'] = getAllDepartments();
+    }
+	else {
+        $response['message'] = "None found.";
+    }
+	
 	echo json_encode($response);
 }
 

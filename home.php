@@ -2,7 +2,11 @@
 
 require("dao/dao.php");
 require("models/model.php");
-session_start();
+
+// Start a session if one doesn't already exist
+if ( (session_status() == PHP_SESSION_NONE) || (session_id() == '') ) {
+    session_start();
+}
 
 // User attributes
 $userid = 0;

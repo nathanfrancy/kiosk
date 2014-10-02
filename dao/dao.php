@@ -1,6 +1,10 @@
 <?php
 
-session_start();
+// Start a session if one doesn't already exist
+if ( (session_status() == PHP_SESSION_NONE) || (session_id() == '') ) {
+    session_start();
+}
+
 date_default_timezone_set('America/Chicago');
 
 require('dao_admin.php');
@@ -21,7 +25,7 @@ $boots = array("cerulean", "cosmo", "cyborg", "darkly", "flatly", "journal", "lu
  */
 function connect_db() {
 	$prod = false;
-	$ubuntu = false;
+	$ubuntu = true;
 	
 	$host = "";
 	$username = "";
