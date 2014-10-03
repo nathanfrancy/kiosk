@@ -36,3 +36,7 @@
 #filldepartmentprofessors, #filldepartmentcourses {
 	margin-top: 10px;
 }
+
+#addeditcourse-id-container {
+	display: none;
+}

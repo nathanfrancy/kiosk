@@ -2,6 +2,8 @@
 // global variables
 var edit = false;
 var edit_departmentid = 0;
+var current_departmentid = 0;
+
 
 $("#addProfessorButton").click(function() {
 	$("#addEditProfessorModal").modal('show');
@@ -16,6 +18,7 @@ $(".panel-department").click(function() {
     var departmentid = parseInt($(this).attr("departmentid"));
     $(".panel-department").removeClass("active");
 	edit_departmentid = departmentid;
+	current_departmentid = departmentid;
 	$(this).addClass("active");
     fillDepartmentsProfessors(departmentid);
 });
@@ -23,59 +26,10 @@ $(".panel-department").click(function() {
 function fillDepartmentsProfessors(departmentid) {
 	
 	// ajax function to fill in professors for the department
-	$.ajax({
-		type: "POST",
-		url: "controllers/controller_editor.php",
-		data: {
-			controllerType: "getDepartmentsProfessors",
-			departmentid : departmentid
-		},
-		dataType: "json",
-		success: function (data) {
-            var professorHTML = "<div class='list-group'>";
-            var count = 0;
-            for (var i = 0; i < data.length; i++) {
-                professorHTML += '<a href="#" class="list-group-item list-professor" professorid="' + data[i].professorid + '" departmentid="' + departmentid + '"><h4 class="list-group-item-heading"><span class="glyphicon glyphicon-user"></span> '+ data[i].lastname + ', ' + data[i].firstname +'<img src="' + data[i].pictureurl + '" class="img-responsive pull-right img-thumbnail img-thumbs"></h4><p class="list-group-item-text">'+ data[i].officebuilding +' '+ data[i].officeroom +'</p></a>';
-                count++;
-            }
-            professorHTML += "</div>";
-            
-            if (count === 0) { professorHTML = "No professors found for this department."; }
-            
-            $("#filldepartmentprofessors").html(professorHTML).hide().fadeIn();
-		},
-		error: function (data) {
-			showAlertBox("Error loading professors.", "danger", 3);
-		}
-	});
+	refreshProfessors(departmentid);
 	
 	// ajax function to fill in the courses for the department
-	$.ajax({
-		type: "POST",
-		url: "controllers/controller_editor.php",
-		data: {
-			controllerType: "getDepartmentsCourses",
-			id : departmentid
-		},
-		dataType: "json",
-		success: function (data) {
-            var courseHTML = "<div class='list-group'>";
-            var count = 0;
-			
-            for (var i = 0; i < data.length; i++) {
-                courseHTML += '<a href="#" class="list-group-item list-course" courseid="' + data[i].id + '" departmentid="' + departmentid + '"><h4 class="list-group-item-heading"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;'+ data[i].number + ', ' + data[i].name + '</h4></a>';
-                count++;
-            }
-            courseHTML += "</div>";
-            
-            if (count === 0) { courseHTML = "No courses found for this department."; }
-            
-            $("#filldepartmentcourses").html(courseHTML).hide().fadeIn();
-		},
-		error: function (data) {
-			showAlertBox("Error loading professors.", "danger", 3);
-		}
-	});
+	refreshCourses(departmentid);
 	
 }
 
@@ -120,6 +74,32 @@ $(document).on("click", ".list-professor", function(e) {
 	});
 	
 	$("#addEditProfessorModal").modal('show');
+});
+
+$(document).on("click", ".list-course", function(e) {
+    var id = parseInt($(this).attr("courseid"));
+    
+    $.ajax({
+		type: "POST",
+		url: "controllers/controller_editor.php",
+		data: {
+			controllerType: "getCourse",
+			id : id
+		},
+		dataType: "json",
+		success: function (data) {
+			$("#addEditCourseTitle").html("Edit Course");
+			$("#addeditcourse-id-container").show();
+			$("#addeditcourse-id").val(data.id);
+			$("#addeditcourse-number").val(data.number);
+			$("#addeditcourse-name").val(data.name);
+			$("#addeditcourse-departmentid").val(data.department_id);
+			$("#addEditCourseModal").modal('show');
+		},
+		error: function (data) {
+			showAlertBox("Error loading professor data.", "danger", 3);
+		}
+	});
 });
 
 $("#addProfessorButtonSubmit").click(function() {
@@ -347,10 +327,115 @@ $("#adddepartment-status-disabled").click(function() {
 	}
 });
 
+$("#addCourseButton").click(function() {
+	$("#addEditCourseModal").modal('show');
+	$("#addEditCourseTitle").html("Add Course");
+	$("#addeditcourse-id-container").hide();
+	$("#addeditcourse-id").val('');
+	$("#addeditcourse-number").val('');
+	$("#addeditcourse-name").val('');
+	
+	// if a department is selected put the select box on that department automagically
+	if (current_departmentid !== 0) {
+		$("#addeditcourse-departmentid").val(current_departmentid);
+	}
+});
+
+$("#addCourseButtonSubmit").click(function() {
+	var name = $("#addeditcourse-name").val();
+	var number = parseInt($("#addeditcourse-number").val());
+	var departmentid = parseInt($("#addeditcourse-departmentid").val());
+	
+	$.ajax({
+			type: "POST",
+			url: "controllers/controller_editor.php",
+			data: {
+				controllerType: "addCourse",
+				name : name, 
+				number : number, 
+				departmentid : departmentid
+			},
+			dataType: "json",
+			success: function (data) {
+				
+				// check if the class just added is in the currently selected department, to see if we need to reload the panel
+				if ( (departmentid === current_departmentid) && (departmentid === parseInt($(".panel-department.active").attr("departmentid")) ) ) {
+					refreshCourses(parseInt($(".panel-department.active").attr("departmentid")));
+				}
+				
+				showAlertBox("Successfully added course.", "success", 3);
+				$("#addEditCourseModal").modal('hide');
+			},
+			error: function (data) {
+				showAlertBox("Error adding course.", "danger", 3);
+			}
+		});
+});
+
 $("#addeditprofessor-pictureurl").change(function() {
 	var url = $(this).val();
 	$("#imagebox-professor img").attr("src", url);
 });
+
+function refreshCourses(departmentid) {
+	$.ajax({
+		type: "POST",
+		url: "controllers/controller_editor.php",
+		data: {
+			controllerType: "getDepartmentsCourses",
+			id: departmentid
+		},
+		dataType: "json",
+		success: function (data) {
+			var courseHTML = "<div class='list-group'>";
+			var count = 0;
+
+			for (var i = 0; i < data.length; i++) {
+				courseHTML += '<a href="#" class="list-group-item list-course" courseid="' + data[i].id + '" departmentid="' + departmentid + '"><h4 class="list-group-item-heading"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;' + data[i].number + ', ' + data[i].name + '</h4></a>';
+				count++;
+			}
+			courseHTML += "</div>";
+
+			if (count === 0) {
+				courseHTML = "No courses found for this department.";
+			}
+
+			$("#filldepartmentcourses").html(courseHTML).hide().fadeIn();
+		},
+		error: function (data) {
+			showAlertBox("Error loading professors.", "danger", 3);
+		}
+	});
+}
+
+function refreshProfessors(departmentid) {
+	// reload current departments' professors and place them into page
+	$.ajax({
+		type: "POST",
+		url: "controllers/controller_editor.php",
+		data: {
+			controllerType: "getDepartmentsProfessors",
+			departmentid : departmentid
+		},
+		dataType: "json",
+		success: function (data) {
+            var professorHTML = "<div class='list-group'>";
+            var count = 0;
+            for (var i = 0; i < data.length; i++) {
+                professorHTML += '<a href="#" class="list-group-item list-professor" professorid="' + data[i].professorid + '" departmentid="' + departmentid + '"><h4 class="list-group-item-heading"><span class="glyphicon glyphicon-user"></span> '+ data[i].lastname + ', ' + data[i].firstname +'<img src="' + data[i].pictureurl + '" class="img-responsive pull-right img-thumbnail img-thumbs"></h4><p class="list-group-item-text">'+ data[i].officebuilding +' '+ data[i].officeroom +'</p></a>';
+                count++;
+            }
+            professorHTML += "</div>";
+            
+            if (count === 0) { professorHTML = "No professors found for this department."; }
+            
+            $("#filldepartmentprofessors").html(professorHTML).hide().fadeIn();
+		},
+		error: function (data) {
+			showAlertBox("Error loading professors.", "danger", 3);
+		}
+	});
+}
 
 function resetStatusProfessor() {
 	$("#adddepartment-status-enabled").removeClass("active");

@@ -77,5 +77,17 @@ else if ($controllerType === "getDepartmentsCourses") {
 	$courses = getDepartmentsCourses($id);
 	echo json_encode($courses);
 }
+else if ($controllerType === "addCourse") {
+	$name = $_POST['name'];
+	$number = $_POST['number'];
+	$departmentid = $_POST['departmentid'];
+	$course = addCourse($number, $name, $departmentid);
+	echo json_encode($course);
+}
+else if ($controllerType === "getCourse") {
+	$id = $_POST['id'];
+	$course = getCourse($id);
+	echo json_encode($course);
+}
 
 ?>

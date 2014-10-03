@@ -59,7 +59,7 @@ require("header.php");
 						  <div class="panel-body">
 							  <div class="row">
 								  <div class="col-sm-12">
-								  	<button class="btn btn-default" id="addProfessorButton">
+								  	<button class="btn btn-default" id="addCourseButton">
 										  <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;&nbsp; Add
 									</button><br />
 								  	<div id="filldepartmentcourses"><p>Click on a department to begin.</p></div>
@@ -217,6 +217,65 @@ require("header.php");
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-primary pull-left" id="addProfessorButtonSubmit">Save changes</button>
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+		<div class="modal fade" id="addEditCourseModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                <h4 class="modal-title" id="addEditCourseTitle">Add Course</h4>
+              </div>
+              <div class="modal-body">
+				 <div class="row">
+					<div class="col-sm-6">
+						<div class="form-group" id="addeditcourse-id-container">
+							<label for="addeditcourse-id">ID</label>
+							<input type="text" class="form-control" id="addeditcourse-id" placeholder="ID" readonly>
+					  </div>
+					</div>  
+				</div>
+				  
+              	<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="addeditcourse-departmentid">Department</label>
+							<select class="form-control" id="addeditcourse-departmentid">
+								<?php
+								foreach ($departments as $department) {
+									echo '<option value="'. $department['id'] .'">['. $department['prefix'] .'] ' . $department['name'] . '</option>';	
+								}
+								?>
+							</select>
+						</div>
+					</div>  
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="addeditcourse-number">Course Number</label>
+							<input class="form-control" id="addeditcourse-number">
+						</div>
+					</div>  
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label for="addeditcourse-name">Course Name</label>
+							<input class="form-control" id="addeditcourse-name">
+						</div>
+					</div>  
+				</div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary pull-left" id="addCourseButtonSubmit">Save changes</button>
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
               </div>
             </div>
