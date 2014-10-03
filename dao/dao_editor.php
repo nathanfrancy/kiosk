@@ -65,7 +65,7 @@ function getProfessor($id) {
 
 function addProfessor($firstname, $lastname, $officebuilding, $officeroom, $phonenumber, $email, $imageurl, $departmentid) {
 	$link = connect_db();
-	$sql = "INSERT INTO  `professor` (`department_id`, `firstname`, `lastname`, `officebuilding`, `officeroom`, `phonenumber`, `email`, `pictureurl`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	$sql = "INSERT INTO  `professor` (`department_id`, `firstname`, `lastname`, `officebuilding`, `officeroom`, `phonenumber`, `email`, `pictureurl`, `status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	$stmt = $link->stmt_init();
 	$stmt->prepare($sql);
 	$stmt->bind_param('issssiss', $departmentid, 
@@ -75,7 +75,8 @@ function addProfessor($firstname, $lastname, $officebuilding, $officeroom, $phon
 					  $link->real_escape_string($officeroom),
 					  $phonenumber,
 					  $link->real_escape_string($email),
-					  $link->real_escape_string($imageurl));
+					  $link->real_escape_string($imageurl),
+					 'enabled');
 	$stmt->execute();
 	$id = $link->insert_id;
 	mysqli_stmt_close($stmt);
@@ -163,6 +164,40 @@ function deleteOfficeHours($id) {
 	mysqli_stmt_close($stmt);
 	$link->close();
     return $rows;
+}
+
+function disableProfessor($id) {
+	$link = connect_db();
+	$sql = "UPDATE  `professor` SET `status`='disabled' WHERE id = ?";
+	
+	// Create prepared statement and bind parameters
+	$stmt = $link->stmt_init();
+	$stmt->prepare($sql);
+	$stmt->bind_param('i', $id);
+    
+    $stmt->execute();
+	mysqli_stmt_close($stmt);
+	$link->close();
+    $user = getProfessor($id);
+	
+	return $user;
+}
+
+function enableProfessor($id) {
+	$link = connect_db();
+	$sql = "UPDATE  `professor` SET `status`='enabled' WHERE id = ?";
+	
+	// Create prepared statement and bind parameters
+	$stmt = $link->stmt_init();
+	$stmt->prepare($sql);
+	$stmt->bind_param('i', $id);
+    
+    $stmt->execute();
+	mysqli_stmt_close($stmt);
+	$link->close();
+    $user = getProfessor($id);
+	
+	return $user;
 }
 
 

@@ -25,7 +25,7 @@ $boots = array("cerulean", "cosmo", "cyborg", "darkly", "flatly", "journal", "lu
  */
 function connect_db() {
 	$prod = false;
-	$ubuntu = true;
+	$ubuntu = false;
 	
 	$host = "";
 	$username = "";

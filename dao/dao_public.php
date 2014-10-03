@@ -27,6 +27,7 @@ function publicGetDepartmentsProfessors($departmentid) {
 			$professor['phonenumber'] = $row['phonenumber'];
 			$professor['email'] = $row['email'];
 			$professor['pictureurl'] = $row['pictureurl'];
+			$professor['status'] = $row['status'];
 			
 			// Department related variables
 			$professor['department']['id'] = $row['department_id'];

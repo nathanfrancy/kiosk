@@ -62,5 +62,15 @@ else if ($controllerType === "addOfficeHours") {
 	$id = addOfficeHours($days, $times, $professorid);
 	echo json_encode($id);
 }
+else if ($controllerType === "enableProfessor") {
+	$id = $_POST['id'];
+	$professor = enableProfessor($id);
+	echo json_encode($professor);
+}
+else if ($controllerType === "disableProfessor") {
+	$id = $_POST['id'];
+	$professor = disableProfessor($id);
+	echo json_encode($professor);
+}
 
 ?>

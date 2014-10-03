@@ -54,6 +54,7 @@ function fillDepartmentsProfessors(departmentid) {
 $(document).on("click", ".list-professor", function(e) {
 	prepareEditProfessor();
     var id = $(this).attr("professorid");
+	resetStatusProfessor();
     
     // Load up the professor's attributes
     $.ajax({
@@ -75,6 +76,14 @@ $(document).on("click", ".list-professor", function(e) {
 			$("#addeditprofessor-pictureurl").val(data.pictureurl);
 			$("#addeditprofessor-departmentid").val(data.department_id);
 			$("#imagebox-professor img").attr("src", data.pictureurl);
+			
+			if (data.status === "enabled") {
+				$("#adddepartment-status-enabled").addClass("active");
+			}
+			else if (data.status === "disabled") {
+				$("#adddepartment-status-disabled").addClass("active");
+			}
+			
 			fillOfficeHours(data.id);
 		},
 		error: function (data) {
@@ -250,10 +259,67 @@ function deleteOfficeHours(id) {
 	});
 }
 
+$("#adddepartment-status-enabled").click(function() {
+	resetStatusProfessor();
+	$(this).addClass("active");
+	
+	if (edit) {
+		var id = parseInt($("#addeditprofessor-id").val());
+		
+		$.ajax({
+			type: "POST",
+			url: "controllers/controller_editor.php",
+			data: {
+				controllerType: "enableProfessor",
+				id : id
+			},
+			dataType: "json",
+			success: function (data) {
+				showAlertBox("Successfully enabled professor.", "success", 3);
+			},
+			error: function (data) {
+				showAlertBox("Error enabling professor.", "danger", 3);
+			}
+		});
+		
+	}
+});
+
+$("#adddepartment-status-disabled").click(function() {
+	resetStatusProfessor();
+	$(this).addClass("active");
+	
+	if (edit) {
+		var id = parseInt($("#addeditprofessor-id").val());
+		
+		$.ajax({
+			type: "POST",
+			url: "controllers/controller_editor.php",
+			data: {
+				controllerType: "disableProfessor",
+				id : id
+			},
+			dataType: "json",
+			success: function (data) {
+				showAlertBox("Successfully disabled professor.", "success", 3);
+			},
+			error: function (data) {
+				showAlertBox("Error disabling professor.", "danger", 3);
+			}
+		});
+		
+	}
+});
+
 $("#addeditprofessor-pictureurl").change(function() {
 	var url = $(this).val();
 	$("#imagebox-professor img").attr("src", url);
 });
+
+function resetStatusProfessor() {
+	$("#adddepartment-status-enabled").removeClass("active");
+	$("#adddepartment-status-disabled").removeClass("active");
+}
 
 function prepareAddProfessor() {
 	$("#addeditprofessor-id-container").hide();
@@ -263,6 +329,7 @@ function prepareAddProfessor() {
 	$("#professor-officehours-list").html("Save this professor to add these values.");
 	$("#addofficehours-container").hide();
 	$("#imagebox-professor img").attr("src", "assets/img/no-image-available.png");
+	resetStatusProfessor();
 	edit = false;
 }
 

@@ -159,6 +159,17 @@ require("header.php");
                         	
                         </div>
                         <div class="col-sm-4">
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h3 class="panel-title">Status</h3>
+									</div>
+									<div class="panel-body">
+										<div class="btn-group" id="adduser-status">
+										  <button type="button" class="btn btn-default" id="adddepartment-status-enabled">Enabled</button>
+										  <button type="button" class="btn btn-default" id="adddepartment-status-disabled">Disabled</button>
+										</div>
+									</div>
+								</div>
                                	<div class="panel panel-primary panel-classschedule">
                                   <div class="panel-heading">
                                     <h3 class="panel-title">Class Schedule</h3>

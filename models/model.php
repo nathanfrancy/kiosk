@@ -26,6 +26,7 @@ class Professor {
     public $phonenumber;
     public $email;
     public $pictureurl;
+	public $status;
 }
 
 class OfficeHours {
