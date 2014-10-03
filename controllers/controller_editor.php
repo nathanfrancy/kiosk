@@ -72,5 +72,10 @@ else if ($controllerType === "disableProfessor") {
 	$professor = disableProfessor($id);
 	echo json_encode($professor);
 }
+else if ($controllerType === "getDepartmentsCourses") {
+	$id = $_POST['id'];
+	$courses = getDepartmentsCourses($id);
+	echo json_encode($courses);
+}
 
 ?>

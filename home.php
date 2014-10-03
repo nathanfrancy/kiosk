@@ -102,13 +102,13 @@ if ($enabled_user) {
 	 * Editor user group
 	 ====================================================*/
     if ($editor_logged_in) {
-        $editor_whitelist = array("professor");
+        $editor_whitelist = array("department");
         
         if (in_array($page, $editor_whitelist)) {
             require('views/editor/editor-'. $page .'.php');
         }
         else {
-            require('views/editor/editor-professor.php');
+            require('views/editor/editor-department.php');
         }
     }
 

@@ -63,10 +63,21 @@ require("header.php");
               </div>
               <div class="modal-body">
                 <form role="form">
-                  <div class="form-group">
-                    <label for="adddepartment-name">Department Name</label>
-                    <input type="text" class="form-control" id="adddepartment-name" placeholder="Enter name of department">
-                  </div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="adddepartment-name">Department Name</label>
+								<input type="text" class="form-control" id="adddepartment-name" placeholder="Enter name of department">
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="adddepartment-prefix">Prefix (not required)</label>
+								<input type="text" class="form-control" id="adddepartment-prefix" placeholder="Enter the prefix">
+							</div>
+						</div>
+					</div>
+                  
                 </form>
               </div>
               <div class="modal-footer">
@@ -94,10 +105,22 @@ require("header.php");
                     <label for="adddepartment-name">ID Number</label>
                     <input type="text" class="form-control" id="editdepartment-id" readonly>
                   </div>
-                  <div class="form-group">
-                    <label for="adddepartment-name">Department Name</label>
-                    <input type="text" class="form-control" id="editdepartment-name" placeholder="Enter name of department">
-                  </div>
+					
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="adddepartment-name">Department Name</label>
+							<input type="text" class="form-control" id="editdepartment-name" placeholder="Enter name of department">
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="adddepartment-prefix">Prefix (not required)</label>
+							<input type="text" class="form-control" id="editdepartment-prefix" placeholder="Enter prefix of department">
+						</div>
+					</div>
+				</div>
+                  
                 </form>
               </div>
               <div class="modal-footer">

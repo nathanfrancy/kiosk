@@ -14,7 +14,8 @@ $controllerType = $_POST['controllerType'];
 
 if ($controllerType === "addDepartment") {
     $name = $_POST['name'];
-    $newid = addDepartment($name);
+	$prefix = $_POST['prefix'];
+    $newid = addDepartment($name, $prefix);
     $department = getDepartment($newid);
     echo json_encode($department);
 }
@@ -26,7 +27,8 @@ else if ($controllerType === "getDepartment") {
 else if ($controllerType === "updateDepartment") {
     $id = $_POST['id'];
     $name = $_POST['name'];
-    $department = updateDepartment($id, $name);
+	$prefix = $_POST['prefix'];
+    $department = updateDepartment($id, $name, $prefix);
     echo json_encode($department);
 }
 else if ($controllerType === "deleteDepartment") {

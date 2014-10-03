@@ -17,13 +17,12 @@ $(".panel-department").click(function() {
     $(".panel-department").removeClass("active");
 	edit_departmentid = departmentid;
 	$(this).addClass("active");
-	$("#container-department, #container-professor").removeClass();
-	$("#container-department").addClass("col-sm-4");
-	$("#container-professor").addClass("col-sm-8");
     fillDepartmentsProfessors(departmentid);
 });
 
 function fillDepartmentsProfessors(departmentid) {
+	
+	// ajax function to fill in professors for the department
 	$.ajax({
 		type: "POST",
 		url: "controllers/controller_editor.php",
@@ -49,6 +48,35 @@ function fillDepartmentsProfessors(departmentid) {
 			showAlertBox("Error loading professors.", "danger", 3);
 		}
 	});
+	
+	// ajax function to fill in the courses for the department
+	$.ajax({
+		type: "POST",
+		url: "controllers/controller_editor.php",
+		data: {
+			controllerType: "getDepartmentsCourses",
+			id : departmentid
+		},
+		dataType: "json",
+		success: function (data) {
+            var courseHTML = "<div class='list-group'>";
+            var count = 0;
+			
+            for (var i = 0; i < data.length; i++) {
+                courseHTML += '<a href="#" class="list-group-item list-course" courseid="' + data[i].id + '" departmentid="' + departmentid + '"><h4 class="list-group-item-heading"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;'+ data[i].number + ', ' + data[i].name + '</h4></a>';
+                count++;
+            }
+            courseHTML += "</div>";
+            
+            if (count === 0) { courseHTML = "No courses found for this department."; }
+            
+            $("#filldepartmentcourses").html(courseHTML).hide().fadeIn();
+		},
+		error: function (data) {
+			showAlertBox("Error loading professors.", "danger", 3);
+		}
+	});
+	
 }
 
 $(document).on("click", ".list-professor", function(e) {
@@ -129,6 +157,14 @@ $("#addProfessorButtonSubmit").click(function() {
 				$("#addeditprofessor-id").val(data.id);
 				prepareEditProfessor();
 				$(".panel-department[departmentid="+ departmentid +"] .list-group").append('<a href="#" class="list-group-item list-professor" professorid="' + data.professorid + '" departmentid="' + departmentid + '"><h4 class="list-group-item-heading">'+ data.lastname + ', ' + data.firstname +'</h4><!--<p class="list-group-item-text"></p>--></a>');
+				
+				if (data.status === "enabled") {
+					$("#adddepartment-status-enabled").addClass("active");
+				}
+				else if (data.status === "disabled") {
+					$("#adddepartment-status-disabled").addClass("active");
+				}
+				
 				showAlertBox("Added professor successfully!", "success", 3);
 			},
 			error: function (data) {

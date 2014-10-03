@@ -20,12 +20,12 @@ function getAllDepartments() {
 	return $departments;
 }
 
-function addDepartment($name) {
+function addDepartment($name, $prefix) {
     $link = connect_db();
-	$sql = "INSERT INTO  `department` (`name`) VALUES (?)";
+	$sql = "INSERT INTO  `department` (`name`, `prefix`) VALUES (?, ?)";
 	$stmt = $link->stmt_init();
 	$stmt->prepare($sql);
-	$stmt->bind_param('s', $link->real_escape_string($name));
+	$stmt->bind_param('ss', $link->real_escape_string($name), $link->real_escape_string($prefix));
 	$stmt->execute();
 	$id = $link->insert_id;
 	mysqli_stmt_close($stmt);
@@ -55,14 +55,14 @@ function getDepartment($id) {
 	return $theDepartment;
 }
 
-function updateDepartment($id, $name) {
+function updateDepartment($id, $name, $prefix) {
 	$link = connect_db();
-	$sql = "UPDATE  `department` SET `name`=? WHERE id = ?";
+	$sql = "UPDATE  `department` SET `name`=?, `prefix`=? WHERE id = ?";
 	
 	// Create prepared statement and bind parameters
 	$stmt = $link->stmt_init();
 	$stmt->prepare($sql);
-	$stmt->bind_param('si', $link->real_escape_string($name),$id);
+	$stmt->bind_param('ssi', $link->real_escape_string($name), $link->real_escape_string($prefix), $id);
 	
     // Execute the query, get the last inserted id
     $stmt->execute();

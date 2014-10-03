@@ -65,7 +65,7 @@ function getProfessor($id) {
 
 function addProfessor($firstname, $lastname, $officebuilding, $officeroom, $phonenumber, $email, $imageurl, $departmentid) {
 	$link = connect_db();
-	$sql = "INSERT INTO  `professor` (`department_id`, `firstname`, `lastname`, `officebuilding`, `officeroom`, `phonenumber`, `email`, `pictureurl`, `status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	$sql = "INSERT INTO  `professor` (`department_id`, `firstname`, `lastname`, `officebuilding`, `officeroom`, `phonenumber`, `email`, `pictureurl`, `status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'enabled')";
 	$stmt = $link->stmt_init();
 	$stmt->prepare($sql);
 	$stmt->bind_param('issssiss', $departmentid, 
@@ -75,8 +75,7 @@ function addProfessor($firstname, $lastname, $officebuilding, $officeroom, $phon
 					  $link->real_escape_string($officeroom),
 					  $phonenumber,
 					  $link->real_escape_string($email),
-					  $link->real_escape_string($imageurl),
-					 'enabled');
+					  $link->real_escape_string($imageurl));
 	$stmt->execute();
 	$id = $link->insert_id;
 	mysqli_stmt_close($stmt);
@@ -200,6 +199,30 @@ function enableProfessor($id) {
 	return $user;
 }
 
+function getDepartmentsCourses($departmentid) {
+    $courses = array();
+
+    $link = connect_db();
+    $sql = "SELECT *, `course`.`id` AS `courseid`, `course`.`name` AS `coursename` FROM `course`, `department` WHERE `department`.`id` = ? AND `department`.`id` = `course`.`department_id` ORDER BY `course`.`number`";
+    $stmt = $link->stmt_init();
+    $stmt->prepare($sql);
+    $stmt->bind_param('i', $departmentid);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    while ($row = $result->fetch_array(MYSQLI_BOTH)) {
+        $course['id'] = $row['courseid'];
+		$course['name'] = $row['coursename'];
+		$course['number'] = $row['number'];
+		$course['departmentid'] = $row['department_id'];
+		
+		array_push($courses, $course);
+    }
+
+    mysqli_stmt_close($stmt);
+    
+    return $courses;
+}
 
 
 

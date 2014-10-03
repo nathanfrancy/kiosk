@@ -8,12 +8,7 @@ require("header.php");
         <div class="container-body">
             <div class="view" id="view-department">
                 <div class="row">
-					<!--
-					<div class="col-sm-2">
-						<button id="" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus-sign"></span> Add</button><br /><br />
-					</div>
-					-->
-                    <div class="col-sm-8" id="container-department">
+                    <div class="col-sm-4" id="container-department">
 						
 						<div class="panel panel-default">
 						  <div class="panel-heading">
@@ -30,15 +25,6 @@ require("header.php");
 								  <a href="#" class="list-group-item panel-department" departmentid="<?php echo $department['id']; ?>">
 									<h4 class="list-group-item-heading"><?php echo $department['name']; ?></h4>
 								  </a>
-								
-								<!--
-                                <div class="panel panel-default panel-department" departmentid="<?php //echo $department['id']; ?>">
-                                  <div class="panel-heading">
-                                    <h3 class="panel-title"><span class="glyphicon glyphicon-refresh pull-right"></span> <?php //echo $department['name']; ?></h3>
-                                  </div>
-                                  <div class="panel-body"></div>
-                                </div>
-								-->
                             <?php
                             }
                         ?>
@@ -58,6 +44,25 @@ require("header.php");
 										  <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;&nbsp; Add
 									</button><br />
 								  	<div id="filldepartmentprofessors"><p>Click on a department to begin.</p></div>
+								  </div>
+							  </div>
+							  
+						</div>
+						</div>
+					</div>
+					
+					<div class="col-sm-4" id="container-course">
+						<div class="panel panel-default">
+						  <div class="panel-heading">
+							<h3 class="panel-title">Courses</h3>
+						  </div>
+						  <div class="panel-body">
+							  <div class="row">
+								  <div class="col-sm-12">
+								  	<button class="btn btn-default" id="addProfessorButton">
+										  <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;&nbsp; Add
+									</button><br />
+								  	<div id="filldepartmentcourses"><p>Click on a department to begin.</p></div>
 								  </div>
 							  </div>
 							  

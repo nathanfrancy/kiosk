@@ -13,6 +13,7 @@ class User {
 class Department {
     public $id;
     public $name;
+	public $prefix;
 }
 
 class Professor {
@@ -34,6 +35,13 @@ class OfficeHours {
 	public $days;
 	public $times;
 	public $professor_id;
+}
+
+class Course {
+	public $id;
+	public $number;
+	public $name;
+	public $department_id;
 }
 
 ?>

@@ -48,7 +48,7 @@ if (($extend !== 1) || (basename($_SERVER['PHP_SELF']) !== "home.php")) {
 			<h2>Information Coordinator Dashboard</h2>
 			<nav class="nav-editor">
 				<div class="btn-group">
-					<a href="home.php?page=professor" class="btn btn-primary navigation active">Professor Manager</a>
+					<a href="home.php?page=department" class="btn btn-primary navigation">Department Manager</a>
 				</div>
 			</nav>
 		</div>

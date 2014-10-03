@@ -1,14 +1,15 @@
 $("#addDepartmentButton").click(function (e) {
 	e.preventDefault();
 	var name = $("#adddepartment-name").val();
-	console.log(name);
-
+	var prefix = $("#adddepartment-prefix").val();
+	
 	$.ajax({
 		type: "POST",
 		url: "controllers/controller_administrator.php",
 		data: {
 			controllerType: "addDepartment",
-			name: name
+			name: name,
+			prefix: prefix
 		},
 		dataType: "json",
 		success: function (data) {
@@ -31,6 +32,7 @@ $("#editDepartmentButton").click(function (e) {
 	e.preventDefault();
 	var id = parseInt($("#editdepartment-id").val());
 	var name = $("#editdepartment-name").val();
+	var prefix = $("#editdepartment-prefix").val();
 
 	$.ajax({
 		type: "POST",
@@ -38,13 +40,15 @@ $("#editDepartmentButton").click(function (e) {
 		data: {
 			controllerType: "updateDepartment",
 			id: id,
-			name: name
+			name: name,
+			prefix: prefix
 		},
 		dataType: "json",
 		success: function (data) {
 			var department = {
 				id: data.id,
-				name: data.name
+				name: data.name,
+				prefix: data.prefix
 			};
 			current_delete_id = data.id;
 			$(".list-department-item[departmentid=" + department.id + "]").hide();
@@ -104,10 +108,12 @@ $(document).on("click", ".list-department-item", function (e) {
 		success: function (data) {
 			var department = {
 				id: data.id,
-				name: data.name
+				name: data.name,
+				prefix: data.prefix
 			};
 			$("#editdepartment-id").val(department.id);
 			$("#editdepartment-name").val(department.name);
+			$("#editdepartment-prefix").val(department.prefix);
 			$('#editDepartmentModal').modal('show');
 		},
 		error: function (data) {
