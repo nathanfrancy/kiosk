@@ -67,24 +67,27 @@ $("#deleteDepartmentButton").click(function (e) {
 	e.preventDefault();
 	var id = parseInt($("#editdepartment-id").val());
 
-	$.ajax({
-		type: "POST",
-		url: "controllers/controller_administrator.php",
-		data: {
-			controllerType: "deleteDepartment",
-			id: id
-		},
-		dataType: "json",
-		success: function (data) {
-			$(".list-department-item[departmentid=" + id + "]").slideUp();
-			$("#editdepartment-name").val('');
-			$('#deleteDepartmentModal').modal('hide');
-			showAlertBox("Deleted department successfully.", "success", 3);
-		},
-		error: function (data) {
-			showAlertBox("Error processing department.", "danger", 3);
-		}
-	});
+	var r = window.confirm("Are you sure you want to delete this department? It will delete all professors and courses linked.");
+	if (r) {
+		$.ajax({
+			type: "POST",
+			url: "controllers/controller_administrator.php",
+			data: {
+				controllerType: "deleteDepartment",
+				id: id
+			},
+			dataType: "json",
+			success: function (data) {
+				$(".list-department-item[departmentid=" + id + "]").slideUp();
+				$("#editdepartment-name").val('');
+				$('#deleteDepartmentModal').modal('hide');
+				showAlertBox("Deleted department successfully.", "success", 3);
+			},
+			error: function (data) {
+				showAlertBox("Error processing department.", "danger", 3);
+			}
+		});
+	}
 });
 
 function appendDepartment(department) {
