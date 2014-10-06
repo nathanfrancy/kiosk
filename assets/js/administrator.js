@@ -95,8 +95,6 @@ function appendDepartment(department) {
 		.hide().appendTo("#list-department").slideDown();
 }
 
-/* Click handlers for navigation buttons and showing views */
-
 $(document).on("click", ".list-department-item", function (e) {
 	e.preventDefault();
 	var id = parseInt($(this).attr("departmentid"));
@@ -196,7 +194,6 @@ $(document).on("click", ".list-user-item", function (e) {
 
 
 });
-
 
 $("#addUserButton").click(function (e) {
 	e.preventDefault();
