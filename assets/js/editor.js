@@ -147,6 +147,7 @@ $("#addProfessorButtonSubmit").click(function() {
 				}
 				
 				showAlertBox("Added professor successfully!", "success", 3);
+				$("#addEditProfessorModal").modal('hide');
 			},
 			error: function (data) {
 				showAlertBox("Error loading professor data.", "danger", 3);
@@ -177,6 +178,7 @@ $("#addProfessorButtonSubmit").click(function() {
 				prepareEditProfessor();
 				$(".panel-department[departmentid="+ departmentid +"] .list-group").append('<a href="#" class="list-group-item list-professor" professorid="' + data.professorid + '" departmentid="' + departmentid + '"><h4 class="list-group-item-heading">'+ data.lastname + ', ' + data.firstname +'</h4><!--<p class="list-group-item-text"></p>--></a>');
 				showAlertBox("Edited professor successfully!", "success", 3);
+				$("#addEditProfessorModal").modal('hide');
 			},
 			error: function (data) {
 				showAlertBox("Error loading professor data.", "danger", 3);
