@@ -55,12 +55,49 @@ function getProfessor($id) {
 	$stmt->execute();
 	$result = $stmt->get_result();
 
-	// bind the result to $theBook for json encoding
-	while ($professor = $result->fetch_object('Professor')) {
-		$theProfessor = $professor;
-	}
-	
+	// bind the result to $theProfessor for json encoding
+	while ($row = $result->fetch_array(MYSQLI_BOTH)) {
+		$theProfessor['id'] = $row['id'];
+		$theProfessor['department_id'] = $row['department_id'];
+		$theProfessor['firstname'] = $row['firstname'];
+		$theProfessor['lastname'] = $row['lastname'];
+		$theProfessor['title'] = $row['title'];
+		$theProfessor['officebuilding'] = $row['officebuilding'];
+		$theProfessor['officeroom'] = $row['officeroom'];
+		$theProfessor['phonenumber'] = $row['phonenumber'];
+		$theProfessor['email'] = $row['email'];
+		$theProfessor['pictureurl'] = $row['pictureurl'];
+		$theProfessor['status'] = $row['status'];
+    }
+
 	mysqli_stmt_close($stmt);
+	
+	// Make a second query for the courses linked to the professor
+	$link2 = connect_db();
+	$sql2 = "SELECT *, `professor_courses`.`id` as `profcourse_id`, `professor_courses`.`days` as `profcourse_days` FROM `professor_courses`, `course` WHERE `professor_courses`.`professor_id` = ? AND `professor_courses`.`course_id` = `course`.`id`";
+	$stmt2 = $link2->stmt_init();
+	$stmt2->prepare($sql2);
+	$stmt2->bind_param('i', $id);
+	$stmt2->execute();
+	$result2 = $stmt2->get_result();
+	
+	// compile a courses array and add to $theProfessor object at the end
+	$courses = array();
+	while ($row2 = $result2->fetch_array(MYSQLI_BOTH)) {
+		$course = null;
+        $course['id'] = $row2['profcourse_id'];
+		$course['days'] = $row2['profcourse_days'];
+		$course['time'] = $row2['time'];
+		$course['status'] = $row2['status'];
+		$course['courseid'] = $row2['course_id'];
+		$course['coursename'] = $row2['name'];
+		$course['department_id'] = $row2['department_id'];
+        array_push($courses, $course);
+    }
+	
+	$theProfessor['courses'] = $courses;
+	mysqli_stmt_close($stmt2);
+	
 	return $theProfessor;
 }
 

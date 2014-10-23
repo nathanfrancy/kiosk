@@ -66,6 +66,11 @@ $(document).on("click", ".list-professor", function(e) {
 				$("#adddepartment-status-disabled").addClass("active");
 			}
 			
+			var courses = data.courses;
+			for (var i = 0; i < courses.length; i++) {
+				$("#professor-courses-list").append("<li>" + courses[i].days + "</li>");
+			}
+			
 			fillOfficeHours(data.id);
 		},
 		error: function (data) {

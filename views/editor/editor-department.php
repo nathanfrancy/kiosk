@@ -180,7 +180,30 @@ require("header.php");
                                     <h3 class="panel-title">Class Schedule</h3>
                                   </div>
                                   <div class="panel-body">
-                                  	
+                                  	<div id="professor-courses">
+										<ul class="list-group" id="professor-courses-list"></ul>
+										
+										<div id="addofficehours-container">
+											<div class="row">
+												<div class="col-sm-12">
+													<select id="addprofessorcourse-courseid" class="form-control"></select>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-6">
+													<input type="text" class="form-control" id="addprofessorcourse-days" placeholder="Days">
+												</div>
+												<div class="col-sm-6">
+													<input type="text" class="form-control" id="addprofessorcourse-time" placeholder="Time">
+												</div>
+											</div>
+											<br />
+											<div class="form-group">
+												<button type="button" class="btn btn-primary btn-block" id="addprofessorcourse-button">Add Course</button>
+											</div>
+										</div>
+										
+									</div>
                                   </div>
                                 </div>
 								<div class="panel panel-primary panel-officehours">
@@ -205,7 +228,6 @@ require("header.php");
 												<button type="button" class="btn btn-primary btn-block" id="addofficehours-button">Add Office Hours</button>
 											</div>
 										</div>
-										<br />
 										
 									</div>
                                   </div>
