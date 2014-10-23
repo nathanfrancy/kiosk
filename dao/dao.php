@@ -25,7 +25,6 @@ $boots = array("cerulean", "cosmo", "cyborg", "darkly", "flatly", "journal", "lu
  */
 function connect_db() {
 	$prod = false;
-	$ubuntu = false;
 	
 	$host = "";
 	$username = "";
@@ -36,14 +35,11 @@ function connect_db() {
 		// place production variables here
 	}
 	else {
-		$host = "localhost";
-		$username = "root";
-		if ($ubuntu) {
-			$password = "root";
-		}
-		else $password = "";
-		
-		$db = "ucmo_kiosk";
+		$connection_array = parse_ini_file("connection.ini");
+        $host = $connection_array['host'];
+        $username = $connection_array['username'];
+        $password = $connection_array['password'];
+        $db = $connection_array['db'];
 	}
 
 	$link = new mysqli($host, $username, $password, $db) or trigger_error($link->error);
