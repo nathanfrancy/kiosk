@@ -45,6 +45,7 @@ function getDepartmentsProfessors($departmentid) {
 
 function getProfessor($id) {
 	$theProfessor = null;
+	$theDepartment = null;
 	
 	// Connect and initialize sql and prepared statement template
 	$link = connect_db();
@@ -59,6 +60,7 @@ function getProfessor($id) {
 	while ($row = $result->fetch_array(MYSQLI_BOTH)) {
 		$theProfessor['id'] = $row['id'];
 		$theProfessor['department_id'] = $row['department_id'];
+		$theDepartment = $row['department_id'];
 		$theProfessor['firstname'] = $row['firstname'];
 		$theProfessor['lastname'] = $row['lastname'];
 		$theProfessor['title'] = $row['title'];
@@ -96,6 +98,7 @@ function getProfessor($id) {
     }
 	
 	$theProfessor['courses'] = $courses;
+	$theProfessor['availableCourses'] = getDepartmentsCourses($theDepartment);
 	mysqli_stmt_close($stmt2);
 	
 	return $theProfessor;

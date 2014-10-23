@@ -90,25 +90,19 @@ require("header.php");
               <div class="modal-body">
                 <form role="form">
                     <div class="row">
-                        <div class="col-sm-8">
+                        <div class="col-sm-6">
 							<div class="form-group" id="addeditprofessor-id-container">
 								<label for="addeditprofessor-id">ID</label>
 								<input type="text" class="form-control" id="addeditprofessor-id" placeholder="ID" readonly>
 							</div>
-							<div class="row">
-								<div class="col-sm-6">
 									<div class="form-group">
 										<label for="addeditprofessor-firstname">First Name</label>
 										<input type="text" class="form-control" id="addeditprofessor-firstname" placeholder="First">
 									</div>
-								</div>
-								<div class="col-sm-6">
 									<div class="form-group">
 										<label for="addeditprofessor-lastname">Last Name</label>
 										<input type="text" class="form-control" id="addeditprofessor-lastname" placeholder="Last">
 									</div>
-								</div>
-							</div>
 							<div class="row">
 								<div class="col-sm-6">
 									<div class="form-group">
@@ -123,30 +117,24 @@ require("header.php");
 									</div>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-sm-6">
 									<div class="form-group">
 										<label for="addeditprofessor-phonenumber">Phone Number</label>
 										<input type="text" class="form-control" id="addeditprofessor-phonenumber" placeholder="Phone Number">
 									</div>
-								</div>
-								<div class="col-sm-6">
 									<div class="form-group">
 										<label for="addeditprofessor-email">Email</label>
 										<input type="text" class="form-control" id="addeditprofessor-email" placeholder="Email">
 									</div>
-								</div>
-							</div>
 							<div class="row">
-								<div class="col-sm-10">
+								<div class="col-sm-9">
 									<div class="form-group">
 										<label for="addeditprofessor-pictureurl">Image URL</label>
 										<input type="text" class="form-control" id="addeditprofessor-pictureurl" placeholder="Picture URL">
 									</div>
 								</div>
-								<div class="col-sm-2">
+								<div class="col-sm-3">
 									<div id="imagebox-professor">
-										<img src="assets/img/no-image-available.png" class="img-thumbnail">
+										<img src="assets/img/no-image-available.png" class="img-thumbnail pull-right">
 									</div>
 								</div>
 							</div>
@@ -163,10 +151,10 @@ require("header.php");
 							</div>
                         	
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
 								<div class="panel panel-primary">
 									<div class="panel-heading">
-										<h3 class="panel-title">Status</h3>
+										<h3 class="panel-title"><span class="glyphicon glyphicon-question-sign pull-right" rel="tooltip" data-toggle="tooltip" data-placement="top" title="This will determine if students can see this professor."></span>Status</h3>
 									</div>
 									<div class="panel-body">
 										<div class="btn-group" id="adduser-status">
@@ -177,16 +165,19 @@ require("header.php");
 								</div>
                                	<div class="panel panel-primary panel-classschedule">
                                   <div class="panel-heading">
-                                    <h3 class="panel-title">Class Schedule</h3>
+                                    <h3 class="panel-title"><span class="glyphicon glyphicon-question-sign pull-right" rel="tooltip" data-toggle="tooltip" data-placement="top" title="See courses that are linked and add other courses."></span>Linked Courses</h3>
                                   </div>
                                   <div class="panel-body">
                                   	<div id="professor-courses">
+										<p><strong>Current Courses</strong></p>
 										<ul class="list-group" id="professor-courses-list"></ul>
 										
+										<p><strong>Link a Course</strong></p>
 										<div id="addofficehours-container">
 											<div class="row">
 												<div class="col-sm-12">
 													<select id="addprofessorcourse-courseid" class="form-control"></select>
+													<br>
 												</div>
 											</div>
 											<div class="row">
@@ -199,7 +190,7 @@ require("header.php");
 											</div>
 											<br />
 											<div class="form-group">
-												<button type="button" class="btn btn-primary btn-block" id="addprofessorcourse-button">Add Course</button>
+												<button type="button" class="btn btn-default btn-block" id="addprofessorcourse-button">Add Course</button>
 											</div>
 										</div>
 										
@@ -208,12 +199,14 @@ require("header.php");
                                 </div>
 								<div class="panel panel-primary panel-officehours">
                                   <div class="panel-heading">
-                                    <h3 class="panel-title">Office Hours</h3>
+                                    <h3 class="panel-title"><span class="glyphicon glyphicon-question-sign pull-right" rel="tooltip" data-toggle="tooltip" data-placement="top" title="See and edit office hours linked to this professor."></span>Office Hours</h3>
                                   </div>
                                   <div class="panel-body">
                                   	<div id="professor-officehours">
+										<p><strong>Current Office Hours</strong></p>
 										<ul class="list-group" id="professor-officehours-list"></ul>
 										
+										<p><strong>Add Office Hours</strong></p>
 										<div id="addofficehours-container">
 											<div class="row">
 												<div class="col-sm-6">
@@ -225,7 +218,7 @@ require("header.php");
 											</div>
 											<br />
 											<div class="form-group">
-												<button type="button" class="btn btn-primary btn-block" id="addofficehours-button">Add Office Hours</button>
+												<button type="button" class="btn btn-default btn-block" id="addofficehours-button">Add Office Hours</button>
 											</div>
 										</div>
 										

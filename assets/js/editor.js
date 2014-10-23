@@ -36,6 +36,7 @@ function fillDepartmentsProfessors(departmentid) {
 $(document).on("click", ".list-professor", function(e) {
 	prepareEditProfessor();
     var id = $(this).attr("professorid");
+	$("#professor-courses-list").html('');
 	resetStatusProfessor();
     
     // Load up the professor's attributes
@@ -66,9 +67,16 @@ $(document).on("click", ".list-professor", function(e) {
 				$("#adddepartment-status-disabled").addClass("active");
 			}
 			
+			// Populate current courses
 			var courses = data.courses;
 			for (var i = 0; i < courses.length; i++) {
-				$("#professor-courses-list").append("<li>" + courses[i].days + "</li>");
+				$("#professor-courses-list").append('<li class="list-group-item">'+ courses[i].coursename +'<br>'+ courses[i].days +', '+ courses[i].time +'</li>');
+			}
+			
+			// Populate available courses
+			var availableCourses = data.availableCourses;
+			for (var i = 0; i < availableCourses.length; i++) {
+				$("#addprofessorcourse-courseid").append("<option value='"+ availableCourses[i].id +"'>" + availableCourses[i].name + "</li>");
 			}
 			
 			fillOfficeHours(data.id);
@@ -152,7 +160,6 @@ $("#addProfessorButtonSubmit").click(function() {
 				}
 				
 				showAlertBox("Added professor successfully!", "success", 3);
-				$("#addEditProfessorModal").modal('hide');
 			},
 			error: function (data) {
 				showAlertBox("Error loading professor data.", "danger", 3);
@@ -210,7 +217,7 @@ function fillOfficeHours(professorid) {
 		success: function (data) {
 			if (data.length !== 0) {
 				for (var i = 0; i < data.length; i++) {
-					$("<li class='list-group-item'><button class='btn btn-danger btn-xs deleteOfficeHoursButton pull-right' officehoursid='"+ data[i].id +"'>Delete</button>" + data[i].days + " (" + data[i].times + ")</li>").appendTo("#professor-officehours-list");
+					$("<li class='list-group-item'><button class='btn btn-danger btn-xs deleteOfficeHoursButton pull-right' officehoursid='"+ data[i].id +"'><span class='glyphicon glyphicon-trash'></span></button>" + data[i].days + " (" + data[i].times + ")</li>").appendTo("#professor-officehours-list");
 				}
 			}
 			else {
@@ -240,10 +247,10 @@ $("#addofficehours-button").click(function() {
 		success: function (data) {
 			var rows = $("#professor-officehours-list > li").length;
 			if (rows === 0) {
-				$("#professor-officehours-list").html("<li class='list-group-item'><button class='btn btn-danger btn-xs deleteOfficeHoursButton pull-right' officehoursid='"+ data +"'>Delete</button>" + days + " (" + times + ")</li>");
+				$("#professor-officehours-list").html("<li class='list-group-item'><button class='btn btn-danger btn-xs deleteOfficeHoursButton pull-right' officehoursid='"+ data +"'><span class='glyphicon glyphicon-trash'></span></button>" + days + " (" + times + ")</li>");
 			}
 			else {
-				$("<li class='list-group-item'><button class='btn btn-danger btn-xs deleteOfficeHoursButton pull-right' officehoursid='"+ data +"'>Delete</button>" + days + " (" + times + ")</li>").appendTo("#professor-officehours-list");
+				$("<li class='list-group-item'><button class='btn btn-danger btn-xs deleteOfficeHoursButton pull-right' officehoursid='"+ data +"'><span class='glyphicon glyphicon-trash'></span></button>" + days + " (" + times + ")</li>").appendTo("#professor-officehours-list");
 			}
 			
 			$("#addedofficehours-days").val("");
@@ -497,6 +504,8 @@ function prepareAddProfessor() {
 	$("#professor-officehours-list").html("Save this professor to add these values.");
 	$("#addofficehours-container").hide();
 	$("#imagebox-professor img").attr("src", "assets/img/no-image-available.png");
+	$("#professor-courses-list").html('');
+	$("#addprofessorcourse-courseid").html('');
 	resetStatusProfessor();
 	edit = false;
 }
@@ -506,6 +515,11 @@ function prepareEditProfessor() {
 	$("#addeditprofessor-id-container").show();
 	$("#addUserButton").html("Save Changes");
 	$("#addofficehours-container").show();
+	$("#professor-courses-list").html('');
+	$("#addprofessorcourse-courseid").html('');
 	edit = true;
 }
 
+$(function(){
+	$('[rel="tooltip"]').tooltip();
+});
