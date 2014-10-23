@@ -78,6 +78,7 @@ $(document).on("click", ".list-professor", function(e) {
 
 $(document).on("click", ".list-course", function(e) {
     var id = parseInt($(this).attr("courseid"));
+	$("#addCourseButtonSubmit").html("Save Changes");
     
     $.ajax({
 		type: "POST",
@@ -330,6 +331,7 @@ $("#adddepartment-status-disabled").click(function() {
 $("#addCourseButton").click(function() {
 	$("#addEditCourseModal").modal('show');
 	$("#addEditCourseTitle").html("Add Course");
+	$("#addCourseButtonSubmit").html("Add Course");
 	$("#addeditcourse-id-container").hide();
 	$("#addeditcourse-id").val('');
 	$("#addeditcourse-number").val('');
@@ -346,7 +348,9 @@ $("#addCourseButtonSubmit").click(function() {
 	var number = parseInt($("#addeditcourse-number").val());
 	var departmentid = parseInt($("#addeditcourse-departmentid").val());
 	
-	$.ajax({
+	// If the button says to add it, add it
+	if ($(this).html() === "Add Course") {
+		$.ajax({
 			type: "POST",
 			url: "controllers/controller_editor.php",
 			data: {
@@ -357,12 +361,12 @@ $("#addCourseButtonSubmit").click(function() {
 			},
 			dataType: "json",
 			success: function (data) {
-				
+
 				// check if the class just added is in the currently selected department, to see if we need to reload the panel
 				if ( (departmentid === current_departmentid) && (departmentid === parseInt($(".panel-department.active").attr("departmentid")) ) ) {
-					refreshCourses(parseInt($(".panel-department.active").attr("departmentid")));
-				}
-				
+						refreshCourses(parseInt($(".panel-department.active").attr("departmentid")));
+					}
+
 				showAlertBox("Successfully added course.", "success", 3);
 				$("#addEditCourseModal").modal('hide');
 			},
@@ -370,6 +374,42 @@ $("#addCourseButtonSubmit").click(function() {
 				showAlertBox("Error adding course.", "danger", 3);
 			}
 		});
+	}
+	
+	// if the button says "save changes" do that instead of adding it
+	else if ($(this).html() === "Save Changes") {
+		var id = parseInt($("#addeditcourse-id").val());
+		
+		$.ajax({
+			type: "POST",
+			url: "controllers/controller_editor.php",
+			data: {
+				controllerType: "editCourse",
+				id : id,
+				name : name, 
+				number : number, 
+				departmentid : departmentid
+			},
+			dataType: "json",
+			success: function (data) {
+
+				// check if the class just added is in the currently selected department, to see if we need to reload the panel
+				if ( (departmentid === current_departmentid) && (departmentid === parseInt($(".panel-department.active").attr("departmentid")) ) ) {
+						refreshCourses(parseInt($(".panel-department.active").attr("departmentid")));
+					}
+
+				showAlertBox("Successfully added course.", "success", 3);
+				$("#addEditCourseModal").modal('hide');
+			},
+			error: function (data) {
+				showAlertBox("Error adding course.", "danger", 3);
+			}
+		});
+	}
+	else {
+		showAlertBox("Error processing this change.", "danger", 3);
+	}
+	
 });
 
 $("#addeditprofessor-pictureurl").change(function() {

@@ -262,6 +262,23 @@ function getCourse($id) {
 	return $theCourse;
 }
 
+function editCourse($id, $number, $name, $departmentid) {
+	$link = connect_db();
+	$sql = "UPDATE  `course` SET `number`=?, `name`=?, `department_id`=? WHERE id = ?";
+	
+	// Create prepared statement and bind parameters
+	$stmt = $link->stmt_init();
+	$stmt->prepare($sql);
+	$stmt->bind_param('isii', $number, $link->real_escape_string($name), $departmentid, $id);
+    
+    $stmt->execute();
+	mysqli_stmt_close($stmt);
+	$link->close();
+    $course = getCourse($id);
+	
+	return $course;
+}
+
 
 
 

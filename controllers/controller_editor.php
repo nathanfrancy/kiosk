@@ -89,5 +89,13 @@ else if ($controllerType === "getCourse") {
 	$course = getCourse($id);
 	echo json_encode($course);
 }
+else if ($controllerType === "editCourse") {
+	$id = $_POST['id'];
+	$name = $_POST['name'];
+	$number = $_POST['number'];
+	$departmentid = $_POST['departmentid'];
+	$course = editCourse($id, $number, $name, $departmentid);
+	echo json_encode($course);
+}
 
 ?>
