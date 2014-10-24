@@ -1,53 +1,91 @@
-<!doctype html>
-<html>
+<?php
+require("header.php");
+?>
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/css/style.css">
-        <link rel="stylesheet" href="assets/css/poster.css">
-        <script src="assets/js/jquery.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>News Posting Coordinator Dashboard</title>
-    </head>
-
-    <body>
-        
-        <div id="alertBox">
-		  <div id="alertBoxBody" class="alert" role="alert"></div>
-	    </div>
+<div class="container-body">			
     
-		<div class="container-fluid" style="background-color: #f5f5f5; border-bottom: 1px rgb(221, 221, 221) solid;">
-			<div class="btn-group pull-right" style="margin-top: 10px;">
-				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-					<span class="glyphicon glyphicon-user"></span> &nbsp;
-					<?php echo $user->username; ?> &nbsp;<span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu" role="menu">
-					<li><a href="logout.php">Logout</a>
-					</li>
-				</ul>
-			</div>
-			<h2>News Posting Coordinator Dashboard</h2>
-			<nav class="nav-poster">
-				<div class="btn-group">
-					<a href="home.php?page=posts" type="button" class="btn btn-primary navigation active">Postings Manager</a>
+    <div id="userid-key" userid="<?php echo $user->id; ?>"></div>
+    
+    <div class="row">
+        
+        <div class="col-sm-6 col-sm-offset-3">
+            
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Posts</h3>
+              </div>
+              <div class="panel-body">
+                <button class="btn btn-primary" id="addPostOpenModal" data-toggle="modal" data-target="#addEditPostModal">Add Post</button>
+                  <br>
+                <ul class="list-group" id="list-all-posts">
+                  <?php
+                    $posts = getPosts();
+                    foreach ($posts as $post) {
+                        echo '<li class="list-group-item list-item-post" postid="' . $post['id'] . '"><h4 class="list-group-item-heading"><span class="badge pull-right">Edited '. date('m/d/Y', $post['date_modified']) .'</span>'. $post['title'] .'</h4><p class="list-group-item-text">'. $post['user_created']->nicename .'</p></li>';
+                    }
+                  ?>
+                </ul>
+              </div>
+            </div>
+        </div>
+        
+    </div>
+    
+</div>
+
+
+        <div class="modal fade" id="addEditPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                <h4 class="modal-title" id="addEditCourseTitle">Add Post</h4>
+              </div>
+              <div class="modal-body">
+				 <div class="row" id="addeditpost-readonly-first">
+					<div class="col-sm-2">
+				        <div class="form-group" id="addeditpost-id-container">
+							<label for="addeditpost-id">ID</label>
+							<input type="text" class="form-control" id="addeditpost-id" placeholder="ID" readonly>
+					   </div>
+					</div>
+                    <div class="col-sm-5">
+				        <div class="form-group" id="addeditpost-id-container">
+							<label for="addeditpost-id">User Created</label>
+							<input type="text" class="form-control" id="addeditpost-userid" placeholder="Created User" readonly>
+					   </div>
+					</div> 
+                    <div class="col-sm-5">
+				        <div class="form-group" id="addeditpost-id-container">
+							<label for="addeditpost-id">Date Created</label>
+							<input type="text" class="form-control" id="addeditpost-createddate" placeholder="Created Date" readonly>
+					   </div>
+					</div> 
 				</div>
-			</nav>
-		</div>
-		
-        <div class="container-fluid"> 
-            <div class="container-body">
-			
-				
-			</div>
-		</div>
-	</body>
-	
-	<script type="text/javascript" src="assets/js/poster.js"></script>
-    <script type="text/javascript" src="assets/js/sitewide.js"></script>
-	
-</html>
+				  
+              	<div class="form-group">
+                    <label for="addeditpost-title">Title</label>
+					<input class="form-control" id="addeditpost-title">
+				</div>
+				<div class="form-group">
+                    <label for="addeditcourse-departmentid">Body</label>
+					<textarea id="addeditpost-body" class="form-control" rows="6"></textarea>
+				</div>
+                <div class="form-group" id="addeditpost-readonly-second">
+                    <label>Last modified: <span id="addeditpost-lastmodified"</span></label>
+				</div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary pull-left" id="savePostButtonSubmit">Save Post</button>
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<?php
+require("footer.php");
+?>

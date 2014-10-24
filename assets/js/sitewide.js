@@ -33,6 +33,21 @@ $("#saveTheme").click(function() {
 	});
 });
 
+function dateConverterToNice(unix_timestamp) {
+    var date = new Date(unix_timestamp*1000);
+    var hours = date.getHours();
+    var minutes = "0" + date.getMinutes();
+    var seconds = "0" + date.getSeconds();
+    
+    var month = date.getMonth() + 1;
+    var dayt = date.getDate();
+    var year = date.getFullYear();
+
+    // will display time in 10:30:23 format
+    var formattedTime = month + "/" + dayt + "/" + year + " " + hours + ':' + minutes.substr(minutes.length-2) + ':' + seconds.substr(seconds.length-2);
+    return formattedTime;
+}
+
 function showAlertBox(message, type, seconds) {
 	var millis = seconds * 1000;
 	

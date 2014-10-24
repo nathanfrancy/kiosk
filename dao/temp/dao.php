@@ -9,7 +9,6 @@ date_default_timezone_set('America/Chicago');
 
 require('dao_admin.php');
 require('dao_editor.php');
-require('dao_poster.php');
 require('dao_public.php');
 
 // if the model.php file exists relative to this location, we need it for some operations
@@ -25,7 +24,8 @@ $boots = array("cerulean", "cosmo", "cyborg", "darkly", "flatly", "journal", "lu
  * Function that provides a link to the database for data access and interaction
  */
 function connect_db() {
-	$prod = false;
+	$prod = true;
+	$ubuntu = true;
 	
 	$host = "";
 	$username = "";
@@ -34,13 +34,20 @@ function connect_db() {
 	
 	if ($prod) {
 		// place production variables here
+        $host = "mysql.nathanfrancy.com";
+        $username = "kioskgroup";
+        $password = "passkiosk1234";
+        $db = "nathanfrancycom_kiosk";
 	}
 	else {
-		$connection_array = parse_ini_file("connection.ini");
-        $host = $connection_array['host'];
-        $username = $connection_array['username'];
-        $password = $connection_array['password'];
-        $db = $connection_array['db'];
+		$host = "localhost";
+		$username = "root";
+		if ($ubuntu) {
+			$password = "root";
+		}
+		else $password = "";
+		
+		$db = "ucmo_kiosk";
 	}
 
 	$link = new mysqli($host, $username, $password, $db) or trigger_error($link->error);

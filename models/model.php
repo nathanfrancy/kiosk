@@ -44,4 +44,14 @@ class Course {
 	public $department_id;
 }
 
+class Post {
+    public $id;
+    public $title;
+    public $body;
+    public $date_created;
+    public $date_modified;
+    public $user_id;
+    public $user_modified;
+}
+
 ?>
