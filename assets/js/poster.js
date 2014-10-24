@@ -99,7 +99,26 @@ $("#savePostButtonSubmit").click(function() {
             }
         });
     }
-    
+});
+
+$("#deletePostSubmit").click(function() {
+    var id = parseInt($("#addeditpost-id").val());
+    $.ajax({
+        type: "POST",
+        url: "controllers/controller_poster.php",
+        data: {
+            controllerType: "deletePost",
+            id: id
+        },
+        success: function (data) {
+            refreshAllPosts();
+            showAlertBox("Successfully deleted post.", "success", 3);
+            $("#addEditPostModal").modal('hide');
+        },
+        error: function (data) {
+            showAlertBox("Error deleting post.", "danger", 3);
+        }
+    });
 });
 
 function refreshAllPosts() {

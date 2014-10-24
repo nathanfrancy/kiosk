@@ -74,6 +74,7 @@ require("header.php");
               <div class="modal-footer">
                 <button type="button" class="btn btn-primary pull-left" id="savePostButtonSubmit">Save Post</button>
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger pull-right" id="deletePostSubmit">Delete</button>
               </div>
             </div>
           </div>

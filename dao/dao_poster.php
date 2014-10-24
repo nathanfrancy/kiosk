@@ -113,4 +113,17 @@ function editPost($id, $title, $body, $userid) {
 	return $professor;
 }
 
+function deletePost($id) {
+    $current_time = time();
+    $link = connect_db();
+	$sql = "DELETE FROM `post` WHERE id = ?";
+	$stmt = $link->stmt_init();
+	$stmt->prepare($sql);
+	$stmt->bind_param('i', $id);
+	$stmt->execute();
+	mysqli_stmt_close($stmt);
+	$link->close();
+    return json_encode(0);
+}
+
 ?>

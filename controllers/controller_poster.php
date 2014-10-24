@@ -27,5 +27,9 @@ else if ($controllerType === "editPost") {
     $post = editPost($id, $title, $body, $userid);
     echo json_encode($post);
 }
+else if ($controllerType === "deletePost") {
+    $id = $_POST['id'];
+    deletePost($id);
+}
 
 ?>
