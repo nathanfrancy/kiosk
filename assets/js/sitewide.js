@@ -64,7 +64,7 @@ function showAlertBox(message, type, seconds) {
 	var millis = seconds * 1000;
 	
 	if (message === "") {
-		"Error.";
+		message = "Error.";
 	}
 	if (type === "") {
 		type = "info";
