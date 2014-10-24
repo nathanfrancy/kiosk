@@ -2,3 +2,6 @@
 .project
 .settings
 .settings/*
+dao/temp/*
+dao/temp/
+/dao/temp/

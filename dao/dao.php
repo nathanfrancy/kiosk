@@ -26,7 +26,7 @@ $boots = array("cerulean", "cosmo", "cyborg", "darkly", "flatly", "journal", "lu
  * Function that provides a link to the database for data access and interaction
  */
 function connect_db() {
-	$prod = false;
+	$prod = true;
 	
 	$host = "";
 	$username = "";
@@ -35,6 +35,10 @@ function connect_db() {
 	
 	if ($prod) {
 		// place production variables here
+		$host = "mysql.nathanfrancy.com";
+        $username = "kioskgroup";
+        $password = "passkiosk1234";
+        $db = "nathanfrancycom_kiosk";
 	}
 	else {
 		$connection_array = parse_ini_file("connection.ini");
