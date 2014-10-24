@@ -117,13 +117,15 @@ if ($enabled_user) {
 	 * Editor/Poster user groups
 	 ====================================================*/
     else if ($editor_poster_logged_in) {
-        $admin_whitelist = array("professor");
         
-        if (in_array($page, $admin_whitelist)) {
-            require('views/editorposter/editorposter-'. $page .'.php');
+        if ($page === "department") {
+            require('views/editorposter/editorposter-department.php');
+        }
+        else if ($page === "posts") {
+            require('views/editorposter/editorposter-posts.php');
         }
         else {
-            require('views/editorposter/editorposter-professor.php');
+            require('views/editorposter/editorposter-department.php');
         }
     }
 
