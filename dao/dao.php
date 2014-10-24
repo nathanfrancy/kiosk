@@ -124,39 +124,74 @@ function updateTheme($id, $theme) {
 }
 
 
-function verifyUser($type) {
+function isAdmin() {
 	$authorized = 0;
 	$session_auth_id = $_SESSION['auth_id'];
 	
 	// Connect and initialize sql template
 	$link = connect_db();
-	$sql = "SELECT * FROM `user` WHERE `user`.`id` = ? AND `user`.`type` = ?";
+	$sql = "SELECT * FROM `user` WHERE `user`.`id` = ? AND `user`.`type` = 'admin'";
 	
 	// Create prepared statement and bind passed in variables username and password
 	$stmt = $link->stmt_init();
 	$stmt->prepare($sql);
-	$stmt->bind_param('is', $session_auth_id, $type);
+	$stmt->bind_param('i', $session_auth_id);
 	$stmt->execute();
 	$result = $stmt->get_result();
-	$userid = 0;
-	$usertype = "";
-    
-	$counter = 0;
-	while ($row = $result->fetch_array(MYSQLI_BOTH)) {
-		$counter++;
-	}
 	
-	// Make sure that userid is 0 if there was nothing returned
-	if ($counter != 0) {
+	while ($row = $result->fetch_array(MYSQLI_BOTH)) {
 		$authorized = 1;
 	}
 	
 	mysqli_stmt_close($stmt);
-	
 	return $authorized;
 }
 
+function isEditor() {
+	$authorized = 0;
+	$session_auth_id = $_SESSION['auth_id'];
+	
+	// Connect and initialize sql template
+	$link = connect_db();
+	$sql = "SELECT * FROM `user` WHERE `user`.`id` = ? AND (`user`.`type` = 'editor' OR `user`.`type` = 'editorposter')";
+	
+	// Create prepared statement and bind passed in variables username and password
+	$stmt = $link->stmt_init();
+	$stmt->prepare($sql);
+	$stmt->bind_param('i', $session_auth_id);
+	$stmt->execute();
+	$result = $stmt->get_result();
+    
+	while ($row = $result->fetch_array(MYSQLI_BOTH)) {
+		$authorized = 1;
+	}
+	
+	mysqli_stmt_close($stmt);
+	return $authorized;
+}
 
+function isPoster() {
+	$authorized = 0;
+	$session_auth_id = $_SESSION['auth_id'];
+	
+	// Connect and initialize sql template
+	$link = connect_db();
+	$sql = "SELECT * FROM `user` WHERE `user`.`id` = ? AND (`user`.`type` = 'poster' OR `user`.`type` = 'editorposter')";
+	
+	// Create prepared statement and bind passed in variables username and password
+	$stmt = $link->stmt_init();
+	$stmt->prepare($sql);
+	$stmt->bind_param('i', $session_auth_id);
+	$stmt->execute();
+	$result = $stmt->get_result();
+ 
+	while ($row = $result->fetch_array(MYSQLI_BOTH)) {
+		$authorized = 1;
+	}
+	
+	mysqli_stmt_close($stmt);
+	return $authorized;
+}
 
 
 

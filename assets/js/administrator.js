@@ -245,7 +245,7 @@ $("#addUserButton").click(function (e) {
 			showAlertBox("Added " + user.nicename + " successfully.", "success", 3);
 		},
 		error: function (data) {
-			showAlertBox("Error processing department.", "danger", 3);
+			showAlertBox(data, "danger", 3);
 		}
 	});
 });
@@ -300,7 +300,7 @@ $("#editUserButton").click(function (e) {
 			showAlertBox("Edited " + user.nicename + " successfully.", "success", 3);
 		},
 		error: function (data) {
-			showAlertBox("Error processing department.", "danger", 3);
+			showAlertBox(data, "danger", 3);
 		}
 	});
 });
@@ -332,7 +332,7 @@ $("#deleteUserButton").click(function (e) {
 			showAlertBox("Deleted user successfully.", "success", 3);
 		},
 		error: function (data) {
-			showAlertBox("Error processing department.", "danger", 3);
+			showAlertBox(data, "danger", 3);
 		}
 	});
 });

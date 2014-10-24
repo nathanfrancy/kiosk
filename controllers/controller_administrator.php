@@ -13,7 +13,7 @@ require_once('../dao/dao.php');
 $controllerType = $_POST['controllerType'];
 
 if ($controllerType === "addDepartment") {
-	if (verifyUser("admin") === 1) {
+	if (isAdmin() === 1) {
 		$name = $_POST['name'];
 		$prefix = $_POST['prefix'];
 		$newid = addDepartment($name, $prefix);
@@ -28,7 +28,7 @@ else if ($controllerType === "getDepartment") {
     echo json_encode($department);
 }
 else if ($controllerType === "updateDepartment") {
-	if (verifyUser("admin") === 1) {
+	if (isAdmin() === 1) {
 		$id = $_POST['id'];
 		$name = $_POST['name'];
 		$prefix = $_POST['prefix'];
@@ -38,67 +38,94 @@ else if ($controllerType === "updateDepartment") {
 	else { echo "You are not authorized to perform this action."; }
 }
 else if ($controllerType === "deleteDepartment") {
-	if (verifyUser("admin") === 1) {
+	if (isAdmin() === 1) {
 		$id = $_POST['id'];
 		echo json_encode(deleteDepartment($id));
 	}
 	else { echo "You are not authorized to perform this action."; }
 }
 else if ($controllerType === "addUser") {
-	$nicename = $_POST['nicename'];
-	$password = $_POST['password'];
-	$email = $_POST['email'];
-	$type = $_POST['type'];
-	$username = $_POST['username'];
-    $status = $_POST['status'];
-	$userid = addUser($username, $password, $nicename, $email, $type, $status);
-	$user = getUser($userid);
-	echo json_encode($user);
+	if (isAdmin() === 1) {
+		$nicename = $_POST['nicename'];
+		$password = $_POST['password'];
+		$email = $_POST['email'];
+		$type = $_POST['type'];
+		$username = $_POST['username'];
+		$status = $_POST['status'];
+		$userid = addUser($username, $password, $nicename, $email, $type, $status);
+		$user = getUser($userid);
+		echo json_encode($user);
+	}
+	else { echo "You are not authorized to perform this action."; }
 }
 else if ($controllerType === "getUser") {
-	$id = $_POST['id'];
-	$user = getUser($id);
-	echo json_encode($user);
+	if (isAdmin() === 1) {
+		$id = $_POST['id'];
+		$user = getUser($id);
+		echo json_encode($user);
+	}
+	else { echo "You are not authorized to perform this action."; }
 }
 else if ($controllerType === "updateUser") {
-	$id = $_POST['id'];
-	$username = $_POST['username'];
-	$nicename = $_POST['nicename'];
-	$email = $_POST['email'];
-    $type = $_POST['type'];
-    $status = $_POST['status'];
-    $user = updateUser($id, $nicename, $username, $email, $type, $status);
-    echo json_encode($user);
+	if (isAdmin() === 1) {
+		$id = $_POST['id'];
+		$username = $_POST['username'];
+		$nicename = $_POST['nicename'];
+		$email = $_POST['email'];
+		$type = $_POST['type'];
+		$status = $_POST['status'];
+		$user = updateUser($id, $nicename, $username, $email, $type, $status);
+		echo json_encode($user);
+	}
+	else { echo "You are not authorized to perform this action."; }
 }
 else if ($controllerType === "deleteUser") {
-    $id = $_POST['id'];
-    echo json_encode(deleteUser($id));
+	if (isAdmin() === 1) {
+		$id = $_POST['id'];
+		echo json_encode(deleteUser($id));
+	}
+	else { echo "You are not authorized to perform this action."; }
 }
 else if ($controllerType === "getAllUsers") {
-    echo json_encode(getAllUsers());
+	if (isAdmin() === 1) {
+    	echo json_encode(getAllUsers());
+	}
+	else { echo "You are not authorized to perform this action."; }
 }
 else if ($controllerType === "resetPassword") {
-    $id = $_POST['id'];
-    $password = $_POST['password'];
-    $newuser = resetPassword($id, $password);
-    echo json_encode($newuser);
+	if (isAdmin() === 1) {
+		$id = $_POST['id'];
+		$password = $_POST['password'];
+		$newuser = resetPassword($id, $password);
+		echo json_encode($newuser);
+	}
+	else { echo "You are not authorized to perform this action."; }
 }
 else if ($controllerType === "grantDepartmentAccess") {
-    $departmentid = $_POST['departmentid'];
-    $userid = $_POST['userid'];
-    $userid = grantDepartmentAccess($userid, $departmentid);
-    echo json_encode($userid);
+	if (isAdmin() === 1) {
+		$departmentid = $_POST['departmentid'];
+		$userid = $_POST['userid'];
+		$userid = grantDepartmentAccess($userid, $departmentid);
+		echo json_encode($userid);
+	}
+	else { echo "You are not authorized to perform this action."; }
 }
 else if ($controllerType === "revokeDepartmentAccess") {
-    $departmentid = $_POST['departmentid'];
-    $userid = $_POST['userid'];
-    $userid = revokeDepartmentAccess($userid, $departmentid);
-    echo json_encode($userid);
+	if (isAdmin() === 1) {
+		$departmentid = $_POST['departmentid'];
+		$userid = $_POST['userid'];
+		$userid = revokeDepartmentAccess($userid, $departmentid);
+		echo json_encode($userid);
+	}
+	else { echo "You are not authorized to perform this action."; }
 }   
 else if ($controllerType === "getGrantedDepartmentIds") {
-    $userid = $_POST['userid'];
-    $departments = getGrantedDepartmentIds($userid);
-    echo json_encode($departments);
+	if (isAdmin() === 1) {
+		$userid = $_POST['userid'];
+		$departments = getGrantedDepartmentIds($userid);
+		echo json_encode($departments);
+	}
+	else { echo "You are not authorized to perform this action."; }
 }
 else if ($controllerType === "changeTheme") {
 	$userid = $_POST['userid'];
@@ -106,6 +133,5 @@ else if ($controllerType === "changeTheme") {
 	$newuser = updateTheme($userid, $theme);
 	echo json_encode($newuser);
 }
-
 
 ?>
