@@ -97,5 +97,13 @@ else if ($controllerType === "editCourse") {
 	$course = editCourse($id, $number, $name, $departmentid);
 	echo json_encode($course);
 }
+else if ($controllerType === "linkCourseToProfessor") {
+    $days = $_POST['days'];
+    $time = $_POST['time'];
+    $courseid = $_POST['courseid'];
+    $professorid = $_POST['professorid'];
+    $linkedcourse = addLinkedCourseToProfessor($days, $time, $courseid, $professorid);
+    echo json_encode($linkedcourse);
+}
 
 ?>

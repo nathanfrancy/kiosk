@@ -40,3 +40,7 @@
 #addeditcourse-id-container {
 	display: none;
 }
+
+.openclose + .panel-body {
+    display: none;
+}

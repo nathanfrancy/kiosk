@@ -1,4 +1,3 @@
-
 // global variables
 var edit = false;
 var edit_departmentid = 0;
@@ -59,6 +58,7 @@ $(document).on("click", ".list-professor", function(e) {
 			$("#addeditprofessor-pictureurl").val(data.pictureurl);
 			$("#addeditprofessor-departmentid").val(data.department_id);
 			$("#imagebox-professor img").attr("src", data.pictureurl);
+            $("#addprofessorcourse-departmentid").val(data.department_id);
 			
 			if (data.status === "enabled") {
 				$("#adddepartment-status-enabled").addClass("active");
@@ -72,6 +72,7 @@ $(document).on("click", ".list-professor", function(e) {
 			for (var i = 0; i < courses.length; i++) {
 				$("#professor-courses-list").append('<li class="list-group-item">'+ courses[i].coursename +'<br>'+ courses[i].days +', '+ courses[i].time +'</li>');
 			}
+            if (courses.length === 0) { $("#professor-courses-list").append('No linked courses found.'); }
 			
 			// Populate available courses
 			var availableCourses = data.availableCourses;
@@ -112,6 +113,29 @@ $(document).on("click", ".list-course", function(e) {
 		},
 		error: function (data) {
 			showAlertBox("Error loading professor data.", "danger", 3);
+		}
+	});
+});
+
+$("#addprofessorcourse-departmentid").change(function() {
+    var id = parseInt($(this).val());
+    
+    $.ajax({
+		type: "POST",
+		url: "controllers/controller_editor.php",
+		data: {
+			controllerType: "getDepartmentsCourses",
+			id: id
+		},
+		dataType: "json",
+		success: function (data) {
+            $("#addprofessorcourse-courseid").html('');
+			for (var i = 0; i < data.length; i++) {
+				$("#addprofessorcourse-courseid").append("<option value='"+ data[i].id +"'>" + data[i].name + "</li>");
+			}
+		},
+		error: function (data) {
+			showAlertBox("Error loading courses.", "danger", 3);
 		}
 	});
 });
@@ -431,6 +455,38 @@ $("#addeditprofessor-pictureurl").change(function() {
 	$("#imagebox-professor img").attr("src", url);
 });
 
+$("#addprofessorcourse-button").click(function() {
+    var professorid = parseInt($("#addeditprofessor-id").val());
+    var courseid = parseInt($("#addprofessorcourse-courseid").val());
+    var days = $("#addprofessorcourse-days").val();
+    var time = $("#addprofessorcourse-time").val();
+    
+    $.ajax({
+		type: "POST",
+		url: "controllers/controller_editor.php",
+		data: {
+			controllerType: "linkCourseToProfessor",
+			professorid : professorid,
+            courseid : courseid,
+            days : days,
+            time : time
+		},
+		dataType: "json",
+		success: function (data) {
+            $("#addprofessorcourse-days").val('');
+            $("#addprofessorcourse-time").val('');
+            
+            if ($("#professor-courses-list").html() === "No linked courses found.") { $("#professor-courses-list").html('') }
+            
+			$("#professor-courses-list").append('<li class="list-group-item" linkedcourseid='+ data.id +'>'+ data.courseinfo.name +'<br>'+ data.days +', '+ data.time +'</li>');
+            showAlertBox("Successfully linked course.", "success", 3);
+		},
+		error: function (data) {
+			showAlertBox("Error loading professors.", "danger", 3);
+		}
+	});
+});
+
 function refreshCourses(departmentid) {
 	$.ajax({
 		type: "POST",
@@ -490,6 +546,10 @@ function refreshProfessors(departmentid) {
 		}
 	});
 }
+
+$(".openclose").click(function() {
+    $(this).next(".panel-body").slideToggle();
+});
 
 function resetStatusProfessor() {
 	$("#adddepartment-status-enabled").removeClass("active");

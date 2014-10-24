@@ -294,8 +294,11 @@ function getCourse($id) {
 	$result = $stmt->get_result();
 
 	// bind the result to $theBook for json encoding
-	while ($course = $result->fetch_object('Course')) {
-		$theCourse = $course;
+	while ($row = $result->fetch_array(MYSQLI_BOTH)) {
+		$theCourse['id'] = $row['id'];
+        $theCourse['number'] = $row['number'];
+        $theCourse['name'] = $row['name'];
+        $theCourse['department_id'] = $row['department_id'];
 	}
 	
 	mysqli_stmt_close($stmt);
@@ -318,6 +321,53 @@ function editCourse($id, $number, $name, $departmentid) {
 	
 	return $course;
 }
+
+
+function addLinkedCourseToProfessor($days, $time, $courseid, $professorid) {
+    $status = 'enabled';
+    $link = connect_db();
+	$sql = "INSERT INTO  `professor_courses` (`days` ,`time` ,`status` ,`professor_id` ,`course_id`) VALUES ( ?,  ?,  ?,  ?,  ?)";
+	$stmt = $link->stmt_init();
+	$stmt->prepare($sql);
+	$stmt->bind_param('sssii', $days, $time, $status, $professorid, $courseid);
+	$stmt->execute();
+	$id = $link->insert_id;
+	mysqli_stmt_close($stmt);
+	$link->close();
+	
+	$course = getLinkedCourseToProfessor($id);
+	
+	return $course;
+}
+
+function getLinkedCourseToProfessor($id) {
+	$theCourse = null;
+	
+	$link = connect_db();
+	$sql = "SELECT * FROM `professor_courses` WHERE id = ? LIMIT 1";
+	$stmt = $link->stmt_init();
+	$stmt->prepare($sql);
+	$stmt->bind_param('i', $id);
+	$stmt->execute();
+	$result = $stmt->get_result();
+    
+	// bind the result to $theProfessor for json encoding
+	while ($row = $result->fetch_array(MYSQLI_BOTH)) {
+        $theCourse['id'] = $row['id'];
+        $theCourse['days'] = $row['days'];
+        $theCourse['time'] = $row['time'];
+        $theCourse['status'] = $row['status'];
+        $theCourse['professor_id'] = $row['professor_id'];
+        $theCourse['course_id'] = $row['course_id'];
+    }
+    
+    $theCourse['courseinfo'] = getCourse($theCourse['course_id']);
+
+	mysqli_stmt_close($stmt);
+	
+	return $theCourse;
+}
+
 
 
 

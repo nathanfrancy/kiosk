@@ -12,7 +12,7 @@ require("header.php");
 						
 						<div class="panel panel-default">
 						  <div class="panel-heading">
-							<h3 class="panel-title">Departments</h3>
+							<h3 class="panel-title"><span class="glyphicon glyphicon-question-sign pull-right" rel="tooltip" data-toggle="tooltip" data-placement="top" title="Click a department to load related professors and courses."></span>Departments</h3>
 						  </div>
 						  <div class="panel-body">
 							
@@ -35,7 +35,7 @@ require("header.php");
 					<div class="col-sm-4" id="container-professor">
 						<div class="panel panel-default">
 						  <div class="panel-heading">
-							<h3 class="panel-title">Professors</h3>
+							<h3 class="panel-title"><span class="glyphicon glyphicon-question-sign pull-right" rel="tooltip" data-toggle="tooltip" data-placement="top" title="Click a department to see related professors in this box. Click on a professor to edit."></span>Professors</h3>
 						  </div>
 						  <div class="panel-body">
 							  <div class="row">
@@ -54,7 +54,7 @@ require("header.php");
 					<div class="col-sm-4" id="container-course">
 						<div class="panel panel-default">
 						  <div class="panel-heading">
-							<h3 class="panel-title">Courses</h3>
+							<h3 class="panel-title"><span class="glyphicon glyphicon-question-sign pull-right" rel="tooltip" data-toggle="tooltip" data-placement="top" title="Click a department to see related courses in this box. Click on a course to edit."></span>Courses</h3>
 						  </div>
 						  <div class="panel-body">
 							  <div class="row">
@@ -91,10 +91,16 @@ require("header.php");
                 <form role="form">
                     <div class="row">
                         <div class="col-sm-6">
-							<div class="form-group" id="addeditprofessor-id-container">
-								<label for="addeditprofessor-id">ID</label>
-								<input type="text" class="form-control" id="addeditprofessor-id" placeholder="ID" readonly>
-							</div>
+                            
+                            <div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title">Professor Information</h3>
+								</div>
+								<div class="panel-body">
+								    <div class="form-group" id="addeditprofessor-id-container">
+                                        <label for="addeditprofessor-id">ID</label>
+                                        <input type="text" class="form-control" id="addeditprofessor-id" placeholder="ID" readonly>
+                                    </div>
 									<div class="form-group">
 										<label for="addeditprofessor-firstname">First Name</label>
 										<input type="text" class="form-control" id="addeditprofessor-firstname" placeholder="First">
@@ -149,11 +155,16 @@ require("header.php");
 									?>
 								</select>
 							</div>
-                        	
+                            <br>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary pull-left" id="addProfessorButtonSubmit">Save changes</button>
+                            </div>
+				            </div>
+				            </div>
                         </div>
                         <div class="col-sm-6">
 								<div class="panel panel-primary">
-									<div class="panel-heading">
+									<div class="panel-heading openclose">
 										<h3 class="panel-title"><span class="glyphicon glyphicon-question-sign pull-right" rel="tooltip" data-toggle="tooltip" data-placement="top" title="This will determine if students can see this professor."></span>Status</h3>
 									</div>
 									<div class="panel-body">
@@ -164,7 +175,7 @@ require("header.php");
 									</div>
 								</div>
                                	<div class="panel panel-primary panel-classschedule">
-                                  <div class="panel-heading">
+                                  <div class="panel-heading openclose">
                                     <h3 class="panel-title"><span class="glyphicon glyphicon-question-sign pull-right" rel="tooltip" data-toggle="tooltip" data-placement="top" title="See courses that are linked and add other courses."></span>Linked Courses</h3>
                                   </div>
                                   <div class="panel-body">
@@ -175,7 +186,17 @@ require("header.php");
 										<p><strong>Link a Course</strong></p>
 										<div id="addofficehours-container">
 											<div class="row">
-												<div class="col-sm-12">
+                                                <div class="col-sm-4">
+													<select id="addprofessorcourse-departmentid" class="form-control">
+                                                        <?php
+                                                            foreach ($departments as $department) {
+                                                                echo '<option value="'. $department['id'] .'">' . $department['prefix'] . '</option>';	
+                                                            }
+                                                        ?>
+                                                    </select>
+													<br>
+												</div>
+												<div class="col-sm-8">
 													<select id="addprofessorcourse-courseid" class="form-control"></select>
 													<br>
 												</div>
@@ -198,7 +219,7 @@ require("header.php");
                                   </div>
                                 </div>
 								<div class="panel panel-primary panel-officehours">
-                                  <div class="panel-heading">
+                                  <div class="panel-heading openclose">
                                     <h3 class="panel-title"><span class="glyphicon glyphicon-question-sign pull-right" rel="tooltip" data-toggle="tooltip" data-placement="top" title="See and edit office hours linked to this professor."></span>Office Hours</h3>
                                   </div>
                                   <div class="panel-body">
@@ -229,10 +250,6 @@ require("header.php");
                         </div>
                     </div>
                 </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-primary pull-left" id="addProfessorButtonSubmit">Save changes</button>
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>
