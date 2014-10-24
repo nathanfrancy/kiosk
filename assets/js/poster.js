@@ -14,8 +14,8 @@ $(document).on("click", ".list-item-post", function() {
 		dataType: "json",
 		success: function (data) {
             $("#addeditpost-id").val(data.id);
-            $("#addeditpost-title").val(data.title);
-             $("#addeditpost-body").val(data.body);
+            $("#addeditpost-title").val(htmlDecode(data.title));
+            $("#addeditpost-body").val(data.body);
             $("#addeditpost-userid").val(data.user_created.username);
             $("#addeditpost-createddate").val(dateConverterToNice(parseInt(data.date_created)));
             $("#addeditpost-lastmodified").html( dateConverterToNice(parseInt(data.date_modified)) + " by " + data.user_modified.username );
@@ -77,7 +77,27 @@ $("#savePostButtonSubmit").click(function() {
     // Else if edit-mode is on, edit the post
     else if (edit_post == true) {
         var id = parseInt($("#addeditpost-id").val());
-        alert("wanting to edit " + id);
+        $.ajax({
+            type: "POST",
+            url: "controllers/controller_poster.php",
+            data: {
+                id: id,
+                controllerType: "editPost",
+                title: title,
+                body: body,
+                userid: userid
+            },
+            dataType: "json",
+            success: function (data) {
+                $("#addEditPostModal").modal('hide');
+               
+                refreshAllPosts();
+                showAlertBox("Edited post successfully.", "success", 3);
+            },
+            error: function (data) {
+                showAlertBox("Error loading professor data.", "danger", 3);
+            }
+        });
     }
     
 });
@@ -96,7 +116,7 @@ function refreshAllPosts() {
         dataType: "json",
         success: function (data) {
             for (var i = 0; i < data.length; i++) {
-                $("#list-all-posts").append('<li class="list-group-item list-item-post" postid="' + data[i].id + '"><h4 class="list-group-item-heading"><span class="badge pull-right">Edited '+ data[i].date_modified +'</span>'+ data[i].title +'</h4><p class="list-group-item-text">'+ data[i].user_created.nicename +'</p></li>');
+                $("#list-all-posts").append('<li class="list-group-item list-item-post" postid="' + data[i].id + '"><h4 class="list-group-item-heading"><span class="badge pull-right">Edited '+ dateConverterToNice(data[i].date_modified) +'</span>'+ data[i].title +'</h4><p class="list-group-item-text">'+ data[i].user_created.nicename +'</p></li>');
             }
         },
         error: function (data) {
@@ -106,11 +126,4 @@ function refreshAllPosts() {
 }
 
 
-
-
-
-
-
-
-
-
+refreshAllPosts();

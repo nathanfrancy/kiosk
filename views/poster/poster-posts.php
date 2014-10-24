@@ -17,14 +17,7 @@ require("header.php");
               <div class="panel-body">
                 <button class="btn btn-primary" id="addPostOpenModal" data-toggle="modal" data-target="#addEditPostModal">Add Post</button>
                   <br>
-                <ul class="list-group" id="list-all-posts">
-                  <?php
-                    $posts = getPosts();
-                    foreach ($posts as $post) {
-                        echo '<li class="list-group-item list-item-post" postid="' . $post['id'] . '"><h4 class="list-group-item-heading"><span class="badge pull-right">Edited '. date('m/d/Y', $post['date_modified']) .'</span>'. $post['title'] .'</h4><p class="list-group-item-text">'. $post['user_created']->nicename .'</p></li>';
-                    }
-                  ?>
-                </ul>
+                <ul class="list-group" id="list-all-posts"></ul>
               </div>
             </div>
         </div>

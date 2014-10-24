@@ -19,5 +19,13 @@ else if ($controllerType === "addPost") {
     $post = addPost($title, $body, $userid);
     echo json_encode($post);
 }
+else if ($controllerType === "editPost") {
+    $id = $_POST['id'];
+    $title = $_POST['title'];
+    $body = $_POST['body'];
+    $userid = $_POST['userid'];
+    $post = editPost($id, $title, $body, $userid);
+    echo json_encode($post);
+}
 
 ?>

@@ -6,6 +6,7 @@ if ( (session_status() == PHP_SESSION_NONE) || (session_id() == '') ) {
 }
 
 date_default_timezone_set('America/Chicago');
+set_magic_quotes_runtime(0);
 
 require('dao_admin.php');
 require('dao_editor.php');

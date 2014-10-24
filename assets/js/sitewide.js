@@ -38,14 +38,26 @@ function dateConverterToNice(unix_timestamp) {
     var hours = date.getHours();
     var minutes = "0" + date.getMinutes();
     var seconds = "0" + date.getSeconds();
+    var indicator = "AM";
+    
+    if (hours > 12 && hours < 25) {
+        hours = hours - 12;
+        indicator = "PM";
+    }
     
     var month = date.getMonth() + 1;
     var dayt = date.getDate();
     var year = date.getFullYear();
 
     // will display time in 10:30:23 format
-    var formattedTime = month + "/" + dayt + "/" + year + " " + hours + ':' + minutes.substr(minutes.length-2) + ':' + seconds.substr(seconds.length-2);
+    var formattedTime = month + "/" + dayt + "/" + year + " " + hours + ':' + minutes.substr(minutes.length-2) + ':' + seconds.substr(seconds.length-2) + " " + indicator;
     return formattedTime;
+}
+
+function htmlDecode(input){
+    var e = document.createElement('div');
+    e.innerHTML = input;
+    return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
 }
 
 function showAlertBox(message, type, seconds) {

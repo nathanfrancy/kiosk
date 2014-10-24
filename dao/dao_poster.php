@@ -73,16 +73,16 @@ function getPost($id) {
 function addPost($title, $body, $userid) {
     $current_time = time();
     $link = connect_db();
-	$sql = "INSERT INTO `ucmo_kiosk`.`post` (`title`, `body`, `date_created`, `date_modified`, `user_id`, `user_modified`) VALUES (?, ?, ?, ?, ?, ?);";
+	$sql = "INSERT INTO `post` (`title`, `body`, `date_created`, `date_modified`, `user_id`, `user_modified`) VALUES (?, ?, ?, ?, ?, ?);";
 	$stmt = $link->stmt_init();
 	$stmt->prepare($sql);
 	$stmt->bind_param('ssssii', 
-                      $link->real_escape_string($title), 
-                      $link->real_escape_string($body),
-                      $link->real_escape_string($current_time),
-                      $link->real_escape_string($current_time),
-                      $link->real_escape_string($userid),
-                      $link->real_escape_string($userid)
+                      htmlentities($title), 
+                      htmlentities($body),
+                      $current_time,
+                      $current_time,
+                      $userid,
+                      $userid
                      );
 	$stmt->execute();
 	$id = $link->insert_id;
@@ -92,6 +92,25 @@ function addPost($title, $body, $userid) {
 	$post = getPost($id);
 	
 	return $post;
+}
+
+function editPost($id, $title, $body, $userid) {
+    $current_time = time();
+    $link = connect_db();
+	$sql = "UPDATE  `post` SET `title`=?, `body`=?, `user_modified`=?, `date_modified`=? WHERE id = ?";
+	
+	// Create prepared statement and bind parameters
+	$stmt = $link->stmt_init();
+	$stmt->prepare($sql);
+	$stmt->bind_param('ssisi', htmlentities($title), htmlentities($body), $userid, $current_time, $id);
+	
+    // Execute the query, get the new user object from the database
+    $stmt->execute();
+	mysqli_stmt_close($stmt);
+	$link->close();
+    $professor = getProfessor($id);
+	
+	return $professor;
 }
 
 ?>
