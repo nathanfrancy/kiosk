@@ -321,6 +321,10 @@ require("header.php");
     <script type="text/javascript" src="assets/js/editor.js"></script>
     <script type="text/javascript" src="assets/js/sitewide.js"></script>
 
+	<script>
+		$("#nav-dept").addClass("active");
+	</script>
+
 <?php
 require("footer.php");
 ?>

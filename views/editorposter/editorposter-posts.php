@@ -85,6 +85,10 @@ require("header.php");
 	<script type="text/javascript" src="assets/js/poster.js"></script>
     <script type="text/javascript" src="assets/js/sitewide.js"></script>
 
+	<script>
+		$("#nav-posts").addClass("active");
+	</script>
+
 <?php
 require("footer.php");
 ?>
