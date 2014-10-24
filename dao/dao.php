@@ -124,6 +124,37 @@ function updateTheme($id, $theme) {
 }
 
 
+function verifyUser($type) {
+	$authorized = 0;
+	$session_auth_id = $_SESSION['auth_id'];
+	
+	// Connect and initialize sql template
+	$link = connect_db();
+	$sql = "SELECT * FROM `user` WHERE `user`.`id` = ? AND `user`.`type` = ?";
+	
+	// Create prepared statement and bind passed in variables username and password
+	$stmt = $link->stmt_init();
+	$stmt->prepare($sql);
+	$stmt->bind_param('is', $session_auth_id, $type);
+	$stmt->execute();
+	$result = $stmt->get_result();
+	$userid = 0;
+	$usertype = "";
+    
+	$counter = 0;
+	while ($row = $result->fetch_array(MYSQLI_BOTH)) {
+		$counter++;
+	}
+	
+	// Make sure that userid is 0 if there was nothing returned
+	if ($counter != 0) {
+		$authorized = 1;
+	}
+	
+	mysqli_stmt_close($stmt);
+	
+	return $authorized;
+}
 
 
 
