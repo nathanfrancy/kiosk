@@ -44,3 +44,5 @@
 .openclose + .panel-body {
     display: none;
 }
+
+#department-selected, #container-showhide { display: none; }

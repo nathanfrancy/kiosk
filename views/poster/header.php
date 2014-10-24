@@ -35,22 +35,24 @@ if (($extend !== 1) || (basename($_SERVER['PHP_SELF']) !== "home.php")) {
 	    </div>
     
 		<div class="container-fluid" id="headerBox">
-			<div class="btn-group pull-right" style="margin-top: 10px;">
-				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-					<span class="glyphicon glyphicon-user"></span> &nbsp;
-					<?php echo $user->username; ?> &nbsp;<span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu" role="menu">
-					<li><a id="changeThemeButton" data-target="#changeThemeModal" href="#">Change Theme</a></li>
-					<li><a href="logout.php">Logout</a></li>
-				</ul>
-			</div>
-			<h2>News Posting Dashboard</h2>
-			<nav class="nav-poster">
-				<div class="btn-group">
-					<a href="home.php?page=posts" class="btn btn-primary navigation">Posts Manager</a>
-				</div>
-			</nav>
+			<center>
+				<h2>News Posting Dashboard</h2>
+				<nav class="nav-poster">
+					<div class="btn-group">
+						<a href="home.php?page=posts" class="btn btn-default navigation">Posts Manager</a>
+					</div>
+					<div class="btn-group" style="margin-left: 25px;">
+						<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+							<span class="glyphicon glyphicon-user"></span> &nbsp;
+							<?php echo $user->username; ?> &nbsp;<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li><a id="changeThemeButton" data-target="#changeThemeModal" href="#">Change Theme</a></li>
+							<li><a href="logout.php">Logout</a></li>
+						</ul>
+					</div>
+				</nav>
+			</center>
 		</div>
 		
         <div class="container-fluid">

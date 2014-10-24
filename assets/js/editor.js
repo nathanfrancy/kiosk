@@ -3,7 +3,6 @@ var edit = false;
 var edit_departmentid = 0;
 var current_departmentid = 0;
 
-
 $("#addProfessorButton").click(function() {
 	$("#addEditProfessorModal").modal('show');
 	prepareAddProfessor();
@@ -15,11 +14,28 @@ $("#addProfessorButton").click(function() {
 
 $(".panel-department").click(function() {
     var departmentid = parseInt($(this).attr("departmentid"));
+	var departmentname = $(this).find(".list-group-item-heading").html();
     $(".panel-department").removeClass("active");
 	edit_departmentid = departmentid;
 	current_departmentid = departmentid;
 	$(this).addClass("active");
     fillDepartmentsProfessors(departmentid);
+	
+	setTimeout(function(){
+		$("#container-department").hide();
+		$("#department-selected-name").html(departmentname);
+		$("#department-selected").fadeIn();
+		$("#container-showhide").fadeIn();
+	}, 250);
+});
+
+$("#department-back").click(function() {
+	$("#department-selected").hide();
+	$(".panel-department").removeClass("active");
+	$("#container-showhide").hide();
+	setTimeout(function(){
+		$("#container-department").fadeIn();
+	}, 250);
 });
 
 function fillDepartmentsProfessors(departmentid) {
@@ -112,7 +128,7 @@ $(document).on("click", ".list-course", function(e) {
 			$("#addEditCourseModal").modal('show');
 		},
 		error: function (data) {
-			showAlertBox("Error loading professor data.", "danger", 3);
+			showAlertBox("Error loading course data.", "danger", 3);
 		}
 	});
 });

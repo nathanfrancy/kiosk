@@ -8,14 +8,8 @@ require("header.php");
         <div class="container-body">
             <div class="view" id="view-department">
                 <div class="row">
-                    <div class="col-sm-4" id="container-department">
-						
-						<div class="panel panel-default">
-						  <div class="panel-heading">
-							<h3 class="panel-title"><span class="glyphicon glyphicon-question-sign pull-right" rel="tooltip" data-toggle="tooltip" data-placement="top" title="Click a department to load related professors and courses."></span>Departments</h3>
-						  </div>
-						  <div class="panel-body">
-							
+                    <div class="col-sm-6 col-sm-offset-3" id="container-department">
+						<h3 style="margin-bottom: 20px;">Departments <span class="glyphicon glyphicon-question-sign pull-right" rel="tooltip" data-toggle="tooltip" data-placement="top" title="These are departments you have access to. Click one to load professors and courses."></span></h3>
                         <div class="list-group">
                         <?php
                             $departments = getAccessedDepartments($user->id);
@@ -28,45 +22,41 @@ require("header.php");
                             <?php
                             }
                         ?>
-							</div>
-						  </div>
 						</div>
+						
                     </div>
-					<div class="col-sm-4" id="container-professor">
-						<div class="panel panel-default">
-						  <div class="panel-heading">
-							<h3 class="panel-title"><span class="glyphicon glyphicon-question-sign pull-right" rel="tooltip" data-toggle="tooltip" data-placement="top" title="Click a department to see related professors in this box. Click on a professor to edit."></span>Professors</h3>
-						  </div>
-						  <div class="panel-body">
-							  <div class="row">
-								  <div class="col-sm-12">
-								  	<button class="btn btn-default" id="addProfessorButton">
-										  <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;&nbsp; Add
-									</button><br />
-								  	<div id="filldepartmentprofessors"><p>Click on a department to begin.</p></div>
-								  </div>
-							  </div>
-							  
-						</div>
-						</div>
+					<div id="department-selected">
+						<h2 class="text-center" style="padding-top: 0px; margin-top: 0px;"><button class="btn btn-default" id="department-back"><span class="glyphicon glyphicon-arrow-left"></span> Back</button> <span id="department-selected-name"></span></h2><br>
 					</div>
-					
-					<div class="col-sm-4" id="container-course">
-						<div class="panel panel-default">
-						  <div class="panel-heading">
-							<h3 class="panel-title"><span class="glyphicon glyphicon-question-sign pull-right" rel="tooltip" data-toggle="tooltip" data-placement="top" title="Click a department to see related courses in this box. Click on a course to edit."></span>Courses</h3>
-						  </div>
-						  <div class="panel-body">
-							  <div class="row">
-								  <div class="col-sm-12">
-								  	<button class="btn btn-default" id="addCourseButton">
-										  <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;&nbsp; Add
-									</button><br />
-								  	<div id="filldepartmentcourses"><p>Click on a department to begin.</p></div>
+					<div id="container-showhide" class="col-sm-10 col-sm-offset-1">
+						<div class="col-sm-6" id="container-professor">
+								  <h3 style="margin-bottom: 5px;">Professors <button class="btn btn-default" id="addProfessorButton"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;&nbsp; Add</button><!--<span class="glyphicon glyphicon-question-sign pull-right" rel="tooltip" data-toggle="tooltip" data-placement="top" title="Yeah"></span>--></h3>
+								  <div class="row">
+									  <div class="col-sm-12">
+										 <!--<div class="panel panel-default">
+										  <div class="panel-body">-->
+											<div class="row">
+												  <div class="col-sm-12">
+													<div id="filldepartmentprofessors"><p>Click on a department to begin.</p></div>
+												  </div>
+											  </div>
+										  <!--</div>
+										</div>-->
+									  </div>
 								  </div>
-							  </div>
-							  
 						</div>
+
+						<div class="col-sm-6" id="container-course">
+							 <h3 style="margin-bottom: 5px;">Courses <button class="btn btn-default" id="addCourseButton"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;&nbsp; Add</button><!--<span class="glyphicon glyphicon-question-sign pull-right" rel="tooltip" data-toggle="tooltip" data-placement="top" title="Yeah"></span>--></h3>
+							<!--<div class="panel panel-default">
+							  <div class="panel-body">-->
+								<div class="row">
+									  <div class="col-sm-12">
+										<div id="filldepartmentcourses"><p>Click on a department to begin.</p></div>
+									  </div>
+								  </div>
+							  <!--</div>
+							</div>-->
 						</div>
 					</div>
                 </div>
