@@ -80,6 +80,11 @@ require("header.php");
           </div>
         </div>
 
+	<script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="assets/js/poster.js"></script>
+    <script type="text/javascript" src="assets/js/sitewide.js"></script>
+
 <?php
 require("footer.php");
 ?>

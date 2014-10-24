@@ -19,14 +19,16 @@ require("header.php");
                         <div class="list-group">
                         <?php
                             $departments = getAccessedDepartments($user->id);
-                            
+                            $i = 0;
                             foreach ($departments as $department) {
+								$i++;
                             ?>
 								  <a href="#" class="list-group-item panel-department" departmentid="<?php echo $department['id']; ?>">
 									<h4 class="list-group-item-heading"><?php echo $department['name']; ?></h4>
 								  </a>
                             <?php
                             }
+							if ($i == 0) { echo "You aren't authorized to edit any departments. Request permission from an administrator to departments you need access to."; }
                         ?>
 							</div>
 						  </div>
@@ -313,6 +315,11 @@ require("header.php");
             </div>
           </div>
         </div>
+
+	<script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/editor.js"></script>
+    <script type="text/javascript" src="assets/js/sitewide.js"></script>
 
 <?php
 require("footer.php");
