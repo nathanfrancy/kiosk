@@ -135,7 +135,7 @@ function refreshAllPosts() {
         dataType: "json",
         success: function (data) {
             for (var i = 0; i < data.length; i++) {
-                $("#list-all-posts").append('<li class="list-group-item list-item-post" postid="' + data[i].id + '"><h4 class="list-group-item-heading"><span class="badge pull-right">Edited '+ dateConverterToNice(data[i].date_modified) +'</span>'+ data[i].title +'</h4><p class="list-group-item-text">'+ data[i].user_created.nicename +'</p></li>');
+                $("#list-all-posts").append('<a href="#" class="list-group-item list-item-post" postid="' + data[i].id + '"><h4 class="list-group-item-heading"><span class="badge pull-right">Edited '+ dateConverterToNice(data[i].date_modified) +'<br>by '+ data[i].user_modified.nicename +'</span>'+ data[i].title +'</h4><p class="list-group-item-text">'+ data[i].user_created.nicename +'</p></a>');
             }
         },
         error: function (data) {
