@@ -15,7 +15,7 @@ $(document).on("click", ".list-item-post", function() {
 		success: function (data) {
             $("#addeditpost-id").val(data.id);
             $("#addeditpost-title").val(htmlDecode(data.title));
-            $("#addeditpost-body").val(data.body);
+            $("#addeditpost-body").val(htmlDecode(data.body));
             $("#addeditpost-userid").val(data.user_created.username);
             $("#addeditpost-createddate").val(dateConverterToNice(parseInt(data.date_created)));
             $("#addeditpost-lastmodified").html( dateConverterToNice(parseInt(data.date_modified)) + " by " + data.user_modified.username );
