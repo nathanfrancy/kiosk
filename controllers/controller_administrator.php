@@ -13,11 +13,14 @@ require_once('../dao/dao.php');
 $controllerType = $_POST['controllerType'];
 
 if ($controllerType === "addDepartment") {
-    $name = $_POST['name'];
-	$prefix = $_POST['prefix'];
-    $newid = addDepartment($name, $prefix);
-    $department = getDepartment($newid);
-    echo json_encode($department);
+	if (verifyUser("admin") === 1) {
+		$name = $_POST['name'];
+		$prefix = $_POST['prefix'];
+		$newid = addDepartment($name, $prefix);
+		$department = getDepartment($newid);
+		echo json_encode($department);
+	}
+	else { echo "You are not authorized to perform this action."; }
 }
 else if ($controllerType === "getDepartment") {
     $id = $_POST['id'];
@@ -25,15 +28,21 @@ else if ($controllerType === "getDepartment") {
     echo json_encode($department);
 }
 else if ($controllerType === "updateDepartment") {
-    $id = $_POST['id'];
-    $name = $_POST['name'];
-	$prefix = $_POST['prefix'];
-    $department = updateDepartment($id, $name, $prefix);
-    echo json_encode($department);
+	if (verifyUser("admin") === 1) {
+		$id = $_POST['id'];
+		$name = $_POST['name'];
+		$prefix = $_POST['prefix'];
+		$department = updateDepartment($id, $name, $prefix);
+		echo json_encode($department);
+	}
+	else { echo "You are not authorized to perform this action."; }
 }
 else if ($controllerType === "deleteDepartment") {
-    $id = $_POST['id'];
-    echo json_encode(deleteDepartment($id));
+	if (verifyUser("admin") === 1) {
+		$id = $_POST['id'];
+		echo json_encode(deleteDepartment($id));
+	}
+	else { echo "You are not authorized to perform this action."; }
 }
 else if ($controllerType === "addUser") {
 	$nicename = $_POST['nicename'];

@@ -23,7 +23,7 @@ $("#addDepartmentButton").click(function (e) {
 			showAlertBox("Added " + department.name + " successfully.", "success", 3);
 		},
 		error: function (data) {
-			showAlertBox("Error processing department.", "danger", 3);
+			showAlertBox(data, "danger", 3);
 		}
 	});
 });
@@ -58,7 +58,7 @@ $("#editDepartmentButton").click(function (e) {
 			showAlertBox("Edited " + department.name + " successfully.", "success", 3);
 		},
 		error: function (data) {
-			showAlertBox("Error processing department.", "danger", 3);
+			showAlertBox(data, "danger", 3);
 		}
 	});
 });
@@ -84,7 +84,7 @@ $("#deleteDepartmentButton").click(function (e) {
 				showAlertBox("Deleted department successfully.", "success", 3);
 			},
 			error: function (data) {
-				showAlertBox("Error processing department.", "danger", 3);
+				showAlertBox(data, "danger", 3);
 			}
 		});
 	}
