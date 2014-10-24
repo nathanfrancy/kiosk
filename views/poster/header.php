@@ -45,7 +45,7 @@ if (($extend !== 1) || (basename($_SERVER['PHP_SELF']) !== "home.php")) {
 					<li><a href="logout.php">Logout</a></li>
 				</ul>
 			</div>
-			<h2>Information Coordinator Dashboard</h2>
+			<h2>News Posting Dashboard</h2>
 			<nav class="nav-poster">
 				<div class="btn-group">
 					<a href="home.php?page=posts" class="btn btn-primary navigation">Posts Manager</a>
