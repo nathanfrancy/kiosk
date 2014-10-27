@@ -499,7 +499,8 @@ $("#addprofessorcourse-button").click(function() {
             
             if ($("#professor-courses-list").html() === "No linked courses found.") { $("#professor-courses-list").html('') }
             
-			$("#professor-courses-list").append('<li class="list-group-item" linkedcourseid='+ data.id +'>'+ data.courseinfo.name +'<br>'+ data.days +', '+ data.time +'</li>');
+			$("#professor-courses-list").append('<li class="list-group-item"><button class="btn btn-danger btn-xs deleteProfessorCourseButton pull-right" professorcourseid="'+ data.id +'"><span class="glyphicon glyphicon-trash"></span></button>'+ data.courseinfo.name +'<br>'+ data.days +', '+ data.time +'</li>');
+			
             showAlertBox("Successfully linked course.", "success", 3);
 		},
 		error: function (data) {
@@ -575,7 +576,26 @@ $(".openclose").click(function() {
 $(document).on("click", ".deleteProfessorCourseButton", function(e) {
 	e.preventDefault();
 	var id = parseInt($(this).attr("professorcourseid"));
-	alert(id);
+	var professorid = parseInt($("#addeditprofessor-id").val());
+	
+	// Ajax call to delete the professor_course link
+	$.ajax({
+		type: "POST",
+		url: "controllers/controller_editor.php",
+		data: {
+			controllerType: "deleteProfessorCourseLink",
+			professorcourse_id : id,
+			professor_id : professorid
+		},
+		dataType: "json",
+		success: function (data) {
+            var courses = data.courses;
+			refreshProfessorCourseList(courses);
+		},
+		error: function (data) {
+			showAlertBox("Error unlinking course from professor.", "danger", 3);
+		}
+	});
 });
 
 function resetStatusProfessor() {

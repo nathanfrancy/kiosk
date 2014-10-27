@@ -362,13 +362,27 @@ function getLinkedCourseToProfessor($id) {
     }
     
     $theCourse['courseinfo'] = getCourse($theCourse['course_id']);
-
 	mysqli_stmt_close($stmt);
 	
 	return $theCourse;
 }
 
-
+function deleteProfessorCourseLink($professorcourse_id, $professorid) {
+	$link = connect_db();
+	$sql = "DELETE FROM `professor_courses` WHERE id = ?";
+	
+	// Create prepared statement and bind parameters
+	$stmt = $link->stmt_init();
+	$stmt->prepare($sql);
+	$stmt->bind_param('i', $professorcourse_id);
+    $stmt->execute();
+	mysqli_stmt_close($stmt);
+	$link->close();
+	
+	// return the new professor
+	$professor = getProfessor($professorid);
+    return $professor;
+}
 
 
 

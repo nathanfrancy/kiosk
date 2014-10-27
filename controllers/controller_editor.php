@@ -105,5 +105,11 @@ else if ($controllerType === "linkCourseToProfessor") {
     $linkedcourse = addLinkedCourseToProfessor($days, $time, $courseid, $professorid);
     echo json_encode($linkedcourse);
 }
+else if ($controllerType === "deleteProfessorCourseLink") {
+	$professorcourse_id = $_POST['professorcourse_id'];
+	$professor_id = $_POST['professor_id'];
+	$new_professor = deleteProfessorCourseLink($professorcourse_id, $professor_id);
+	echo json_encode($new_professor);
+}
 
 ?>
