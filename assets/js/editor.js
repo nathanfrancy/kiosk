@@ -85,10 +85,7 @@ $(document).on("click", ".list-professor", function(e) {
 			
 			// Populate current courses
 			var courses = data.courses;
-			for (var i = 0; i < courses.length; i++) {
-				$("#professor-courses-list").append('<li class="list-group-item">'+ courses[i].coursename +'<br>'+ courses[i].days +', '+ courses[i].time +'</li>');
-			}
-            if (courses.length === 0) { $("#professor-courses-list").append('No linked courses found.'); }
+			refreshProfessorCourseList(courses);
 			
 			// Populate available courses
 			var availableCourses = data.availableCourses;
@@ -105,6 +102,14 @@ $(document).on("click", ".list-professor", function(e) {
 	
 	$("#addEditProfessorModal").modal('show');
 });
+
+function refreshProfessorCourseList(courses) {
+	$("#professor-courses-list").html('');
+	for (var i = 0; i < courses.length; i++) {
+		$("#professor-courses-list").append('<li class="list-group-item"><button class="btn btn-danger btn-xs deleteProfessorCourseButton pull-right" professorcourseid="'+ courses[i].id +'"><span class="glyphicon glyphicon-trash"></span></button>'+ courses[i].coursename +'<br>'+ courses[i].days +', '+ courses[i].time +'</li>');
+	}
+    if (courses.length === 0) { $("#professor-courses-list").append('No linked courses found.'); }
+}
 
 $(document).on("click", ".list-course", function(e) {
     var id = parseInt($(this).attr("courseid"));
@@ -565,6 +570,12 @@ function refreshProfessors(departmentid) {
 
 $(".openclose").click(function() {
     $(this).next(".panel-body").slideToggle();
+});
+
+$(document).on("click", ".deleteProfessorCourseButton", function(e) {
+	e.preventDefault();
+	var id = parseInt($(this).attr("professorcourseid"));
+	alert(id);
 });
 
 function resetStatusProfessor() {
