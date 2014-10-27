@@ -23,7 +23,7 @@ if (($extend !== 1) || (basename($_SERVER['PHP_SELF']) !== "home.php")) {
         <link rel="stylesheet" href="assets/css/bootstrap/<?php echo $theme; ?>.css" id="bootstrapsource">
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="assets/css/editor.css">
-		<!--<link rel="stylesheet" href="assets/css/bootstrap-timepicker.min.css">-->
+		<link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Information Coordinator Dashboard</title>
     </head>
