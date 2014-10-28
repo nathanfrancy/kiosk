@@ -54,6 +54,29 @@ function dateConverterToNice(unix_timestamp) {
     return formattedTime;
 }
 
+function isExpired(input_date) {
+    var current_date = Math.round(new Date().getTime() / 1000);
+    var compare_date = parseInt(input_date);
+
+    if (current_date > input_date) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function dateConverterToNiceNoTime(unix_timestamp) {
+    var date = new Date(unix_timestamp*1000);
+    var month = date.getMonth() + 1;
+    var dayt = date.getDate();
+    var year = date.getFullYear();
+
+    // will display time in 10:30:23 format
+    var formattedTime = month + "/" + dayt + "/" + year;
+    return formattedTime;
+}
+
 function getRegularDate(unix_timestamp) {
     var date = new Date(unix_timestamp*1000);
     var month = date.getMonth() + 1;

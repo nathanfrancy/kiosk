@@ -11,6 +11,7 @@ $(document).on("click", ".list-item-post", function() {
     $("#addeditpost-id").val('');
     $("#addeditpost-userid").val('');
     $("#addeditpost-createddate").val('');
+    $("#deletePostSubmit").show();
 
     $.ajax({
 		type: "POST",
@@ -51,7 +52,7 @@ $("#addPostOpenModal").click(function() {
     $("#addeditpost-title").val('');
     $("#addeditpost-body").val('');
     $("#addeditpost-expirationdate").val('');
-    
+    $("#deletePostSubmit").hide();
 });
 
 $("#savePostButtonSubmit").click(function() {
@@ -148,7 +149,20 @@ function refreshAllPosts() {
         dataType: "json",
         success: function (data) {
             for (var i = 0; i < data.length; i++) {
-                $("#list-all-posts").append('<a href="#" class="list-group-item list-item-post" postid="' + data[i].id + '"><h4 class="list-group-item-heading"><span class="badge pull-right">Edited '+ dateConverterToNice(data[i].date_modified) +'<br>by '+ data[i].user_modified.nicename +'</span>'+ data[i].title +'</h4><p class="list-group-item-text">'+ data[i].user_created.nicename +'</p></a>');
+                var expired = isExpired(data[i].date_expiration);
+                var badge = '';
+
+                if (expired) {
+                    badge = '<span class="badge pull-right">Expired</span>';
+                     $("#list-all-posts").append('<a href="#" class="list-group-item list-group-item-warning list-item-post" postid="' + data[i].id + '"><h4 class="list-group-item-heading">'+ badge + data[i].title +'</h4><p class="list-group-item-text">'+ data[i].user_created.nicename +'</p></a>');
+                }
+                else {
+                    badge = '<span class="badge pull-right">Expires '+ dateConverterToNiceNoTime(data[i].date_expiration) +'</span>';
+                     $("#list-all-posts").append('<a href="#" class="list-group-item list-item-post" postid="' + data[i].id + '"><h4 class="list-group-item-heading">'+ badge + data[i].title +'</h4><p class="list-group-item-text">'+ data[i].user_created.nicename +'</p></a>');
+                }
+
+
+
             }
         },
         error: function (data) {
