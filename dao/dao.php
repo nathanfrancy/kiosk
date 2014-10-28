@@ -26,7 +26,7 @@ $boots = array("cerulean", "cosmo", "cyborg", "darkly", "flatly", "journal", "lu
  * Function that provides a link to the database for data access and interaction
  */
 function connect_db() {
-	$prod = false;
+	$prod = true;
 	
 	$host = "";
 	$username = "";

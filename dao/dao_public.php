@@ -4,7 +4,7 @@ function publicGetDepartmentsProfessors($departmentid) {
     $professors = array();
 
     $link = connect_db();
-    $sql = "SELECT *, `professor`.`id` AS `professorid` FROM `professor` WHERE `department_id` = 50 AND `status` = 'enabled' ORDER BY `professor`.`lastname`";
+    $sql = "SELECT *, `professor`.`id` AS `professorid` FROM `professor` WHERE `department_id` = ? AND `status` = 'enabled' ORDER BY `professor`.`lastname`";
     $stmt = $link->stmt_init();
     $stmt->prepare($sql);
     $stmt->bind_param('i', $departmentid);
