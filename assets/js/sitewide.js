@@ -11,9 +11,7 @@ $("#changeThemeInput").change(function() {
 $("#saveTheme").click(function() {
 	var userid = parseInt($("#changeTheme-userid").val());
 	var requestedtheme = $("#changeThemeInput").val();
-	
-	console.log(userid + " wants " + requestedtheme + " theme");
-	
+
 	$.ajax({
 		type: "POST",
 		url: "controllers/controller_administrator.php",

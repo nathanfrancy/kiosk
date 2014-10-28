@@ -139,7 +139,6 @@ $(document).on("click", ".list-user-item", function (e) {
 		},
 		dataType: "json",
 		success: function (data) {
-			console.log(data);
 		},
 		error: function (data) {
 			showAlertBox("Error getting user.", "danger", 3);
@@ -209,8 +208,6 @@ $("#addUserButton").click(function (e) {
 	} else if ($("#adduser-status-disabled").hasClass("active")) {
 		status = "disabled";
 	}
-
-	console.log(status);
 
 	$.ajax({
 		type: "POST",
