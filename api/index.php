@@ -18,8 +18,6 @@ if (isset($_GET['requestType'])) {
 }
 
 
-
-
 /**
 ===========================================================================
 Operations for the public API for use: 

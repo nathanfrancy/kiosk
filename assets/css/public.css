@@ -1,0 +1,37 @@
+* {
+	box-sizing: border-box !important;
+}
+
+.pub-header-box {
+	text-align: center;
+}
+
+.pub-container-master {
+	width: 100%;
+}
+
+.pub-department-master {
+	float: left;
+	width: 75%;
+}
+
+.pub-news-master {
+	float: left;
+	width: 25%;
+}
+
+#filter-lastname-container {
+	display: none;
+}
+
+
+/* group is a lot like clearfix */
+.group:after {
+	visibility: hidden;
+	display: block;
+	content: "";
+	clear: both;
+	height: 0;
+	}
+* html .group             { zoom: 1; } /* IE6 */
+*:first-child+html .group { zoom: 1; } /* IE7 */
