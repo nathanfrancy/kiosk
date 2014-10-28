@@ -11,6 +11,8 @@
 if (($extend !== 1) || (basename($_SERVER['PHP_SELF']) !== "home.php")) {
 	header("Location: ../../index.php");
 }
+// This needs to be set so the other views don't re-load their headers for specific editors and posters
+$redir = 1;
 ?>
 
 <!doctype html>
@@ -22,9 +24,9 @@ if (($extend !== 1) || (basename($_SERVER['PHP_SELF']) !== "home.php")) {
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="assets/css/bootstrap/<?php echo $theme; ?>.css" id="bootstrapsource">
         <link rel="stylesheet" href="assets/css/style.css">
-        <link rel="stylesheet" href="assets/css/poster.css">
         <link rel="stylesheet" href="assets/css/editor.css">
-		<!--<link rel="stylesheet" href="assets/css/bootstrap-timepicker.min.css">-->
+        <link rel="stylesheet" href="assets/css/poster.css">
+		<link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Master Editor Dashboard</title>
     </head>
@@ -36,23 +38,25 @@ if (($extend !== 1) || (basename($_SERVER['PHP_SELF']) !== "home.php")) {
 	    </div>
     
 		<div class="container-fluid" id="headerBox">
-			<div class="btn-group pull-right" style="margin-top: 10px;">
-				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-					<span class="glyphicon glyphicon-user"></span> &nbsp;
-					<?php echo $user->username; ?> &nbsp;<span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu" role="menu">
-					<li><a id="changeThemeButton" data-target="#changeThemeModal" href="#">Change Theme</a></li>
-					<li><a href="logout.php">Logout</a></li>
-				</ul>
-			</div>
+			<center>
 			<h2>Master Editor Dashboard</h2>
-			<nav class="nav-poster">
-				<div class="btn-group">
-					<a href="home.php?page=department" class="btn btn-primary navigation" id="nav-dept">Department Manager</a>
-                    <a href="home.php?page=posts" class="btn btn-primary navigation" id="nav-posts">Posts Manager</a>
-				</div>
-			</nav>
+				<nav class="nav-editor">
+					<div class="btn-group">
+						<a href="home.php?page=department" class="btn btn-default navigation">Department Manager</a>
+                        <a href="home.php?page=posts" class="btn btn-default navigation">Posts Manager</a>
+					</div>
+					<div class="btn-group" style="margin-left: 25px;">
+						<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+							<span class="glyphicon glyphicon-user"></span> &nbsp;
+							<?php echo $user->username; ?> &nbsp;<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li><a id="changeThemeButton" data-target="#changeThemeModal" href="#">Change Theme</a></li>
+							<li><a href="logout.php">Logout</a></li>
+						</ul>
+					</div>
+				</nav>
+			</center>
 		</div>
 		
         <div class="container-fluid">

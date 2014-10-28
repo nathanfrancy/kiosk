@@ -1,5 +1,7 @@
 <?php
-require("header.php");
+if (!isset($redir)) {
+    require("header.php");
+}
 ?>
 
 <div class="container-body">			
@@ -305,5 +307,7 @@ require("header.php");
         </div>
 
 <?php
-require("footer.php");
+if (!isset($redir)) {
+    require("footer.php");
+}
 ?>

@@ -118,15 +118,21 @@ if ($enabled_user) {
 	 ====================================================*/
     else if ($editor_poster_logged_in) {
         
+        // Go ahead and include the header file
+        require('views/editorposter/header.php');
+
         if ($page === "department") {
-            require('views/editorposter/editorposter-department.php');
+            require('views/editor/editor-department.php');
         }
         else if ($page === "posts") {
-            require('views/editorposter/editorposter-posts.php');
+            require('views/poster/poster-posts.php');
         }
         else {
-            require('views/editorposter/editorposter-department.php');
+            require('views/editor/editor-department.php');
         }
+
+        // Require editorposter own footer script
+        require('views/editorposter/footer.php');
     }
 
 	
