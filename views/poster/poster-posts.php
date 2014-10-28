@@ -69,7 +69,7 @@ require("header.php");
 				</div>
 				<div class="form-group">
                     <label for="addeditpost-expirationdate">Expiration Date</label>
-					<input type='text' class="form-control" id='addeditpost-expirationdate'/>
+					<input type='text' class="form-control" id='addeditpost-expirationdate' data-date-format="MM/DD/YYYY"/>
 				</div>
                 <div class="form-group" id="addeditpost-readonly-second">
                     <label>Last modified: <span id="addeditpost-lastmodified"></span></label>

@@ -54,6 +54,22 @@ function dateConverterToNice(unix_timestamp) {
     return formattedTime;
 }
 
+function getRegularDate(unix_timestamp) {
+    var date = new Date(unix_timestamp*1000);
+    var month = date.getMonth() + 1;
+    var dayt = date.getDate();
+    var year = date.getFullYear();
+
+    // will display time in 10:30:23 format
+    var formattedTime = month + "/" + dayt + "/" + year;
+    return formattedTime;
+}
+
+function getTimeStamp(value) {
+    var timestamp = Math.round(Date.parse(value) / 1000);
+    return timestamp;
+}
+
 function htmlDecode(input){
     var e = document.createElement('div');
     e.innerHTML = input;

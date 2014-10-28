@@ -47,9 +47,5 @@ if (($extend !== 1) || (basename($_SERVER['PHP_SELF']) !== "home.php")) {
 	<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
 	<script type="text/javascript" src="assets/js/poster.js"></script>
     <script type="text/javascript" src="assets/js/sitewide.js"></script>
-
-	<script>
-		$('#addeditpost-expirationdate').datetimepicker();
-	</script>
 	
 </html>

@@ -4,6 +4,14 @@ $(document).on("click", ".list-item-post", function() {
     edit_post = true;
     var postid = parseInt($(this).attr("postid"));
     
+    // Reset all values
+    $("#addeditpost-title").val('');
+    $("#addeditpost-body").val('');
+    $("#addeditpost-expirationdate").val('');
+    $("#addeditpost-id").val('');
+    $("#addeditpost-userid").val('');
+    $("#addeditpost-createddate").val('');
+
     $.ajax({
 		type: "POST",
 		url: "controllers/controller_poster.php",
@@ -19,6 +27,7 @@ $(document).on("click", ".list-item-post", function() {
             $("#addeditpost-userid").val(data.user_created.username);
             $("#addeditpost-createddate").val(dateConverterToNice(parseInt(data.date_created)));
             $("#addeditpost-lastmodified").html( dateConverterToNice(parseInt(data.date_modified)) + " by " + data.user_modified.username );
+            $("#addeditpost-expirationdate").val(getRegularDate(data.date_expiration));
             
             $("#addEditPostModal").modal('show');
 		},
@@ -41,6 +50,7 @@ $("#addPostOpenModal").click(function() {
     
     $("#addeditpost-title").val('');
     $("#addeditpost-body").val('');
+    $("#addeditpost-expirationdate").val('');
     
 });
 
@@ -49,6 +59,7 @@ $("#savePostButtonSubmit").click(function() {
     var title = $("#addeditpost-title").val();
     var body = $("#addeditpost-body").val();
     var userid = parseInt($("#userid-key").attr("userid"));
+    var date_expiration = getTimeStamp($("#addeditpost-expirationdate").val());
     
     // If edit-mode is off, add this post
     if (edit_post == false) {
@@ -59,7 +70,8 @@ $("#savePostButtonSubmit").click(function() {
                 controllerType: "addPost",
                 title: title,
                 body: body,
-                userid: userid
+                userid: userid,
+                date_expiration: date_expiration
             },
             dataType: "json",
             success: function (data) {
@@ -85,7 +97,8 @@ $("#savePostButtonSubmit").click(function() {
                 controllerType: "editPost",
                 title: title,
                 body: body,
-                userid: userid
+                userid: userid,
+                date_expiration: date_expiration
             },
             dataType: "json",
             success: function (data) {
@@ -144,5 +157,5 @@ function refreshAllPosts() {
     });
 }
 
-
+$('#addeditpost-expirationdate').datetimepicker({ pickTime: false });
 refreshAllPosts();

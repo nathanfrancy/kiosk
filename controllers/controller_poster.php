@@ -16,7 +16,8 @@ else if ($controllerType === "addPost") {
     $title = $_POST['title'];
     $body = $_POST['body'];
     $userid = $_POST['userid'];
-    $post = addPost($title, $body, $userid);
+    $date_expiration = $_POST['date_expiration'];
+    $post = addPost($title, $body, $userid, $date_expiration);
     echo json_encode($post);
 }
 else if ($controllerType === "editPost") {
@@ -24,7 +25,8 @@ else if ($controllerType === "editPost") {
     $title = $_POST['title'];
     $body = $_POST['body'];
     $userid = $_POST['userid'];
-    $post = editPost($id, $title, $body, $userid);
+    $date_expiration = $_POST['date_expiration'];
+    $post = editPost($id, $title, $body, $userid, $date_expiration);
     echo json_encode($post);
 }
 else if ($controllerType === "deletePost") {

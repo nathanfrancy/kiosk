@@ -17,6 +17,7 @@ function getPosts() {
         $post['body'] = $row['body'];
         $post['date_created'] = $row['date_created'];
         $post['date_modified'] = $row['date_modified'];
+        $post['date_expiration'] = $row['date_expiration'];
         
         $user_created = getUser($row['user_id']);
         $post['user_created'] = $user_created;
@@ -51,6 +52,7 @@ function getPost($id) {
         $thePost['body'] = $row['body'];
         $thePost['date_created'] = $row['date_created'];
         $thePost['date_modified'] = $row['date_modified'];
+        $thePost['date_expiration'] = $row['date_expiration'];
         
         // Include the user that created it
         $user_created = getUser($row['user_id']);
@@ -70,20 +72,13 @@ function getPost($id) {
 	return $thePost;
 }
 
-function addPost($title, $body, $userid) {
+function addPost($title, $body, $userid, $date_expiration) {
     $current_time = time();
     $link = connect_db();
-	$sql = "INSERT INTO `post` (`title`, `body`, `date_created`, `date_modified`, `user_id`, `user_modified`) VALUES (?, ?, ?, ?, ?, ?);";
+	$sql = "INSERT INTO `post` (`title`, `body`, `date_created`, `date_modified`, `date_expiration`, `user_id`, `user_modified`) VALUES (?, ?, ?, ?, ?, ?, ?);";
 	$stmt = $link->stmt_init();
 	$stmt->prepare($sql);
-	$stmt->bind_param('ssssii', 
-                      htmlentities($title), 
-                      htmlentities($body),
-                      $current_time,
-                      $current_time,
-                      $userid,
-                      $userid
-                     );
+	$stmt->bind_param('sssssii', htmlentities($title), htmlentities($body), $current_time, $current_time, $date_expiration, $userid, $userid);
 	$stmt->execute();
 	$id = $link->insert_id;
 	mysqli_stmt_close($stmt);
@@ -94,15 +89,15 @@ function addPost($title, $body, $userid) {
 	return $post;
 }
 
-function editPost($id, $title, $body, $userid) {
+function editPost($id, $title, $body, $userid, $date_expiration) {
     $current_time = time();
     $link = connect_db();
-	$sql = "UPDATE  `post` SET `title`=?, `body`=?, `user_modified`=?, `date_modified`=? WHERE id = ?";
+	$sql = "UPDATE  `post` SET `title`=?, `body`=?, `user_modified`=?, `date_modified`=?, `date_expiration`=? WHERE id = ?";
 	
 	// Create prepared statement and bind parameters
 	$stmt = $link->stmt_init();
 	$stmt->prepare($sql);
-	$stmt->bind_param('ssisi', htmlentities($title), htmlentities($body), $userid, $current_time, $id);
+	$stmt->bind_param('ssissi', htmlentities($title), htmlentities($body), $userid, $current_time, $date_expiration, $id);
 	
     // Execute the query, get the new user object from the database
     $stmt->execute();

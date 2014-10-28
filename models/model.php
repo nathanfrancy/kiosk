@@ -52,6 +52,7 @@ class Post {
     public $date_modified;
     public $user_id;
     public $user_modified;
+    public $date_expiration;
 }
 
 ?>
