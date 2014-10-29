@@ -2,26 +2,38 @@
 	box-sizing: border-box !important;
 }
 
+body {
+    padding-top: 50px;
+}
+
 .pub-header-box {
 	text-align: center;
 }
 
 .pub-container-master {
-	width: 100%;
 }
 
 .pub-department-master {
-	float: left;
-	width: 75%;
 }
 
 .pub-news-master {
-	float: left;
-	width: 25%;
+}
+
+#pub-container-professor-input {
+    display: none;
 }
 
 #filter-lastname-container {
 	display: none;
+}
+
+#nav-button-professor.active a, #nav-button-news.active a {
+    background-color: white;
+    color: black !important;
+}
+
+#list-group-professors {
+    margin-top: 20px;
 }
 
 
