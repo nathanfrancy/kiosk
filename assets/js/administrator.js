@@ -1,66 +1,80 @@
 $("#addDepartmentButton").click(function (e) {
 	e.preventDefault();
-	var name = $("#adddepartment-name").val();
-	var prefix = $("#adddepartment-prefix").val();
-	
-	$.ajax({
-		type: "POST",
-		url: "controllers/controller_administrator.php",
-		data: {
-			controllerType: "addDepartment",
-			name: name,
-			prefix: prefix
-		},
-		dataType: "json",
-		success: function (data) {
-			var department = {
-				id: data.id,
-				name: data.name
-			};
-			appendDepartment(department);
-			$("#adddepartment-name").val('');
-			$('#addDepartmentModal').modal('hide');
-			showAlertBox("Added " + department.name + " successfully.", "success", 3);
-		},
-		error: function (data) {
-			showAlertBox(data, "danger", 3);
-		}
-	});
+
+    // Validate fields that are required
+    if ($("#adddepartment-name").val().length < 1) {
+        showAlertBox("Department name is required", "warning", 3);
+    }
+    else {
+        var name = $("#adddepartment-name").val();
+        var prefix = $("#adddepartment-prefix").val();
+
+        $.ajax({
+            type: "POST",
+            url: "controllers/controller_administrator.php",
+            data: {
+                controllerType: "addDepartment",
+                name: name,
+                prefix: prefix
+            },
+            dataType: "json",
+            success: function (data) {
+                var department = {
+                    id: data.id,
+                    name: data.name
+                };
+                appendDepartment(department);
+                $("#adddepartment-name").val('');
+                $('#addDepartmentModal').modal('hide');
+                showAlertBox("Added " + department.name + " successfully.", "success", 3);
+            },
+            error: function (data) {
+                showAlertBox(data, "danger", 3);
+            }
+        });
+    }
+
 });
 
 $("#editDepartmentButton").click(function (e) {
 	e.preventDefault();
-	var id = parseInt($("#editdepartment-id").val());
-	var name = $("#editdepartment-name").val();
-	var prefix = $("#editdepartment-prefix").val();
 
-	$.ajax({
-		type: "POST",
-		url: "controllers/controller_administrator.php",
-		data: {
-			controllerType: "updateDepartment",
-			id: id,
-			name: name,
-			prefix: prefix
-		},
-		dataType: "json",
-		success: function (data) {
-			var department = {
-				id: data.id,
-				name: data.name,
-				prefix: data.prefix
-			};
-			current_delete_id = data.id;
-			$(".list-department-item[departmentid=" + department.id + "]").hide();
-			appendDepartment(department);
-			$("#editdepartment-name").val('');
-			$('#editDepartmentModal').modal('hide');
-			showAlertBox("Edited " + department.name + " successfully.", "success", 3);
-		},
-		error: function (data) {
-			showAlertBox(data, "danger", 3);
-		}
-	});
+    if ( $("#editdepartment-name").val().length < 1) {
+        showAlertBox("Department name is required", "warning", 3);
+    }
+    else {
+        var id = parseInt($("#editdepartment-id").val());
+        var name = $("#editdepartment-name").val();
+        var prefix = $("#editdepartment-prefix").val();
+
+        $.ajax({
+            type: "POST",
+            url: "controllers/controller_administrator.php",
+            data: {
+                controllerType: "updateDepartment",
+                id: id,
+                name: name,
+                prefix: prefix
+            },
+            dataType: "json",
+            success: function (data) {
+                var department = {
+                    id: data.id,
+                    name: data.name,
+                    prefix: data.prefix
+                };
+                current_delete_id = data.id;
+                $(".list-department-item[departmentid=" + department.id + "]").hide();
+                appendDepartment(department);
+                $("#editdepartment-name").val('');
+                $('#editDepartmentModal').modal('hide');
+                showAlertBox("Edited " + department.name + " successfully.", "success", 3);
+            },
+            error: function (data) {
+                showAlertBox(data, "danger", 3);
+            }
+        });
+    }
 });
 
 $("#deleteDepartmentButton").click(function (e) {
@@ -196,110 +210,138 @@ $(document).on("click", ".list-user-item", function (e) {
 
 $("#addUserButton").click(function (e) {
 	e.preventDefault();
-	var username = $("#adduser-username").val();
-	var nicename = $("#adduser-nicename").val();
-	var password = $("#adduser-password").val();
-	var email = $("#adduser-email").val();
-	var type = $("#adduser-type").val();
-	var status = "";
 
-	if ($("#adduser-status-enabled").hasClass("active")) {
-		status = "enabled";
-	} else if ($("#adduser-status-disabled").hasClass("active")) {
-		status = "disabled";
-	}
+    // Name, username, password, email is required
+    if ( $("#adduser-nicename").val().length < 1 ) {
+        showAlertBox("Name field is required.", "warning", 3);
+    }
+    else if ( $("#adduser-username").val().length < 1 ) {
+        showAlertBox("Username field is required.", "warning", 3);
+    }
+    else if ( $("#adduser-password").val().length < 1 ) {
+        showAlertBox("Password field is required.", "warning", 3);
+    }
+    else if ( $("#adduser-email").val().length < 1 ) {
+        showAlertBox("Email field is required.", "warning", 3);
+    }
+    else {
+        var username = $("#adduser-username").val();
+        var nicename = $("#adduser-nicename").val();
+        var password = $("#adduser-password").val();
+        var email = $("#adduser-email").val();
+        var type = $("#adduser-type").val();
+        var status = "";
 
-	$.ajax({
-		type: "POST",
-		url: "controllers/controller_administrator.php",
-		data: {
-			controllerType: "addUser",
-			username: username,
-			nicename: nicename,
-			email: email,
-			password: password,
-			type: type,
-			status: status
-		},
-		dataType: "json",
-		success: function (data) {
-			var user = {
-				id: data.id,
-				nicename: data.nicename,
-				email: data.email,
-				username: data.username,
-				type: data.type,
-				status: data.status
-			};
+        if ($("#adduser-status-enabled").hasClass("active")) {
+            status = "enabled";
+        } else if ($("#adduser-status-disabled").hasClass("active")) {
+            status = "disabled";
+        }
 
-			appendUser(user);
-			$("#adduser-nicename").val('');
-			$("#adduser-password").val('');
-			$("#adduser-email").val('');
-			$("#adduser-username").val('');
-			$('#addUserModal').modal('hide');
+        $.ajax({
+            type: "POST",
+            url: "controllers/controller_administrator.php",
+            data: {
+                controllerType: "addUser",
+                username: username,
+                nicename: nicename,
+                email: email,
+                password: password,
+                type: type,
+                status: status
+            },
+            dataType: "json",
+            success: function (data) {
+                var user = {
+                    id: data.id,
+                    nicename: data.nicename,
+                    email: data.email,
+                    username: data.username,
+                    type: data.type,
+                    status: data.status
+                };
 
-			showAlertBox("Added " + user.nicename + " successfully.", "success", 3);
-		},
-		error: function (data) {
-			showAlertBox(data, "danger", 3);
-		}
-	});
+                appendUser(user);
+                $("#adduser-nicename").val('');
+                $("#adduser-password").val('');
+                $("#adduser-email").val('');
+                $("#adduser-username").val('');
+                $('#addUserModal').modal('hide');
+
+                showAlertBox("Added " + user.nicename + " successfully.", "success", 3);
+            },
+            error: function (data) {
+                showAlertBox(data, "danger", 3);
+            }
+        });
+    }
 });
 
 $("#editUserButton").click(function (e) {
 	e.preventDefault();
-	var id = parseInt($("#edituser-id").val());
-	var nicename = $("#edituser-nicename").val();
-	var username = $("#edituser-username").val();
-	var email = $("#edituser-email").val();
-	var type = $("#edituser-type").val();
-	var status = "";
 
-	if ($("#edituser-status-enabled").hasClass("active")) {
-		status = "enabled";
-	} else if ($("#edituser-status-disabled").hasClass("active")) {
-		status = "disabled";
-	}
+    if ( $("#edituser-nicename").val().length < 1 ) {
+        showAlertBox("Name field is required.", "warning", 3);
+    }
+    else if ( $("#edituser-username").val().length < 1 ) {
+        showAlertBox("Username field is required.", "warning", 3);
+    }
+    else if ( $("#edituser-email").val().length < 1 ) {
+        showAlertBox("Email field is required.", "warning", 3);
+    }
+    else {
+        var id = parseInt($("#edituser-id").val());
+        var nicename = $("#edituser-nicename").val();
+        var username = $("#edituser-username").val();
+        var email = $("#edituser-email").val();
+        var type = $("#edituser-type").val();
+        var status = "";
 
-	$.ajax({
-		type: "POST",
-		url: "controllers/controller_administrator.php",
-		data: {
-			controllerType: "updateUser",
-			id: id,
-			nicename: nicename,
-			username: username,
-			email: email,
-			type: type,
-			status: status
-		},
-		dataType: "json",
-		success: function (data) {
-			var user = {
-				id: data.id,
-				nicename: data.nicename,
-				username: data.username,
-				email: data.email,
-				type: data.type,
-				status: data.status
-			};
+        if ($("#edituser-status-enabled").hasClass("active")) {
+            status = "enabled";
+        } else if ($("#edituser-status-disabled").hasClass("active")) {
+            status = "disabled";
+        }
 
-			$(".list-user-item[userid=" + user.id + "]").remove();
-			appendUser(user);
+        $.ajax({
+            type: "POST",
+            url: "controllers/controller_administrator.php",
+            data: {
+                controllerType: "updateUser",
+                id: id,
+                nicename: nicename,
+                username: username,
+                email: email,
+                type: type,
+                status: status
+            },
+            dataType: "json",
+            success: function (data) {
+                var user = {
+                    id: data.id,
+                    nicename: data.nicename,
+                    username: data.username,
+                    email: data.email,
+                    type: data.type,
+                    status: data.status
+                };
 
-			$("#edituser-id").val('');
-			$("#edituser-nicename").val('');
-			$("#edituser-username").val('');
-			$("#edituser-email").val('');
+                $(".list-user-item[userid=" + user.id + "]").remove();
+                appendUser(user);
 
-			$('#editUserModal').modal('hide');
-			showAlertBox("Edited " + user.nicename + " successfully.", "success", 3);
-		},
-		error: function (data) {
-			showAlertBox(data, "danger", 3);
-		}
-	});
+                $("#edituser-id").val('');
+                $("#edituser-nicename").val('');
+                $("#edituser-username").val('');
+                $("#edituser-email").val('');
+
+                $('#editUserModal').modal('hide');
+                showAlertBox("Edited " + user.nicename + " successfully.", "success", 3);
+            },
+            error: function (data) {
+                showAlertBox(data, "danger", 3);
+            }
+        });
+    }
 });
 
 function appendUser(user) {

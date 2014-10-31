@@ -5,3 +5,7 @@
 	background-color: #f5f5f5; 
 	border-bottom: 1px rgb(221, 221, 221) solid;
 }
+
+.required {
+    color: #b81e0d;
+}

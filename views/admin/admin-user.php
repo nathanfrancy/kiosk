@@ -78,19 +78,19 @@ require("header.php");
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="adduser-username">Name</label>
+                                <label for="adduser-username"><span class="required">*</span> Name</label>
                                 <input type="text" class="form-control" id="adduser-nicename" placeholder="Enter full name of the user">
                               </div>
                               <div class="form-group">
-                                <label for="adduser-username">Username</label>
+                                <label for="adduser-username"><span class="required">*</span> Username</label>
                                 <input type="text" class="form-control" id="adduser-username" placeholder="Enter username">
                               </div>
                               <div class="form-group">
-                                <label for="adduser-password">Password</label>
+                                <label for="adduser-password"><span class="required">*</span> Password</label>
                                 <input type="password" class="form-control" id="adduser-password" placeholder="Enter password">
                               </div>
                               <div class="form-group">
-                                <label for="adduser-email">Email</label>
+                                <label for="adduser-email"><span class="required">*</span> Email</label>
                                 <input type="text" class="form-control" id="adduser-email" placeholder="Enter user's email">
                               </div>
                         </div>
@@ -149,15 +149,15 @@ require("header.php");
                             <input type="text" class="form-control" id="edituser-id" readonly>
                           </div>
                           <div class="form-group">
-                            <label for="edituser-nicename">Name</label>
+                            <label for="edituser-nicename"><span class="required">*</span> Name</label>
                             <input type="text" class="form-control" id="edituser-nicename" placeholder="Enter full name">
                           </div>
                           <div class="form-group">
-                            <label for="edituser-username">Username</label>
+                            <label for="edituser-username"><span class="required">*</span> Username</label>
                             <input type="text" class="form-control" id="edituser-username" placeholder="Enter username">
                           </div>
                           <div class="form-group">
-                            <label for="edituser-email">Email</label>
+                            <label for="edituser-email"><span class="required">*</span> Email</label>
                             <input type="text" class="form-control" id="edituser-email" placeholder="Enter email">
                           </div>
                         <div class="panel panel-default">
