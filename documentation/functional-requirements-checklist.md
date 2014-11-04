@@ -6,7 +6,7 @@
         * 1.1.1 Postings will rotate based upon specified time intervals.
         * 1.1.2 Postings will begin showing after some pre-determined time of non-use
         * 1.1.3 Random transitions will be used to introduce each posting, e.g., wipe up, wipe down, dissolve
-    * 1.2 <s>Access instructor/personnel (active) information to include: name, office location, phone number, class schedule (faculty), office hours (faculty), picture, applicable semester (Fall/Spring/Summer & Year or "Ongoing")</s>
+    * 1.2 <s>Access instructor/personnel (active) information to include: name, office location, phone number, class schedule (faculty), office hours (faculty), picture, applicable semester (Fall/Spring/Summer &amp; Year or "Ongoing")</s>
         * 1.2.1 <s>Instructors can be selected by last name</s>
         * 1.2.2 <s>Instructors can be selected by program and course</s>
     * 1.3 View a campus map

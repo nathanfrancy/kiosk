@@ -130,8 +130,10 @@ $("#nav-button-professor").click(function() {
 
 $("#nav-button-news").click(function() {
     $("#nav-button-professor, #nav-button-news").removeClass("active");
-    $(".pub-news-master").show();
-    $(".pub-department-master").hide();
+    $(".pub-department-master").fadeOut();
+	setTimeout(function() {
+    	$(".pub-news-master").fadeIn();
+    }, 350);
     $(this).addClass("active");
 });
 
