@@ -61,57 +61,72 @@ $("#savePostButtonSubmit").click(function() {
     var body = $("#addeditpost-body").val();
     var userid = parseInt($("#userid-key").attr("userid"));
     var date_expiration = getTimeStamp($("#addeditpost-expirationdate").val());
-    
+	
+	var valid = false;
+	if ( (title.length > 0) && (body.length > 0) && ($("#addeditpost-expirationdate").val().length > 0) ) {
+		valid = true;
+	}
+	
     // If edit-mode is off, add this post
     if (edit_post == false) {
-        $.ajax({
-            type: "POST",
-            url: "controllers/controller_poster.php",
-            data: {
-                controllerType: "addPost",
-                title: title,
-                body: body,
-                userid: userid,
-                date_expiration: date_expiration
-            },
-            dataType: "json",
-            success: function (data) {
-                $("#addEditPostModal").modal('hide');
-               
-                refreshAllPosts();
-                showAlertBox("Added post successfully.", "success", 3);
-            },
-            error: function (data) {
-                showAlertBox("Error loading professor data.", "danger", 3);
-            }
-        });
+		if (valid) {
+			$.ajax({
+				type: "POST",
+				url: "controllers/controller_poster.php",
+				data: {
+					controllerType: "addPost",
+					title: title,
+					body: body,
+					userid: userid,
+					date_expiration: date_expiration
+				},
+				dataType: "json",
+				success: function (data) {
+					$("#addEditPostModal").modal('hide');
+
+					refreshAllPosts();
+					showAlertBox("Added post successfully.", "success", 3);
+				},
+				error: function (data) {
+					showAlertBox("Error loading professor data.", "danger", 3);
+				}
+			});
+		}
+		else {
+			showAlertBox("One or more required fields are missing.", "danger", 3);
+		}
     }
     
     // Else if edit-mode is on, edit the post
     else if (edit_post == true) {
-        var id = parseInt($("#addeditpost-id").val());
-        $.ajax({
-            type: "POST",
-            url: "controllers/controller_poster.php",
-            data: {
-                id: id,
-                controllerType: "editPost",
-                title: title,
-                body: body,
-                userid: userid,
-                date_expiration: date_expiration
-            },
-            dataType: "json",
-            success: function (data) {
-                $("#addEditPostModal").modal('hide');
-               
-                refreshAllPosts();
-                showAlertBox("Edited post successfully.", "success", 3);
-            },
-            error: function (data) {
-                showAlertBox("Error loading professor data.", "danger", 3);
-            }
-        });
+		if (valid) {
+			var id = parseInt($("#addeditpost-id").val());
+			$.ajax({
+				type: "POST",
+				url: "controllers/controller_poster.php",
+				data: {
+					id: id,
+					controllerType: "editPost",
+					title: title,
+					body: body,
+					userid: userid,
+					date_expiration: date_expiration
+				},
+				dataType: "json",
+				success: function (data) {
+					$("#addEditPostModal").modal('hide');
+
+					refreshAllPosts();
+					showAlertBox("Edited post successfully.", "success", 3);
+				},
+				error: function (data) {
+					showAlertBox("Error loading professor data.", "danger", 3);
+				}
+			});
+		}
+		else {
+			showAlertBox("One or more required fields are missing.", "danger", 3);
+		}
     }
 });
 

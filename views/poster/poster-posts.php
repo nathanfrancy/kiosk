@@ -62,15 +62,15 @@ if (!isset($redir)) {
 				</div>
 				  
               	<div class="form-group">
-                    <label for="addeditpost-title">Title</label>
+                    <label for="addeditpost-title"><span class="required">*</span> Title</label>
 					<input class="form-control" id="addeditpost-title">
 				</div>
 				<div class="form-group">
-                    <label for="addeditcourse-departmentid">Body</label>
+                    <label for="addeditcourse-departmentid"><span class="required">*</span> Body</label>
 					<textarea id="addeditpost-body" class="form-control" rows="6"></textarea>
 				</div>
 				<div class="form-group">
-                    <label for="addeditpost-expirationdate">Expiration Date</label>
+                    <label for="addeditpost-expirationdate"><span class="required">*</span> Expiration Date</label>
 					<input type='text' class="form-control" id='addeditpost-expirationdate' data-date-format="MM/DD/YYYY"/>
 				</div>
                 <div class="form-group" id="addeditpost-readonly-second">

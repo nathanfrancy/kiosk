@@ -12,8 +12,6 @@ if (isset($_SESSION['auth_id'])) { header("Location: ../home.php"); }
 $feedback = "";
 $feedbackValid = false;
 if (isset($_GET['feedback']) && ($_GET['feedback'] !== "")) { $feedback = $_GET['feedback']; $feedbackValid = true; }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,18 +24,24 @@ if (isset($_GET['feedback']) && ($_GET['feedback'] !== "")) { $feedback = $_GET[
 	<link rel="stylesheet" href="../assets/css/style.css">
 	<link rel="stylesheet" href="../assets/css/signin.css">
 	<script src="../assets/js/jquery.js"></script>
+	<script src="../assets/js/sitewide.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Sign In</title>
 </head>
 
 <body>
+	
+	<div id="alertBox">
+		  <div id="alertBoxBody" class="alert" role="alert"></div>
+	    </div>
 
 	<div class="container">
 			<center>
-				<img src="../assets/img/logofull.png" class="img-responsive" style="width: 450px;">
+				<!--<img src="../assets/img/logofull.png" class="img-responsive" style="width: 450px;">-->
+				<h1>kiosk login</h1>
 			</center>
 			
-		<form class="form-signin" action="../controllers/controller_login.php" method="post" role="form">
+		<form id="signInForm" class="form-signin" action="../controllers/controller_login.php" method="post" role="form">
 			<br />
 			<?php if ($feedbackValid) { ?>
 			<div class="alert alert-danger" id="loginAlert" role="alert">
@@ -52,6 +56,23 @@ if (isset($_GET['feedback']) && ($_GET['feedback'] !== "")) { $feedback = $_GET[
 		</form>
 
 	</div>
+	
+	<script>
+		
+		$("#signInButton").click(function(e) {
+			e.preventDefault();
+			var username_length = parseInt($("#username").val().length);
+			var password_length = parseInt($("#password").val().length);
+			
+			if (username_length > 0 && password_length > 0) {
+				$('#signInForm').submit();
+			}
+			else {
+				showAlertBox("Both fields are required.", "danger", 3);
+			}
+		});
+		
+	</script>
 
 </body>
 
