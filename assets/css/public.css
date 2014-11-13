@@ -2,9 +2,17 @@
 	box-sizing: border-box !important;
 }
 
-body {
-    padding-top: 50px;
+html, body {
+    height: 100%;
 }
+
+body {
+    padding-bottom: 40px;
+    background-color: white;
+    min-height: 100%;
+}
+
+/* index.php */
 
 .pub-header-box {
 	text-align: center;
@@ -33,7 +41,6 @@ body {
 }
 
 #list-group-professors {
-    margin-top: 20px;
 }
 
 
@@ -47,3 +54,70 @@ body {
 	}
 * html .group             { zoom: 1; } /* IE6 */
 *:first-child+html .group { zoom: 1; } /* IE7 */
+
+
+
+
+/* index2.php */
+
+
+
+        .group {
+            height: 100%;
+            min-height: 100%;
+        }
+
+        .greyed {
+            background-color: rgb(221, 221, 221);
+        }
+
+        .container-left {
+            border-right: 1px rgb(221, 221, 221) solid;
+        }
+        
+        .container-left, .container-middle {
+            float: left;
+            width: 30%;
+            overflow: auto;
+            height: 100%;
+            min-height: 100%;
+        }
+        
+        .container-right {
+            height: 100%;
+            min-height: 100%;
+            float: left;
+            width: 40%;
+        }
+        
+        #list-group-professors {
+            display: none;
+        }
+        
+        .list-special {
+            border-right-width: 0px !important;
+            border-right: 0px white solid !important;
+            border-left-width: 0px !important;
+            border-left: 0px white solid !important;
+        }
+        .list-special .list-group-item:first-child {
+          border-top-right-radius: 0px !important;
+          border-top-left-radius: 0px !important;
+        }
+        .list-special .list-group-item {
+            border-right-width: 0px !important;
+            border-right: 0px white solid !important;
+            border-left-width: 0px !important;
+            border-left: 0px white solid !important;
+        }
+        .list-special .list-group-item:last-child {
+          border-bottom-right-radius: 0px !important;
+          border-bottom-left-radius: 0px !important;
+        }
+
+        .prof-img {
+            max-height: 40px;
+        }
+
+
+
