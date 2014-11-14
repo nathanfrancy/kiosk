@@ -40,6 +40,7 @@ $(document).on("click", ".list-group-item-newspost", function(e) {
 */
 
 $(document).on("click", ".list-group-item-department", function(e) {
+    $(".prof-el").hide();
     $(".list-group-item-department").removeClass("active");
     $(this).addClass("active");
 	$("#list-group-professors").html('');
@@ -49,7 +50,6 @@ $(document).on("click", ".list-group-item-department", function(e) {
 		professors = jQuery.parseJSON(data);
 		showProfessors(professors, name);
 	});
-    $(".container-middle").removeClass("greyed");
 });
 
 
@@ -65,46 +65,72 @@ function showProfessors(professors, departmentname) {
         }
     $(".sidebar-label-professors").fadeIn();
     $("#list-group-professors").fadeIn();
+    $(".container-middle").removeClass("greyed");
 }
 
-/*
-
 $(document).on("click", "#filter-lastname-container button", function(e) {
+    $(".prof-el").hide();
 	$("#list-group-professors").html('');
 	var letter = $(this).html();
     name = 'Last names starting with "' + letter + '"';
 	$.get( "api/?requestType=getProfessorsWithLastName&letter="+ letter, function(data) {
 		professors = jQuery.parseJSON(data);
 		showProfessors(professors);
-        $("#selected-section").html(name);
 	});
 });
-
 
 $(document).on("click", ".list-group-item-professor", function(e) {
+    $(".list-group-item-professor").removeClass("active");
+    $(this).addClass("active");
 	var id = parseInt($(this).attr("professorid"));
-    $("#courses").html('');
-    $("#officehours").html('');
+    $("#prof-el-courses").html('');
+    $("#prof-el-officehours").html('');
 	$.get( "api/?requestType=getProfessor&id=" + id, function(data) {
 		professor = jQuery.parseJSON(data);
-		$("#professorModal").modal('show');
-		$("#name").html(professor.professor.firstname + " " + professor.professor.lastname);
-		$("#office").html(professor.professor.officebuilding + " " + professor.professor.officeroom);
-		$("#phone").html(professor.professor.phonenumber);
-		$("#email").html(professor.professor.email);
-		$("#img").attr("src", professor.professor.pictureurl);
+		$("#prof-el-name").html(professor.professor.firstname + " " + professor.professor.lastname);
+		$("#prof-el-office").html(professor.professor.officebuilding + " " + professor.professor.officeroom);
+		$("#prof-el-phone").html(professor.professor.phonenumber);
+		$("#prof-el-email").html(professor.professor.email);
+		$("#prof-el-img").attr("src", professor.professor.pictureurl);
 		
-		for (var i = 0; i < professor.professor.courses.length; i++) {
-			$("#courses").append("<li>" + professor.professor.courses[i].coursename + " (" + professor.professor.courses[i].days + ", "+ professor.professor.courses[i].time +")</li>");
-		}
-		for (var i = 0; i < professor.officehours.length; i++) {
-			$("#officehours").append("<li>" + professor.officehours[i].days + ", "+ professor.officehours[i].times +"</li>");
-		}
+        if (professor.professor.courses.length > 0) {
+            for (var i = 0; i < professor.professor.courses.length; i++) {
+                $("#prof-el-courses").append("<tr><td><strong>" + professor.professor.courses[i].coursename + "</strong></td><td>" + professor.professor.courses[i].days + "<br>" + professor.professor.courses[i].time + "</td></tr>");
+            }
+        }
+        else {
+            $("#prof-el-courses").append("<tr><td>No courses found.</td></tr>");
+        }
+		
+        if (professor.officehours.length > 0) {
+            for (var i = 0; i < professor.officehours.length; i++) {
+                $("#prof-el-officehours").append("<tr><td><strong>" + professor.officehours[i].days + "</strong></td><td>" + professor.officehours[i].times + "</td></tr>");
+            }
+        }
+        else {
+            $("#prof-el-officehours").append("<tr><td>No office hours found.</td></tr>");
+        }
+		
 	});
+    $(".prof-el").show();
 });
 
+$(document).on("click", "#filter-lastname", function(e) {
+    $(".prof-el, #list-group-departments").hide();
+    $("#filter-lastname-container").show();
+    $(".container-middle").addClass("greyed");
+    $(".sidebar-label-professors").hide();
+    $("#list-group-professors").hide();
+    $(".list-group-item-department").removeClass("active");
+});
 
-refreshDepartments();
+$(document).on("click", "#filter-program", function(e) {
+    $(".prof-el, #filter-lastname-container").hide();
+    $("#list-group-departments").show();
+});
+
+/*
+
 refreshNewsPosts();
 
 $("#filter-Program").click(function(e){

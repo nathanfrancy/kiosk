@@ -65,8 +65,58 @@ if ( isset($_SESSION['auth_id']) ) {
         
         <div class="group">
             <div class="container-left">
-                <h3 class="sidebar-label text-center">&nbsp;Programs</h3>
+                <h3 class="sidebar-label text-center">&nbsp;Find by Program</h3>
+                <center>
+                <div class="btn-group text-center" style="margin-bottom: 20px;">
+                      <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        Find by&nbsp;&nbsp;<span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#" id="filter-program">Program</a></li>
+                        <li><a href="#" id="filter-lastname">Last Name</a></li>
+                      </ul>
+                    </div>
+                </center>
                 <div id="list-group-departments" class="list-special"></div>
+                   <div id="filter-lastname-container">
+                    <center>
+                        <br>
+                        <button type="button" class="btn btn-primary btn-lg">A</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">B</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">C</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">D</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">E</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">F</button>
+                        <br>
+                        <br>
+                        <button type="button" class="btn btn-primary btn-lg">G</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">H</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">I</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">J</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">K</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">L</button>
+                        <br>
+                        <br>
+                        <button type="button" class="btn btn-primary btn-lg">M</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">N</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">O</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">P</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">Q</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">R</button>
+                        <br>
+                        <br>
+                        <button type="button" class="btn btn-primary btn-lg">S</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">T</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">U</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">V</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">W</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">X</button>
+                        <br>
+                        <br>
+                        <button type="button" class="btn btn-primary btn-lg">Y</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">Z</button>
+                    </center>
+                </div>
             </div>
             
             <div class="container-middle greyed">
@@ -74,7 +124,49 @@ if ( isset($_SESSION['auth_id']) ) {
                 <div id="list-group-professors" class="list-special"></div>
             </div>
 
-            <div class="container-right greyed"></div>
+            <div class="container-right greyed">
+                <h1 id="prof-el-name" class="prof-el text-center"></h1>
+                <div class="row">
+                    <br><br>
+                    
+                    <div class="col-sm-6">
+                        <center>
+                            <img class="prof-el img-responsive img-thumbnail" id="prof-el-img">
+                        </center>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="panel panel-primary prof-el">
+                          <div class="panel-heading">
+                            <h3 class="panel-title">About this Professor</h3>
+                          </div>
+                          <table class="table">
+                              <tr><td><strong>Office</strong></td><td><span id="prof-el-office"></span></td></tr>
+                              <tr><td><strong>Phone Number</strong></td><td><span id="prof-el-phone"></span></td></tr>
+                              <tr><td><strong>Email</strong></td><td><span id="prof-el-email"></span></td></tr>
+                          </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                     <br><br>
+                    <div class="col-sm-6 prof-el">
+                        <div class="panel panel-primary prof-el">
+                          <div class="panel-heading">
+                            <h3 class="panel-title">Courses</h3>
+                          </div>
+                          <table class="table" id="prof-el-courses"></table>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 prof-el">
+                        <div class="panel panel-primary prof-el">
+                          <div class="panel-heading">
+                            <h3 class="panel-title">Office Hours</h3>
+                          </div>
+                          <table class="table" id="prof-el-officehours"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         
 	</body>
