@@ -23,6 +23,28 @@ function publicGetDepartmentsProfessors($departmentid) {
     return $professors;
 }
 
+function publicGetDepartmentsCourses($departmentid) {
+    $courses = array();
+
+    $link = connect_db();
+    $sql = "SELECT *, `course`.`id` AS `courseid` FROM `course` WHERE `department_id` = ? ORDER BY `course`.`id`";
+    $stmt = $link->stmt_init();
+    $stmt->prepare($sql);
+    $stmt->bind_param('i', $departmentid);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $theProfessor = null;
+
+    while ($row = $result->fetch_array(MYSQLI_BOTH)) {
+        $id = $row['id'];
+        $theCourse = getCourse($id);
+        array_push($courses, $theCourse);
+    }
+
+    mysqli_stmt_close($stmt);
+    return $courses;
+}
+
 function publicGetProfessorsWithLastName($letter) {
     $professors = array();
     

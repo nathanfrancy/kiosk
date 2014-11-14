@@ -79,6 +79,29 @@ else if ($requestType === "getDepartmentProfessors") {
 	echo json_encode($response);
 }
 
+else if ($requestType === "getDepartmentCourses") {
+	$response = null;
+	$id = 0;
+	
+	if (isset($_GET['id'])) {
+		$id = $_GET['id'];
+		$courses = publicGetDepartmentsCourses($id);
+		
+		if ($courses === null) {
+			$response['message'] = "No professors found.";
+		}
+		else {
+			$response['message'] = "Successful";
+			$response['courses'] = $courses;
+		}
+	}
+	else {
+		$response['message'] = "Cannot complete operation without id number.";
+	}
+
+	echo json_encode($response);
+}
+
 else if ($requestType === "getProfessorsWithLastName") {
     $response = null;
 	$letter = null;

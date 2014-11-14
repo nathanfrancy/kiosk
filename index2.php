@@ -65,7 +65,7 @@ if ( isset($_SESSION['auth_id']) ) {
         
         <div class="group">
             <div class="container-left">
-                <h3 class="sidebar-label text-center">&nbsp;Find by Program</h3>
+                <h3 class="sidebar-label text-center">&nbsp;Find a Professor</h3>
                 <center>
                 <div class="btn-group text-center" style="margin-bottom: 20px;">
                       <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -122,6 +122,9 @@ if ( isset($_SESSION['auth_id']) ) {
             <div class="container-middle greyed">
                 <h3 class="sidebar-label-professors text-center" style="display: none;">&nbsp;Professors</h3>
                 <div id="list-group-professors" class="list-special"></div>
+                <br><br>
+                <h3 class="sidebar-label-classes text-center" style="display: none;">&nbsp;Classes</h3>
+                <div id="list-group-courses" class="list-special"></div>
             </div>
 
             <div class="container-right greyed">

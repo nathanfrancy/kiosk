@@ -50,8 +50,26 @@ $(document).on("click", ".list-group-item-department", function(e) {
 		professors = jQuery.parseJSON(data);
 		showProfessors(professors, name);
 	});
+    $.get( "api/?requestType=getDepartmentCourses&id=" + id, function(data) {
+		courses = jQuery.parseJSON(data);
+        showCourses(courses);
+	});
 });
 
+function showCourses(courses) {
+    $("#list-group-courses").html('');
+    if (courses.courses.length !== 0) {
+            for (var i = 0; i < courses.courses.length; i++) {
+                $("#list-group-courses").append('<a href="#" class="list-group-item list-group-item-course" courseid="' + courses.courses[i].id + '"><h4 class="list-group-item-heading">' + courses.courses[i].name + '</h4><p class="list-group-item-text">' + courses.courses[i].number + '</p></a>');
+            }
+        }
+        else {
+            $("#list-group-courses").html("<div class='text-center'>No courses found.</div>");
+        }
+    
+    $(".sidebar-label-classes").fadeIn();
+    $("#list-group-courses").fadeIn();
+}
 
 function showProfessors(professors, departmentname) {
     $("#list-group-professors").html('');
@@ -69,6 +87,7 @@ function showProfessors(professors, departmentname) {
 }
 
 $(document).on("click", "#filter-lastname-container button", function(e) {
+    $("#list-group-courses").hide();
     $(".prof-el").hide();
 	$("#list-group-professors").html('');
 	var letter = $(this).html();
@@ -110,7 +129,6 @@ $(document).on("click", ".list-group-item-professor", function(e) {
         else {
             $("#prof-el-officehours").append("<tr><td>No office hours found.</td></tr>");
         }
-		
 	});
     $(".prof-el").show();
 });
@@ -120,13 +138,21 @@ $(document).on("click", "#filter-lastname", function(e) {
     $("#filter-lastname-container").show();
     $(".container-middle").addClass("greyed");
     $(".sidebar-label-professors").hide();
+    $(".sidebar-label-classes").hide();
     $("#list-group-professors").hide();
+    $("#list-group-courses").hide();
     $(".list-group-item-department").removeClass("active");
 });
 
 $(document).on("click", "#filter-program", function(e) {
     $(".prof-el, #filter-lastname-container").hide();
     $("#list-group-departments").show();
+    $(".container-middle").addClass("greyed");
+    $(".sidebar-label-professors").hide();
+    $(".sidebar-label-classes").hide();
+    $("#list-group-professors").hide();
+    $("#list-group-courses").hide();
+    $(".list-group-item-department").removeClass("active");
 });
 
 /*
