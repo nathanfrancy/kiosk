@@ -41,7 +41,7 @@ if (isset($_GET['feedback']) && ($_GET['feedback'] !== "")) { $feedback = $_GET[
 				<h1>kiosk login</h1>
 			</center>
 			
-		<form id="signInForm" class="form-signin" action="../controllers/controller_login.php" method="post" role="form">
+		<form id="signInForm" class="form-signin" action="controllers/controller_login.php" method="post" role="form">
 			<br />
 			<?php if ($feedbackValid) { ?>
 			<div class="alert alert-danger" id="loginAlert" role="alert">

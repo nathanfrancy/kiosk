@@ -7,7 +7,7 @@ if ( (session_status() == PHP_SESSION_NONE) || (session_id() == '') ) {
 
 // See if logged in and give link for each case
 if ( isset($_SESSION['auth_id']) ) {
-    echo "<a href='home.php'>Go home</a>"; 
+    echo "<div style='background-color: #D7261E; color: white;'><center><a href='home.php' style='color: white;'>Go home</a></center></div>"; 
 }
 ?>
 

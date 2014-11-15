@@ -5,3 +5,5 @@
 dao/temp/*
 dao/temp/
 /dao/temp/
+/assets/errors
+/assets/errors/*
