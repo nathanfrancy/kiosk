@@ -31,8 +31,8 @@ if ( isset($_SESSION['auth_id']) ) {
         <div id="alertBox">
 		  <div id="alertBoxBody" class="alert" role="alert"></div>
 	    </div>
-		
-		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="border: 0px white solid;">
+        
+        <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation" style="border: 0px white solid;">
           <div class="container-fluid">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -59,124 +59,119 @@ if ( isset($_SESSION['auth_id']) ) {
                   </ul>
                 </li>
               </ul>
-            </div><!-- /.navbar-collapse -->
+            </div>
           </div>
         </nav>
-    
+        
+        <div class="group">
+            <div class="container-left">
+                <h3 class="sidebar-label text-center">&nbsp;Find a Professor</h3>
+                <center>
+                <div class="btn-group text-center" style="margin-bottom: 20px;">
+                      <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        Find by&nbsp;&nbsp;<span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#" id="filter-program">Program</a></li>
+                        <li><a href="#" id="filter-lastname">Last Name</a></li>
+                      </ul>
+                    </div>
+                </center>
+                <div id="list-group-departments" class="list-special"></div>
+                   <div id="filter-lastname-container">
+                    <center>
+                        <br>
+                        <button type="button" class="btn btn-primary btn-lg">A</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">B</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">C</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">D</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">E</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">F</button>
+                        <br>
+                        <br>
+                        <button type="button" class="btn btn-primary btn-lg">G</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">H</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">I</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">J</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">K</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">L</button>
+                        <br>
+                        <br>
+                        <button type="button" class="btn btn-primary btn-lg">M</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">N</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">O</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">P</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">Q</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">R</button>
+                        <br>
+                        <br>
+                        <button type="button" class="btn btn-primary btn-lg">S</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">T</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">U</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">V</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">W</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">X</button>
+                        <br>
+                        <br>
+                        <button type="button" class="btn btn-primary btn-lg">Y</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-lg">Z</button>
+                    </center>
+                </div>
+            </div>
+            
+            <div class="container-middle greyed">
+                <h3 class="sidebar-label-professors text-center" style="display: none;">&nbsp;Professors</h3>
+                <div id="list-group-professors" class="list-special"></div>
+                <br><br>
+                <h3 class="sidebar-label-classes text-center" style="display: none;">&nbsp;Classes</h3>
+                <div id="list-group-courses" class="list-special"></div>
+            </div>
 
-        <div class="pub-container-master group">
-			<div class="container-fluid pub-department-master">
-					<h1 class="text-center">Find a Professor</h1>
-
-                        <div id="pub-container-department-input" class="col-sm-4 col-sm-offset-4">
-
-                            <div class="text-center">
-                                <div class="btn-group btn-group-lg" style="margin-bottom: 10px; margin-top: 10px;">
-                                  <button type="button" id="filter-Program" class="btn btn-default active">By Program</button>
-                                  <button type="button" id="filter-lastName" class="btn btn-default">By Last Name</button>
-                                </div>
-                            </div>
-
-                            <br>
-							<div class="list-group" id="list-group-departments"></div>
-
-							<div id="filter-lastname-container">
-                                <center>
-                                    <br>
-                                    <button type="button" class="btn btn-primary btn-lg">A</button>&nbsp;
-                                    <button type="button" class="btn btn-primary btn-lg">B</button>&nbsp;
-                                    <button type="button" class="btn btn-primary btn-lg">C</button>&nbsp;
-                                    <button type="button" class="btn btn-primary btn-lg">D</button>&nbsp;
-                                    <button type="button" class="btn btn-primary btn-lg">E</button>&nbsp;
-                                    <button type="button" class="btn btn-primary btn-lg">F</button>
-                                    <br><br>
-                                    <button type="button" class="btn btn-primary btn-lg">G</button>&nbsp;
-                                    <button type="button" class="btn btn-primary btn-lg">H</button>&nbsp;
-                                    <button type="button" class="btn btn-primary btn-lg">I</button>&nbsp;
-                                    <button type="button" class="btn btn-primary btn-lg">J</button>&nbsp;
-                                    <button type="button" class="btn btn-primary btn-lg">K</button>&nbsp;
-                                    <button type="button" class="btn btn-primary btn-lg">L</button>
-                                    <br><br>
-                                    <button type="button" class="btn btn-primary btn-lg">M</button>&nbsp;
-                                    <button type="button" class="btn btn-primary btn-lg">N</button>&nbsp;
-                                    <button type="button" class="btn btn-primary btn-lg">O</button>&nbsp;
-                                    <button type="button" class="btn btn-primary btn-lg">P</button>&nbsp;
-                                    <button type="button" class="btn btn-primary btn-lg">Q</button>&nbsp;
-                                    <button type="button" class="btn btn-primary btn-lg">R</button>
-                                    <br><br>
-                                    <button type="button" class="btn btn-primary btn-lg">S</button>&nbsp;
-                                    <button type="button" class="btn btn-primary btn-lg">T</button>&nbsp;
-                                    <button type="button" class="btn btn-primary btn-lg">U</button>&nbsp;
-                                    <button type="button" class="btn btn-primary btn-lg">V</button>&nbsp;
-                                    <button type="button" class="btn btn-primary btn-lg">W</button>&nbsp;
-                                    <button type="button" class="btn btn-primary btn-lg">X</button>
-                                    <br><br>
-                                    <button type="button" class="btn btn-primary btn-lg">Y</button>&nbsp;
-                                    <button type="button" class="btn btn-primary btn-lg">Z</button>
-                                </center>
-							</div>
-						</div>
-                        <div id="pub-container-professor-input">
-                            <div class="col-sm-3"></div>
-                            <div class="col-sm-6">
-                                <h2 id="selected-section" class="text-center"></h2>
-                                <button class="btn btn-default text-center" id="nav-back-button"><span class="glyphicon glyphicon-arrow-left"></span> &nbsp;Back</button>
-                                <div class="list-group" id="list-group-professors"></div>
-                            </div>
-                            <div class="col-sm-3"></div>
+            <div class="container-right greyed">
+                <h1 id="prof-el-name" class="prof-el text-center"></h1>
+                <div class="row">
+                    <br><br>
+                    
+                    <div class="col-sm-6">
+                        <center>
+                            <img class="prof-el img-responsive img-thumbnail" id="prof-el-img">
+                        </center>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="panel panel-primary prof-el">
+                          <div class="panel-heading">
+                            <h3 class="panel-title">About this Professor</h3>
+                          </div>
+                          <table class="table">
+                              <tr><td><strong>Office</strong></td><td><span id="prof-el-office"></span></td></tr>
+                              <tr><td><strong>Phone Number</strong></td><td><span id="prof-el-phone"></span></td></tr>
+                              <tr><td><strong>Email</strong></td><td><span id="prof-el-email"></span></td></tr>
+                          </table>
                         </div>
-
-			</div>
-			
-			<div class="container-fluid pub-news-master">
-				<h1 class="text-center" style="margin-bottom: 10px;">Recent Posts</h1>
-				<div class="list-group col-sm-6 col-sm-offset-3" id="list-group-newspost"></div>
-			</div>
-		</div>
-		
-		
-		<div class="modal fade" id="professorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-body">
-					<h1 style="padding-top: 0px;" id="name">Kerry, Henson</h1>
-					<div class="row">
-						<div class="col-sm-9">
-							<p id="office">Office: Dockery 300B</p>
-							<p id="phone">Phone: 508340324832</p>
-							<p id="email">Email: henson@ucmo.edu</p>
-						</div>
-						<div class="col-sm-3">
-							<img id="img" src="https://www.ucmo.edu/cis/faculty/images/Henson_wb.jpg" class="img-responsive img-thumbnail">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-6">
-							<h3>Classes</h3>
-							<ul id="courses"></ul>
-						</div>
-						<div class="col-sm-6">
-							<h3>Office Hours</h3>
-							<ul id="officehours"></ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-		
-		<div class="modal fade" id="newspost-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-body">
-					<h1 id="title"></h1>
-					<p id="body"></p>
-					
-				</div>
-			</div>
-		</div>
-	</div>
-
+                    </div>
+                </div>
+                <div class="row">
+                     <br><br>
+                    <div class="col-sm-6 prof-el">
+                        <div class="panel panel-primary prof-el">
+                          <div class="panel-heading">
+                            <h3 class="panel-title">Courses</h3>
+                          </div>
+                          <table class="table" id="prof-el-courses"></table>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 prof-el">
+                        <div class="panel panel-primary prof-el">
+                          <div class="panel-heading">
+                            <h3 class="panel-title">Office Hours</h3>
+                          </div>
+                          <table class="table" id="prof-el-officehours"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
 	</body>
 	
 	<script src="assets/js/jquery.js"></script>
