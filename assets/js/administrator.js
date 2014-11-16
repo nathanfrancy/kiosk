@@ -36,6 +36,12 @@ $("#addDepartmentButton").click(function (e) {
 
 });
 
+$(document).on("click", "#addDepartmentModal", function(e) {
+    e.preventDefault();
+    $("#adddepartment-name").val('');
+    $("#adddepartment-prefix").val('');
+});
+
 function refreshDepartments() {
     $.get( "/api/", {requestType : "getDepartments"}, function(data) {
         var apiData = JSON.parse(data);
@@ -365,28 +371,30 @@ function appendUser(user) {
 $("#deleteUserButton").click(function (e) {
 	e.preventDefault();
 	var id = parseInt($("#edituser-id").val());
-
-	$.ajax({
-		type: "POST",
-		url: "controllers/controller_administrator.php",
-		data: {
-			controllerType: "deleteUser",
-			id: id
-		},
-		dataType: "json",
-		success: function (data) {
-			$(".list-user-item[userid=" + id + "]").slideUp();
-			$("#edituser-id").val('');
-			$("#edituser-nicename").val('');
-			$("#edituser-username").val('');
-			$("#edituser-email").val('');
-			$('#deleteUserModal').modal('hide');
-			showAlertBox("Deleted user successfully.", "success", 3);
-		},
-		error: function (data) {
-			showAlertBox(data, "danger", 3);
-		}
-	});
+    
+    if (confirm("Are you sure you want to delete this user?") == true) {
+        $.ajax({
+            type: "POST",
+            url: "controllers/controller_administrator.php",
+            data: {
+                controllerType: "deleteUser",
+                id: id
+            },
+            dataType: "json",
+            success: function (data) {
+                $(".list-user-item[userid=" + id + "]").slideUp();
+                $("#edituser-id").val('');
+                $("#edituser-nicename").val('');
+                $("#edituser-username").val('');
+                $("#edituser-email").val('');
+                $('#deleteUserModal').modal('hide');
+                showAlertBox("Deleted user successfully.", "success", 3);
+            },
+            error: function (data) {
+                showAlertBox(data, "danger", 3);
+            }
+        });
+    }
 });
 
 $("#edituser-passwordresetbutton").click(function () {
