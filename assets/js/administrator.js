@@ -43,7 +43,7 @@ $(document).on("click", "#addDepartmentModal", function(e) {
 });
 
 function refreshDepartments() {
-    $.get( "/api/", {requestType : "getDepartments"}, function(data) {
+    $.get( "api/", {requestType : "getDepartments"}, function(data) {
         var apiData = JSON.parse(data);
         var departments = apiData.departments;
         var departmenthtml = "<div class='list-group' id='list-department'>";
