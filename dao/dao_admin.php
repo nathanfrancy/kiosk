@@ -248,4 +248,19 @@ function getGrantedDepartmentIds($userid) {
 	return $departments;
 }
 
+function changePassword($auth_id, $newpassword) {
+	$link = connect_db();
+	$sql = "UPDATE  `user` SET `password`=? WHERE id = ?";
+    
+	$stmt = $link->stmt_init();
+	$stmt->prepare($sql);
+	$stmt->bind_param('si', $link->real_escape_string(sha1($newpassword)), $auth_id);
+    
+    $stmt->execute();
+	mysqli_stmt_close($stmt);
+	$link->close();
+	
+	return "Password changed successfully.";
+}
+
 ?>

@@ -31,6 +31,33 @@ $("#saveTheme").click(function() {
 	});
 });
 
+$("#changePasswordButton").click(function() {
+	$('#changePasswordModal').modal('show');
+});
+
+$("#savePasswordChange").click(function(e) {
+    e.preventDefault();
+    var newpassword1 = $("#newPassword1").val();
+    var newpassword2 = $("#newPassword2").val();
+    
+    if (newpassword1 !== "" || newpassword2 !== "") {
+        if (newpassword1 === newpassword2) {
+            $.post("controllers/controller_administrator.php", { controllerType : "changePassword", newpassword : newpassword1}, 
+            function(data) {
+                showAlertBox(data, "success", 3);
+                $('#changePasswordModal').modal('hide');
+            });
+        }
+        else {
+            showAlertBox("Passwords do not match.", "danger", 3);
+        }
+    }
+    else {
+        showAlertBox("Password field cannot be empty.", "danger", 3);
+    }
+    
+});
+
 function dateConverterToNice(unix_timestamp) {
     var date = new Date(unix_timestamp*1000);
     var hours = date.getHours();

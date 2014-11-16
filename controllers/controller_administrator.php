@@ -140,5 +140,10 @@ else if ($controllerType === "changeTheme") {
 	$newuser = updateTheme($userid, $theme);
 	echo json_encode($newuser);
 }
+else if ($controllerType === "changePassword") {
+    $auth_id = $_SESSION['auth_id'];
+    $message = changePassword($auth_id, $_POST['newpassword']);
+    echo $message;
+}
 
 ?>

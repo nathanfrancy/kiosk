@@ -1,3 +1,7 @@
 [Sun Nov 16 00:21:02.894600 2014] [:error] [pid 13458] [client 127.0.0.1:49507] script '/var/www/html/kiosk/controllers/controller_admin.php' not found or unable to stat
 [Sun Nov 16 00:27:48.648828 2014] [:error] [pid 16395] [client 127.0.0.1:49554] PHP Notice:  Undefined index: controllerType in /var/www/html/kiosk/controllers/controller_administrator.php on line 13, referer: http://kiosk.local/home.php?page=department
 [Sun Nov 16 00:27:51.741001 2014] [:error] [pid 13235] [client 127.0.0.1:49555] PHP Notice:  Undefined index: controllerType in /var/www/html/kiosk/controllers/controller_administrator.php on line 13, referer: http://kiosk.local/home.php?page=department
+[Sun Nov 16 01:56:52.270280 2014] [:error] [pid 22257] [client 127.0.0.1:51043] PHP Notice:  Undefined index: controllerType in /var/www/html/kiosk/controllers/controller_administrator.php on line 13, referer: http://kiosk.local/home.php
+[Sun Nov 16 01:57:53.581942 2014] [:error] [pid 22263] [client 127.0.0.1:51052] PHP Notice:  Undefined index: controllerType in /var/www/html/kiosk/controllers/controller_administrator.php on line 13, referer: http://kiosk.local/home.php
+[Sun Nov 16 02:03:35.011774 2014] [:error] [pid 25466] [client 127.0.0.1:51085] script '/var/www/html/kiosk/views/login.php' not found or unable to stat, referer: http://kiosk.local/login.php
+[Sun Nov 16 02:04:00.501039 2014] [:error] [pid 22959] [client 127.0.0.1:51086] script '/var/www/html/kiosk/views/login.php' not found or unable to stat, referer: http://kiosk.local/login.php

@@ -58,6 +58,28 @@ if (($extend !== 1) || (basename($_SERVER['PHP_SELF']) !== "home.php")) {
             </div>
           </div>
         </div>
+    
+        <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                <h4 class="modal-title" id="myModalLabel">Change Password</h4>
+              </div>
+              <div class="modal-body">
+				  <input type="password" id="newPassword1" class="form-control" placeholder="New password"><br>
+                  <input type="password" id="newPassword2" class="form-control" placeholder="Re-enter new password">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary pull-left" id="savePasswordChange">Save</button>
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
 	</body>
 

@@ -28,7 +28,7 @@ if ($userid !== 0) {
     header("Location: ../home.php");
 }
 else {
-    header("Location: ../views/login.php?feedback=Login unsuccessful. Please try again.");
+    header("Location: ../login.php?feedback=Login unsuccessful. Please try again.");
 }
 
 ?>
