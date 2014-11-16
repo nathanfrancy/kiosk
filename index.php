@@ -7,7 +7,10 @@ if ( (session_status() == PHP_SESSION_NONE) || (session_id() == '') ) {
 
 // See if logged in and give link for each case
 if ( isset($_SESSION['auth_id']) ) {
-    echo "<div style='background-color: #D7261E; color: white;'><center><a href='home.php' style='color: white;'>Go home</a></center></div>"; 
+    require('models/model.php');
+    require('dao/dao.php');
+    $user = getUserObject($_SESSION['auth_id']);
+    echo "<div style='background-color: #000000; color: white; padding-top: 5px; padding-bottom: 5px; position: fixed; top: 0; width: 100%; opacity: 0.2;'><center>Welcome to the front end {$user->nicename}! <a href='home.php' style='color: white; font-weight: 700;'> Go home</a></center></div>"; 
 }
 ?>
 

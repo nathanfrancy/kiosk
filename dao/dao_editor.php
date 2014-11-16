@@ -4,7 +4,7 @@ function getAccessedDepartments($userid) {
     $departments = array();
 
     $link = connect_db();
-    $sql = "SELECT * FROM `access_department`, `department` WHERE `user_id` = ? AND `access_department`.`department_id` = `department`.`id`";
+    $sql = "SELECT * FROM `access_department`, `department` WHERE `user_id` = ? AND `access_department`.`department_id` = `department`.`id` ORDER BY `department`.`name`";
     $stmt = $link->stmt_init();
     $stmt->prepare($sql);
     $stmt->bind_param('i', $userid);

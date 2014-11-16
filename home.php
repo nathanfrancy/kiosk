@@ -44,7 +44,7 @@ if (isset($_SESSION['auth_id'])) {
             $theme = $user->theme;
         }
         else {
-            $theme = "yeti";
+            $theme = "simplex";
         }
 
 		if ($user->type === "admin") {

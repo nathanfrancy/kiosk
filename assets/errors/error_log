@@ -1,2 +1,0 @@
-[Sat Nov 15 13:59:28.444000 2014] [:error] [pid 517] [client 127.0.0.1:51741] script '/Users/nathanfrancy/Sites/kiosk/views/login.php' not found or unable to stat
-[Sat Nov 15 13:59:31.456667 2014] [:error] [pid 517] [client 127.0.0.1:51741] script '/Users/nathanfrancy/Sites/kiosk/views/login.php' not found or unable to stat

@@ -92,7 +92,7 @@ function deleteDepartment($id) {
 
 function addUser($username, $password, $nicename, $email, $type, $status) {
     $link = connect_db();
-	$sql = "INSERT INTO  `user` (`username`, `password`, `nicename`, `email`, `type`, `status`, `theme`) VALUES (?, ?, ?, ?, ?, ?, 'yeti')";
+	$sql = "INSERT INTO  `user` (`username`, `password`, `nicename`, `email`, `type`, `status`, `theme`) VALUES (?, ?, ?, ?, ?, ?, 'simplex')";
 	$stmt = $link->stmt_init();
 	$stmt->prepare($sql);
 	$stmt->bind_param('ssssss', 
