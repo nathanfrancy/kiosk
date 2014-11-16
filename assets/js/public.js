@@ -40,20 +40,26 @@ $(document).on("click", ".list-group-item-newspost", function(e) {
 */
 
 $(document).on("click", ".list-group-item-department", function(e) {
-    $(".prof-el").hide();
     $(".list-group-item-department").removeClass("active");
     $(this).addClass("active");
-	$("#list-group-professors").html('');
-	var id = parseInt($(this).attr("departmentid"));
+    var id = parseInt($(this).attr("departmentid"));
     var name = $(this).find(".list-group-item-heading").html();
-	$.get( "api/?requestType=getDepartmentProfessors&id=" + id, function(data) {
-		professors = jQuery.parseJSON(data);
-		showProfessors(professors, name);
-	});
-    $.get( "api/?requestType=getDepartmentCourses&id=" + id, function(data) {
-		courses = jQuery.parseJSON(data);
-        showCourses(courses);
-	});
+    $("#list-group-professors, #list-group-courses, .sidebar-label-professors, .sidebar-label-classes").fadeOut('fast', function(){
+        $(".prof-el").hide();
+        $("#list-group-professors").html('');
+        $.get( "api/?requestType=getDepartmentProfessors&id=" + id, function(data) {
+            professors = jQuery.parseJSON(data);
+            showProfessors(professors, name);
+            $(".sidebar-label-professors").fadeIn('fast');
+            $("#list-group-professors").fadeIn('fast');
+        });
+        $.get( "api/?requestType=getDepartmentCourses&id=" + id, function(data) {
+            courses = jQuery.parseJSON(data);
+            showCourses(courses);
+            $(".sidebar-label-classes").fadeIn('fast');
+            $("#list-group-courses").fadeIn('fast');
+        });
+    });
 });
 
 function showCourses(courses) {
@@ -66,9 +72,6 @@ function showCourses(courses) {
         else {
             $("#list-group-courses").html("<div class='text-center'>No courses found.</div>");
         }
-    
-    $(".sidebar-label-classes").fadeIn();
-    $("#list-group-courses").fadeIn();
 }
 
 function showProfessors(professors, departmentname) {
@@ -81,8 +84,6 @@ function showProfessors(professors, departmentname) {
         else {
             $("#list-group-professors").html("<div class='text-center'>No professors found.</div>");
         }
-    $(".sidebar-label-professors").fadeIn();
-    $("#list-group-professors").fadeIn();
     $(".container-middle").removeClass("greyed");
 }
 
@@ -99,38 +100,43 @@ $(document).on("click", "#filter-lastname-container button", function(e) {
 });
 
 $(document).on("click", ".list-group-item-professor", function(e) {
+    var thisEl = this;
     $(".list-group-item-professor").removeClass("active");
     $(this).addClass("active");
-	var id = parseInt($(this).attr("professorid"));
-    $("#prof-el-courses").html('');
-    $("#prof-el-officehours").html('');
-	$.get( "api/?requestType=getProfessor&id=" + id, function(data) {
-		professor = jQuery.parseJSON(data);
-		$("#prof-el-name").html(professor.professor.firstname + " " + professor.professor.lastname);
-		$("#prof-el-office").html(professor.professor.officebuilding + " " + professor.professor.officeroom);
-		$("#prof-el-phone").html(professor.professor.phonenumber);
-		$("#prof-el-email").html(professor.professor.email);
-		$("#prof-el-img").attr("src", professor.professor.pictureurl);
-		
-        if (professor.professor.courses.length > 0) {
-            for (var i = 0; i < professor.professor.courses.length; i++) {
-                $("#prof-el-courses").append("<tr><td><strong>" + professor.professor.courses[i].coursename + "</strong></td><td>" + professor.professor.courses[i].days + "<br>" + professor.professor.courses[i].time + "</td></tr>");
+    var id = parseInt($(this).attr("professorid"));
+    $(".prof-el").fadeOut('fast').promise().done(function() {
+        $("#prof-el-courses").html('');
+        $("#prof-el-officehours").html('');
+        $.get( "api/?requestType=getProfessor&id=" + id, function(data) {
+            professor = jQuery.parseJSON(data);
+            $("#prof-el-name").html(professor.professor.firstname + " " + professor.professor.lastname);
+            $("#prof-el-office").html(professor.professor.officebuilding + " " + professor.professor.officeroom);
+            $("#prof-el-phone").html(professor.professor.phonenumber);
+            $("#prof-el-email").html(professor.professor.email);
+
+            if (professor.professor.courses.length > 0) {
+                for (var i = 0; i < professor.professor.courses.length; i++) {
+                    $("#prof-el-courses").append("<tr><td><strong>" + professor.professor.courses[i].coursename + "</strong><br>" + professor.professor.courses[i].days + " at " + professor.professor.courses[i].time + "</td></tr>");
+                }
             }
-        }
-        else {
-            $("#prof-el-courses").append("<tr><td>No courses found.</td></tr>");
-        }
-		
-        if (professor.officehours.length > 0) {
-            for (var i = 0; i < professor.officehours.length; i++) {
-                $("#prof-el-officehours").append("<tr><td><strong>" + professor.officehours[i].days + "</strong></td><td>" + professor.officehours[i].times + "</td></tr>");
+            else {
+                $("#prof-el-courses").append("<tr><td>No courses found.</td></tr>");
             }
-        }
-        else {
-            $("#prof-el-officehours").append("<tr><td>No office hours found.</td></tr>");
-        }
-	});
-    $(".prof-el").show();
+
+            if (professor.officehours.length > 0) {
+                for (var i = 0; i < professor.officehours.length; i++) {
+                    $("#prof-el-officehours").append("<tr><td><strong>" + professor.officehours[i].days + "</strong><br>" + professor.officehours[i].times + "</td></tr>");
+                }
+            }
+            else {
+                $("#prof-el-officehours").append("<tr><td>No office hours found.</td></tr>");
+            }
+        });
+    });
+    setTimeout( function(){
+        $(".prof-el").fadeIn('fast');
+        $("#prof-el-img").attr("src", professor.professor.pictureurl);
+    }, 500);
 });
 
 $(document).on("click", "#filter-lastname", function(e) {

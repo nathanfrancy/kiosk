@@ -10,7 +10,7 @@ if ( isset($_SESSION['auth_id']) ) {
     require('models/model.php');
     require('dao/dao.php');
     $user = getUserObject($_SESSION['auth_id']);
-    echo "<div style='background-color: #000000; color: white; padding-top: 5px; padding-bottom: 5px; position: fixed; top: 0; width: 100%; opacity: 0.2;'><center>Welcome to the front end {$user->nicename}! <a href='home.php' style='color: white; font-weight: 700;'> Go home</a></center></div>"; 
+    echo "<div style='z-index: 1000; background-color: #000000; color: white; padding: 5px; border-bottom-left-radius: 5px; position: fixed; top: 0; right: 0; opacity: 0.3'><center>Welcome back {$user->nicename}! <a href='home.php' style='color: white; font-weight: 700;'> Go home</a></center></div>"; 
 }
 ?>
 
@@ -123,11 +123,18 @@ if ( isset($_SESSION['auth_id']) ) {
             </div>
             
             <div class="container-middle greyed">
-                <h3 class="sidebar-label-professors text-center" style="display: none;">&nbsp;Professors</h3>
-                <div id="list-group-professors" class="list-special"></div>
-                <br><br>
-                <h3 class="sidebar-label-classes text-center" style="display: none;">&nbsp;Classes</h3>
-                <div id="list-group-courses" class="list-special"></div>
+                <div style="height: 3%; max-height: 3%;">
+                    <h3 class="sidebar-label-professors text-center" style="display: none;">&nbsp;Professors</h3>
+                </div>
+                <div style="height: 65%; max-height: 65%; overflow: auto;">
+                    <div id="list-group-professors" class="list-special"></div>
+                </div>
+                <div style="height: 3%; max-height: 3%;">
+                    <h3 class="sidebar-label-classes text-center" style="display: none;">&nbsp;Classes</h3>
+                </div>
+                <div style="height: 25%; max-height: 25%; overflow: auto;">
+                    <div id="list-group-courses" class="list-special"></div>
+                </div>
             </div>
 
             <div class="container-right greyed">
@@ -135,35 +142,30 @@ if ( isset($_SESSION['auth_id']) ) {
                 <div class="row">
                     <br><br>
                     
-                    <div class="col-sm-6">
+                    <div class="col-sm-3 prof-el">
                         <center>
                             <img class="prof-el img-responsive img-thumbnail" id="prof-el-img">
                         </center>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-9">
                         <div class="panel panel-primary prof-el">
                           <div class="panel-heading">
                             <h3 class="panel-title">About this Professor</h3>
                           </div>
                           <table class="table">
-                              <tr><td><strong>Office</strong></td><td><span id="prof-el-office"></span></td></tr>
-                              <tr><td><strong>Phone Number</strong></td><td><span id="prof-el-phone"></span></td></tr>
-                              <tr><td><strong>Email</strong></td><td><span id="prof-el-email"></span></td></tr>
+                              <tr><td><strong><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Office</strong></td><td><span id="prof-el-office"></span></td></tr>
+                              <tr><td><strong><span class="glyphicon glyphicon-phone-alt"></span>&nbsp;&nbsp;Phone Number</strong></td><td><span id="prof-el-phone"></span></td></tr>
+                              <tr><td><strong><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;Email</strong></td><td><span id="prof-el-email"></span></td></tr>
                           </table>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                     <br><br>
-                    <div class="col-sm-6 prof-el">
+                        <br>
                         <div class="panel panel-primary prof-el">
                           <div class="panel-heading">
                             <h3 class="panel-title">Courses</h3>
                           </div>
                           <table class="table" id="prof-el-courses"></table>
                         </div>
-                    </div>
-                    <div class="col-sm-6 prof-el">
+                        <br>
                         <div class="panel panel-primary prof-el">
                           <div class="panel-heading">
                             <h3 class="panel-title">Office Hours</h3>
