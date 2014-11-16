@@ -1,0 +1,14 @@
+[
+    {
+        "title" : "What is my role as a system administrator?",
+        "body" : "A system administrator is responsible for managing the <strong>departments</strong> and <strong>users</strong>. Departments are the organized pieces in the Dockery building and can be called 'Program' interchangeably. For example, departments that will be included are Computer Information Systems, Accounting, Marketing, etc. Users, on the other hand, need to be managed at this level so they can be given access only to the Departments they need access to, or given the roles that they need. For example, one user might be a content editor for CIS, so they would be 'Editor' and should have access to the CIS; whereas another user might be a 'Poster' who needs access to postings. The two user groups get entirely different screens, and will only be given access to what you give them at this point. As a sidenote, there are special users that are given both priveleges (editor and poster).",
+        "steps" : [],
+        "demoVideo" : ""
+    },
+    {
+        "title" : "",
+        "body" : "",
+        "steps" : [],
+        "demoVideo" : ""
+    }
+]

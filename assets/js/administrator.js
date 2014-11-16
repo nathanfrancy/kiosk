@@ -83,8 +83,7 @@ $("#editDepartmentButton").click(function (e) {
                     prefix: data.prefix
                 };
                 current_delete_id = data.id;
-                $(".list-department-item[departmentid=" + department.id + "]").hide();
-                appendDepartment(department);
+                refreshDepartments();
                 $("#editdepartment-name").val('');
                 $('#editDepartmentModal').modal('hide');
                 showAlertBox("Edited " + department.name + " successfully.", "success", 3);
@@ -527,5 +526,38 @@ function resetNavs() {
 function cap(string) {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
+
+$("#helpButton").click(function(e) {
+    var helpSections = null;
+    $.getJSON('documentation/help/admin.json', function(data) {
+        var html = "";
+        for (var i = 0; i < data.length; i++) {
+            var videohtml = "";
+            var listhtml = "";
+            for (var j = 0; j < data[i].steps.length; j++) {
+                listhtml += "<li>" + data[i].steps[j] + "</li>";
+            }
+            
+            if (data[i].demoVideo !== "") {
+                videohtml = "<p><a href='"+ data[i].demoVideo +"' class='btn btn-default' target='_blank'>Demo available here</a></p>";
+            }
+            
+            html += "<div class='help-title'>"+ data[i].title +"</div><div class='help-body'><p>"+ data[i].body +"</p><ol>"+ listhtml +"</ol>" + videohtml + "</div>";
+        } 
+        $("#helpSections").html(html);
+    });
+    
+    $("#helpModal").modal('show');
+});
+
+$(document).on("click", ".help-title", function(e) {
+    e.preventDefault();
+    $(".help-title").removeClass("help-active");
+    $(".help-body").slideUp();
+    if ( $(this).next(".help-body").is(":hidden") ) {
+        $(this).addClass("help-active");
+        $(this).next(".help-body").slideDown();
+    }
+});
 
 refreshDepartments();
