@@ -5,3 +5,17 @@
 [Sun Nov 16 01:57:53.581942 2014] [:error] [pid 22263] [client 127.0.0.1:51052] PHP Notice:  Undefined index: controllerType in /var/www/html/kiosk/controllers/controller_administrator.php on line 13, referer: http://kiosk.local/home.php
 [Sun Nov 16 02:03:35.011774 2014] [:error] [pid 25466] [client 127.0.0.1:51085] script '/var/www/html/kiosk/views/login.php' not found or unable to stat, referer: http://kiosk.local/login.php
 [Sun Nov 16 02:04:00.501039 2014] [:error] [pid 22959] [client 127.0.0.1:51086] script '/var/www/html/kiosk/views/login.php' not found or unable to stat, referer: http://kiosk.local/login.php
+[Sun Nov 16 04:04:43.590099 2014] [:error] [pid 31319] [client 127.0.0.1:53576] PHP Notice:  Undefined variable: id in /var/www/html/kiosk/dao/dao.php on line 210, referer: http://kiosk.local/home.php
+[Sun Nov 16 04:05:03.405515 2014] [:error] [pid 31277] [client 127.0.0.1:53578] PHP Notice:  Undefined variable: id in /var/www/html/kiosk/dao/dao.php on line 210, referer: http://kiosk.local/home.php
+[Sun Nov 16 04:05:04.763241 2014] [:error] [pid 31277] [client 127.0.0.1:53578] PHP Notice:  Undefined variable: id in /var/www/html/kiosk/dao/dao.php on line 210, referer: http://kiosk.local/home.php
+[Sun Nov 16 04:05:06.095993 2014] [:error] [pid 31277] [client 127.0.0.1:53578] PHP Notice:  Undefined variable: id in /var/www/html/kiosk/dao/dao.php on line 210, referer: http://kiosk.local/home.php
+[Sun Nov 16 04:06:09.964407 2014] [:error] [pid 31324] [client 127.0.0.1:53581] PHP Notice:  Undefined variable: id in /var/www/html/kiosk/dao/dao.php on line 210, referer: http://kiosk.local/home.php
+[Sun Nov 16 04:07:11.308868 2014] [:error] [pid 700] [client 127.0.0.1:53599] PHP Notice:  Undefined variable: id in /var/www/html/kiosk/dao/dao.php on line 210, referer: http://kiosk.local/
+[Sun Nov 16 04:07:26.011578 2014] [:error] [pid 31366] [client 127.0.0.1:53602] PHP Notice:  Undefined variable: id in /var/www/html/kiosk/dao/dao.php on line 210, referer: http://kiosk.local/
+[Sun Nov 16 04:07:28.456065 2014] [:error] [pid 31366] [client 127.0.0.1:53602] PHP Notice:  Undefined variable: id in /var/www/html/kiosk/dao/dao.php on line 210, referer: http://kiosk.local/
+[Sun Nov 16 04:07:30.696952 2014] [:error] [pid 31366] [client 127.0.0.1:53602] PHP Notice:  Undefined variable: id in /var/www/html/kiosk/dao/dao.php on line 210, referer: http://kiosk.local/
+[Sun Nov 16 04:07:33.749704 2014] [:error] [pid 31366] [client 127.0.0.1:53602] PHP Notice:  Undefined variable: id in /var/www/html/kiosk/dao/dao.php on line 210, referer: http://kiosk.local/
+[Sun Nov 16 04:07:34.757698 2014] [:error] [pid 31366] [client 127.0.0.1:53602] PHP Notice:  Undefined variable: id in /var/www/html/kiosk/dao/dao.php on line 210, referer: http://kiosk.local/
+[Sun Nov 16 04:07:36.023331 2014] [:error] [pid 31366] [client 127.0.0.1:53602] PHP Notice:  Undefined variable: id in /var/www/html/kiosk/dao/dao.php on line 210, referer: http://kiosk.local/
+[Sun Nov 16 04:07:37.084631 2014] [:error] [pid 31366] [client 127.0.0.1:53602] PHP Notice:  Undefined variable: id in /var/www/html/kiosk/dao/dao.php on line 210, referer: http://kiosk.local/
+[Sun Nov 16 04:07:38.384273 2014] [:error] [pid 31366] [client 127.0.0.1:53602] PHP Notice:  Undefined variable: id in /var/www/html/kiosk/dao/dao.php on line 210, referer: http://kiosk.local/

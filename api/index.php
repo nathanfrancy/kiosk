@@ -136,6 +136,7 @@ else if ($requestType === "getProfessor") {
 	if (isset($_GET['id'])) {
 		$id = $_GET['id'];
 		$professor = getProfessor($id);
+        updateRank($id);
 		
 		if ($professor === null) {
 			$response['message'] = "No professor found.";

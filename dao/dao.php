@@ -193,7 +193,24 @@ function isPoster() {
 	return $authorized;
 }
 
-
+function updateRank($professorid) {
+    $link = connect_db();
+	$sql = "UPDATE  `professor` SET `rank`=`rank`+1 WHERE `professor`.`id` = ?";
+	
+	// Create prepared statement and bind parameters
+	$stmt = $link->stmt_init();
+	$stmt->prepare($sql);
+	$stmt->bind_param('i', $professorid);
+	
+    // Execute the query, get the last inserted id
+    $stmt->execute();
+	$rows = $link->affected_rows;
+	mysqli_stmt_close($stmt);
+	$link->close();
+    $department = getDepartment($id);
+	
+	return true;
+}
 
 
 
