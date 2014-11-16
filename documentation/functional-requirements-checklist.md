@@ -12,7 +12,7 @@
     * 1.6 Obtain directions to WDE 1600
 2. A Personnel Information Coordinator will be able to:
     * 2.1 <s>Gain access to the system with given username and password</s>
-    * 2.2 Change their access password
+    * 2.2 <s>Change their access password</s>
     * 2.3 <s>Enter the course prefix, number and title of each course in their (academic) department (one time)</s>
     * 2.4 <s>Edit/Delete the course prefix, number and title of each course in their (academic) department (occasionally)</s>
     * 2.5 <s>Enter information about each faculty/staff member to include: </s>
@@ -36,7 +36,7 @@
     * 2.9 <s>Associate a faculty member with courses currently taught</s>
 3. A News Posting Coordinator will be able to
     * 3.1 <s>Gain access to the system with given user name and password</s>
-    * 3.2 Change their access password
+    * 3.2 <s>Change their access password</s>
     * 3.3 <s>Upload a file for posting</s>
     * 3.4 <s>Review/Modify the postings</s>
 4. The Administrator will be able to:
