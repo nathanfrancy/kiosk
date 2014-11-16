@@ -1,0 +1,3 @@
+[Sun Nov 16 00:21:02.894600 2014] [:error] [pid 13458] [client 127.0.0.1:49507] script '/var/www/html/kiosk/controllers/controller_admin.php' not found or unable to stat
+[Sun Nov 16 00:27:48.648828 2014] [:error] [pid 16395] [client 127.0.0.1:49554] PHP Notice:  Undefined index: controllerType in /var/www/html/kiosk/controllers/controller_administrator.php on line 13, referer: http://kiosk.local/home.php?page=department
+[Sun Nov 16 00:27:51.741001 2014] [:error] [pid 13235] [client 127.0.0.1:49555] PHP Notice:  Undefined index: controllerType in /var/www/html/kiosk/controllers/controller_administrator.php on line 13, referer: http://kiosk.local/home.php?page=department

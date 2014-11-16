@@ -23,7 +23,7 @@ $("#addDepartmentButton").click(function (e) {
                     id: data.id,
                     name: data.name
                 };
-                appendDepartment(department);
+                refreshDepartments();
                 $("#adddepartment-name").val('');
                 $('#addDepartmentModal').modal('hide');
                 showAlertBox("Added " + department.name + " successfully.", "success", 3);
@@ -35,6 +35,19 @@ $("#addDepartmentButton").click(function (e) {
     }
 
 });
+
+function refreshDepartments() {
+    $.get( "/api/", {requestType : "getDepartments"}, function(data) {
+        var apiData = JSON.parse(data);
+        var departments = apiData.departments;
+        var departmenthtml = "<div class='list-group' id='list-department'>";
+        for (var i = 0; i < departments.length; i++) {
+            departmenthtml += "<a class='list-group-item list-department-item' href='#' departmentid='" + departments[i].id + "'><h4 class='list-group-item-heading'><span class='label label-primary pull-right'>"+ departments[i].prefix +"</span> "+ departments[i].name +"</h4></a>"
+        }
+        departmenthtml += "</div>";
+        $("#list-department-container").html(departmenthtml);
+    });
+}
 
 $("#editDepartmentButton").click(function (e) {
 	e.preventDefault();
@@ -92,7 +105,7 @@ $("#deleteDepartmentButton").click(function (e) {
 			},
 			dataType: "json",
 			success: function (data) {
-				$(".list-department-item[departmentid=" + id + "]").slideUp();
+				refreshDepartments();
 				$("#editdepartment-name").val('');
 				$('#deleteDepartmentModal').modal('hide');
 				showAlertBox("Deleted department successfully.", "success", 3);
@@ -506,3 +519,5 @@ function resetNavs() {
 function cap(string) {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
+
+refreshDepartments();

@@ -22,6 +22,13 @@ if ($controllerType === "addDepartment") {
 	}
 	else { echo "You are not authorized to perform this action."; }
 }
+else if ($controllerType === "getAllDepartments") {
+    if (isAdmin() === 1) {
+		$departments = getAllDepartments();
+		echo json_encode($departments);
+	}
+	else { echo "You are not authorized to perform this action."; }
+}
 else if ($controllerType === "getDepartment") {
     $id = $_POST['id'];
     $department = getDepartment($id);

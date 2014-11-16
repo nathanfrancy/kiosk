@@ -31,15 +31,8 @@ require("header.php");
 							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addDepartmentModal"><span class="glyphicon glyphicon-plus-sign"></span> Add</button><br /><br>
                                 <?php 
                                     $departments = getAllDepartments();
-                                    $departmentList = "<div class='list-group' id='list-department'>";
-                                    $counter = 0;
-                                    foreach($departments as $department) {
-                                        $departmentList .= "<a class='list-group-item list-department-item' href='#' departmentid='" . $department->id . "'><h4 class='list-group-item-heading'><span class='label label-primary pull-right'>". $department->id ."</span> ". $department->name ."</h4></a>";
-                                        $counter++;
-                                    }
-                                    $departmentList .= "</div>";
-                                    echo $departmentList;
                                 ?>
+                            <div id="list-department-container"></div>
                         </div>
 						
                     </div>
