@@ -14,6 +14,15 @@ This project was done by CIS 4690 at the University of Central Missouri, Fall 20
 ##Documentation
 All other documentation (which will be much more specific) will be available on the [documentation](https://github.com/CIS4690-Fall2014/kiosk/tree/master/documentation) folder in this project, or directly embedded into the code in this project.
 
+###YouTube Videos
+Additionally, we have created tutorial videos that will help users see exactly how to accomplish specific tasks. These are broken down by user groups, and are labeled by the specific task.
+
+####Information Coordinator (editor of professor and course information)
+1. [Add a course](http://youtu.be/2xq_yDZ6vtI)
+2. [Create a course and add it to a professor](http://youtu.be/iZ_gXkoK7kA)
+3. [Add office hours to a professor](http://youtu.be/FvMwN7TAfaM)
+4. [Add a professor](http://youtu.be/0xH_cQ0Eyz8)
+
 ##Links to Important Documents
 - [Functional Requirements](https://github.com/CIS4690-Fall2014/kiosk/blob/master/documentation/functional-requirements.md)
 - [User Groups](https://github.com/CIS4690-Fall2014/kiosk/blob/master/documentation/user-groups.md)
