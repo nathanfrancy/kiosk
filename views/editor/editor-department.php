@@ -27,12 +27,18 @@ if (!isset($redir)) {
 						</div>
 						
                     </div>
-					<div id="department-selected">
-						<h2 class="text-center" style="padding-top: 0px; margin-top: 0px;"><button class="btn btn-default" id="department-back"><span class="glyphicon glyphicon-arrow-left"></span> Back</button> <span id="department-selected-name"></span></h2><br>
-					</div>
+					
 					<div id="container-showhide" class="col-sm-10 col-sm-offset-1">
+                        <div id="department-selected">
+                            <h2 style="padding-top: 0px; margin-top: 0px;" class="text-center">
+                                <button class="btn btn-default btn-sm" id="department-back">
+                                    <span class="glyphicon glyphicon-arrow-left"></span>
+                                </button>
+                                <span id="department-selected-name"></span>
+                            </h2>
+                        </div>
 						<div class="col-sm-6" id="container-professor">
-								  <h3 style="margin-bottom: 5px;">Professors <button class="btn btn-default" id="addProfessorButton"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;&nbsp; Add</button><!--<span class="glyphicon glyphicon-question-sign pull-right" rel="tooltip" data-toggle="tooltip" data-placement="top" title="Yeah"></span>--></h3>
+								  <h3 style="margin-bottom: 5px;">Professors <button class="btn btn-default btn-sm" id="addProfessorButton"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;&nbsp; Add</button><!--<span class="glyphicon glyphicon-question-sign pull-right" rel="tooltip" data-toggle="tooltip" data-placement="top" title="Yeah"></span>--></h3>
 								  <div class="row">
 									  <div class="col-sm-12">
 										 <!--<div class="panel panel-default">
@@ -49,7 +55,7 @@ if (!isset($redir)) {
 						</div>
 
 						<div class="col-sm-6" id="container-course">
-							 <h3 style="margin-bottom: 5px;">Courses <button class="btn btn-default" id="addCourseButton"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;&nbsp; Add</button><!--<span class="glyphicon glyphicon-question-sign pull-right" rel="tooltip" data-toggle="tooltip" data-placement="top" title="Yeah"></span>--></h3>
+							 <h3 style="margin-bottom: 5px;">Courses <button class="btn btn-default btn-sm" id="addCourseButton"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;&nbsp; Add</button><!--<span class="glyphicon glyphicon-question-sign pull-right" rel="tooltip" data-toggle="tooltip" data-placement="top" title="Yeah"></span>--></h3>
 							<!--<div class="panel panel-default">
 							  <div class="panel-body">-->
 								<div class="row">
@@ -300,6 +306,26 @@ if (!isset($redir)) {
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-primary pull-left" id="addCourseButtonSubmit">Save changes</button>
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                <h4 class="modal-title" id="addEditCourseTitle">Editor Help</h4>
+              </div>
+              <div class="modal-body">
+				    <div id="helpSections"></div>
+              </div>
+              <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
               </div>
             </div>

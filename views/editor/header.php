@@ -47,7 +47,10 @@ if (($extend !== 1) || (basename($_SERVER['PHP_SELF']) !== "home.php")) {
 							<?php echo $user->username; ?> &nbsp;<span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu" role="menu">
+                            <li><a href="index.php">Return to Front</a></li>
 							<li><a id="changeThemeButton" data-target="#changeThemeModal" href="#">Change Theme</a></li>
+                            <li class="divider"></li>
+                            <li><a id="helpButton" data-target="#helpModal" href="#">Help</a></li>
 							<li><a href="logout.php">Logout</a></li>
 						</ul>
 					</div>

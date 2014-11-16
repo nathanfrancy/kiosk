@@ -523,7 +523,7 @@ function refreshCourses(departmentid) {
 			var count = 0;
 
 			for (var i = 0; i < data.length; i++) {
-				courseHTML += '<a href="#" class="list-group-item list-course" courseid="' + data[i].id + '" departmentid="' + departmentid + '"><h4 class="list-group-item-heading"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;' + data[i].number + ', ' + data[i].name + '</h4></a>';
+				courseHTML += '<a href="#" class="list-group-item list-course" courseid="' + data[i].id + '" departmentid="' + departmentid + '"><h4 class="list-group-item-heading">&nbsp;' + data[i].number + ', ' + data[i].name + '</h4></a>';
 				count++;
 			}
 			courseHTML += "</div>";
@@ -554,7 +554,7 @@ function refreshProfessors(departmentid) {
             var professorHTML = "<div class='list-group'>";
             var count = 0;
             for (var i = 0; i < data.length; i++) {
-                professorHTML += '<a href="#" class="list-group-item list-professor" professorid="' + data[i].professorid + '" departmentid="' + departmentid + '"><h4 class="list-group-item-heading"><span class="glyphicon glyphicon-user"></span> '+ data[i].lastname + ', ' + data[i].firstname +'<img src="' + data[i].pictureurl + '" class="img-responsive pull-right img-thumbnail img-thumbs"></h4><p class="list-group-item-text">'+ data[i].officebuilding +' '+ data[i].officeroom +'</p></a>';
+                professorHTML += '<a href="#" class="list-group-item list-professor" professorid="' + data[i].professorid + '" departmentid="' + departmentid + '"><h4 class="list-group-item-heading"> '+ data[i].lastname + ', ' + data[i].firstname +'<img src="' + data[i].pictureurl + '" class="img-responsive pull-right img-thumbs"></h4><p class="list-group-item-text">'+ data[i].officebuilding +' '+ data[i].officeroom +'</p></a>';
                 count++;
             }
             professorHTML += "</div>";
@@ -657,5 +657,38 @@ function parseTime(timeStr, dt) {
 $('#addprofessorcourse-time').datetimepicker({ pickDate: false });
 
 $('#addprofessorcourse-time').change(function() {
-	console.log(parseTime($(this).val()).getHours());
+	//console.log(parseTime($(this).val()).getHours());
+});
+
+$("#helpButton").click(function(e) {
+    var helpSections = null;
+    $.getJSON('documentation/help/editor.json', function(data) {
+        var html = "";
+        for (var i = 0; i < data.length; i++) {
+            var videohtml = "";
+            var listhtml = "";
+            for (var j = 0; j < data[i].steps.length; j++) {
+                listhtml += "<li>" + data[i].steps[j] + "</li>";
+            }
+            
+            if (data[i].demoVideo !== "") {
+                videohtml = "<p><a href='"+ data[i].demoVideo +"' class='btn btn-default' target='_blank'>Demo available here</a></p>";
+            }
+            
+            html += "<div class='help-title'>"+ data[i].title +"</div><div class='help-body'><p>"+ data[i].body +"</p><ol>"+ listhtml +"</ol>" + videohtml + "</div>";
+        } 
+        $("#helpSections").html(html);
+    });
+    
+    $("#helpModal").modal('show');
+});
+
+$(document).on("click", ".help-title", function(e) {
+    e.preventDefault();
+    $(".help-title").removeClass("help-active");
+    $(".help-body").slideUp();
+    if ( $(this).next(".help-body").is(":hidden") ) {
+        $(this).addClass("help-active");
+        $(this).next(".help-body").slideDown();
+    }
 });

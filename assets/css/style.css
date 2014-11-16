@@ -9,3 +9,28 @@
 .required {
     color: #b81e0d;
 }
+
+.help-title {
+    background-color: #333333;
+    color: #999999;
+    margin-top: 15px;
+    padding: 10px;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.3s ease-in-out;
+}
+.help-title:first-child {
+    margin-top: 0px;
+}
+
+.help-body {
+    padding: 10px;
+    display: none;
+    border-left: 1px #333333 dotted;
+    border-bottom: 1px #333333 dotted;
+    border-right: 1px #333333 dotted;
+}
+
+.help-active {
+    opacity: 1;
+}

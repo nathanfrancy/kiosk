@@ -11,4 +11,4 @@ $_SESSION['auth_id'] = 0;
 
 unset($_SESSION['auth_id']);
 
-header("Location: index.php");
+header("Location: login.php");

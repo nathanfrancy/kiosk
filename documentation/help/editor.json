@@ -1,0 +1,62 @@
+[
+    {
+        "title" : "How do I login?",
+        "body" : "This is a tutorial to show you how to login.",
+        "steps" : [
+            "Access the login page <a href='login.php'>here</a>. If you are already logged in, you will ",
+            "Enter your username and password provided by the administrator.",
+            "Click login.",
+            "You will be redirected to the Information Coordinator Dashboard."
+        ],
+        "demoVideo" : ""
+    },
+    {
+        "title" : "How do I add a course?",
+        "body" : "Courses are added, and are linked to a 'department'. Follow the steps below to add a course.",
+        "steps" : [
+            "Login to the kiosk <a href='login.php'>here</a>.",
+            "Select the department you want the course to be added to.",
+            "Enter the course number, course name, and verify in the 'Department' select box that the correct department is selected.",
+            "Click 'Save' at the bottom of the window.",
+            "Verify that the course is now listed in the course list, and when you click on it there is an 'ID' field above now. This verifies that it has definitely been added to the database."
+        ],
+        "demoVideo" : "http://youtu.be/2xq_yDZ6vtI"
+    },
+    {
+        "title" : "How do I create a course and add it to a professor?",
+        "body" : "It's important to note that in order to link a course to a professor, the course has to be created first. See if course has been made, and if not start from step 1 below. If it has, begin with step 2.",
+        "steps" : [
+            "Follow the steps in the 'How do I add a course?' tutorial above to add the desired course.",
+            "Click on the professor that you would like to link the course to.",
+            "Click under the 'Linked Course' section on the right hand side.",
+            "Select the correct department and course, and enter the days, and times.",
+            "Click 'Add Course' button, and verify the course has been added to the list above."
+        ],
+        "demoVideo" : "http://youtu.be/iZ_gXkoK7kA"
+    },
+    {
+        "title" : "How do I add office hours to a professor?",
+        "body" : "Office hours are obviously linked to one individual professor. Follow the steps below to add office hours to a professor.",
+        "steps" : [
+            "Login to the kiosk <a href='login.php'>here</a>.",
+            "Select the department the professor is in.",
+            "Click on the 'Office Hours' section off to the right (in blue)",
+            "Add the days and times to the fields, and click 'Add Office Hours'",
+            "Be sure to confirm the office hours being added above in the list."
+        ],
+        "demoVideo" : "http://youtu.be/FvMwN7TAfaM"
+    },
+    {
+        "title" : "How do I add a professor?",
+        "body" : "When you add a professor, they need to be associated with a department. It should be noted that the professor could still have a linked course from another department. Follow the steps below to add a professor.",
+        "steps" : [
+            "Login to the kiosk <a href='login.php'>here</a>.",
+            "Select the department you want the professor to be in.",
+            "Click the 'Add' button near where it says 'Professors'.",
+            "Enter all of the information pertinent to that professor (name, email, phone, office, image url, and the department)",
+            "Click 'Save Changes' if all information is correct.",
+            "To be sure the professor was added, when you exit the modal window the professor should be present in the list of professors."
+        ],
+        "demoVideo" : "http://youtu.be/0xH_cQ0Eyz8"
+    }
+]

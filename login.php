@@ -52,7 +52,8 @@ if (isset($_GET['feedback']) && ($_GET['feedback'] !== "")) { $feedback = $_GET[
 			<input type="text" class="form-control" name="username" id="username" placeholder="Username" required autofocus>
 			<input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
 			<button class="btn btn-lg btn-default btn-block" id="signInButton">Sign in</button>
-			<br /><br />
+			<br /><br /><br><br><br><br>
+            <a href="index.php" class="btn btn-lg btn-primary btn-block">Return to front end</a>
 		</form>
 
 	</div>
