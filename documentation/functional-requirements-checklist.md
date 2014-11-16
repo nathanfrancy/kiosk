@@ -35,7 +35,7 @@
         * Picture
         * Applicable semester (Fall/Spring/Summer & Year or "Ongoing")
     * 2.7 <s>Mark a faculty/staff member information as inactive</s>
-    * 2.8 Delete entire entry for faculty/staff
+    * 2.8 <s>Delete entire entry for faculty/staff</s>
     * 2.9 <s>Associate a faculty member with courses currently taught</s>
 3. A News Posting Coordinator will be able to
     * 3.1 <s>Gain access to the system with given user name and password</s>
