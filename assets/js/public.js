@@ -17,22 +17,21 @@ function refreshNewsPosts() {
 	$.get( "api/?requestType=getPosts", function(data) {
 		posts = jQuery.parseJSON(data);
 		for (var i = 0; i < posts.posts.length; i++) {
-			$("#list-newspost").append('<a href="#" class="list-group-item list-group-item-newspost" postid="'+ posts.posts[i].id +'">'+ posts.posts[i].title +'</a>');
+			$("#list-newspost").append('<a href="#" class="list-group-item list-group-item-newspost" postid="'+ posts.posts[i].id +'"><span class="label label-primary pull-right">'+ dateConverterToNiceNoTime(posts.posts[i].date_modified) +'</span>'+ posts.posts[i].title +'</a>');
 		}
 	});
 }
 
-/*
 $(document).on("click", ".list-group-item-newspost", function(e) { 
 	var id = parseInt($(this).attr("postid"));
 	$.get( "api/?requestType=getPost&id=" + id, function(data) {
 		post = jQuery.parseJSON(data);
-		$("#title").html(post.post.title);
-		$("#body").html(post.post.body);
+		$("#newspost-title").html(post.post.title);
+		$("#newspost-body").html(post.post.body);
+        $("#newspost-postedby").html("<i>Posted by " + post.post.user_modified.nicename + " on " + dateConverterToNiceNoTime(post.post.date_modified) + "</i>");
 		$("#newspost-modal").modal("show");
 	});
 });
-*/
 
 $(document).on("click", ".list-group-item-department", function(e) {
     $(".list-group-item-department").removeClass("active");

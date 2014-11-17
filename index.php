@@ -35,8 +35,14 @@ if ( isset($_SESSION['auth_id']) ) {
 		  <div id="alertBoxBody" class="alert" role="alert"></div>
 	    </div>
         
-        <div id="newsPosts">
-            <div id="list-newspost"></div>
+        <div id="newsPosts" style="background-image: url(assets/img/mule.png); background-repeat: no-repeat;; background-position: bottom left;">
+            <h2 class="text-center" style="padding-top: 15px; padding-bottom: 30px;">HCBPS News</h2>
+            <div class="row">
+                <div class="col-sm-offset-4 col-sm-4">
+                    <div id="list-newspost"></div>
+                </div>
+            </div>
+            
         </div>
         
         <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation" style="border: 0px white solid;">
@@ -127,16 +133,10 @@ if ( isset($_SESSION['auth_id']) ) {
             </div>
             
             <div class="container-middle greyed">
-                <div style="height: 5%; max-height: 5%;">
+                <div style="height: 100%; max-height: 100%; overflow: auto;">
                     <h3 class="sidebar-label-professors text-center" style="display: none;">&nbsp;Professors</h3>
-                </div>
-                <div style="height: 60%; max-height: 60%; overflow: auto;">
                     <div id="list-group-professors" class="list-special"></div>
-                </div>
-                <div style="height: 5%; max-height: 5%;">
-                    <h3 class="sidebar-label-classes text-center" style="display: none;">&nbsp;Classes</h3>
-                </div>
-                <div style="height: 20%; max-height: 20%; overflow: auto;">
+                    <h3 class="sidebar-label-classes text-center" style="display: none; margin-top: 40px;">&nbsp;Classes</h3>
                     <div id="list-group-courses" class="list-special"></div>
                 </div>
             </div>
@@ -179,6 +179,22 @@ if ( isset($_SESSION['auth_id']) ) {
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div class="modal fade" id="newspost-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="newspost-title">Modal title</h4>
+              </div>
+              <div class="modal-body">
+                <p id="newspost-body"></p>
+                  <br>
+                <p id="newspost-postedby"></p>
+              </div>
+            </div>
+          </div>
         </div>
         
 	</body>

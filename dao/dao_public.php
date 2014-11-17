@@ -74,7 +74,7 @@ function publicGetPosts() {
     $posts = array();
 
     $link = connect_db();
-    $sql = "SELECT * FROM `post` ORDER BY `date_created` desc";
+    $sql = "SELECT * FROM `post` ORDER BY `date_modified` desc";
     $stmt = $link->stmt_init();
     $stmt->prepare($sql);
     $stmt->execute();

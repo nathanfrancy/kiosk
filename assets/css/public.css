@@ -117,4 +117,6 @@ body {
     min-height: 100%;
     display: none;
     z-index: 999;
+    overflow: auto;
+    padding-bottom: 60px;
 }
