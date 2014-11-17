@@ -109,7 +109,8 @@ $(document).on("click", ".list-group-item-professor", function(e) {
             $("#prof-el-office").html(professor.professor.officebuilding + " " + professor.professor.officeroom);
             $("#prof-el-phone").html(professor.professor.phonenumber);
             $("#prof-el-email").html(professor.professor.email);
-
+            $("#prof-el-img").attr("src", professor.professor.pictureurl);
+            
             if (professor.professor.courses.length > 0) {
                 for (var i = 0; i < professor.professor.courses.length; i++) {
                     $("#prof-el-courses").append("<tr><td><strong>" + professor.professor.courses[i].coursename + "</strong><br>" + professor.professor.courses[i].days + " at " + professor.professor.courses[i].time + "</td></tr>");
@@ -131,7 +132,6 @@ $(document).on("click", ".list-group-item-professor", function(e) {
     });
     setTimeout( function(){
         $(".prof-el").fadeIn('fast');
-        $("#prof-el-img").attr("src", professor.professor.pictureurl);
     }, 500);
 });
 
