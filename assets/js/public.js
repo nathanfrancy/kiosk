@@ -89,7 +89,9 @@ $(document).on("click", "#filter-lastname-container button", function(e) {
     name = 'Last names starting with "' + letter + '"';
 	$.get( "api/?requestType=getProfessorsWithLastName&letter="+ letter, function(data) {
 		professors = jQuery.parseJSON(data);
-		showProfessors(professors);
+		showProfessors(professors, "Starting with " + letter);
+        $(".sidebar-label-professors").fadeIn('fast');
+        $("#list-group-professors").fadeIn('fast');
 	});
 });
 
