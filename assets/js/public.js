@@ -13,20 +13,16 @@ function refreshDepartments() {
 	});
 }
 
-refreshDepartments();
-
-
-/*
-
 function refreshNewsPosts() {
 	$.get( "api/?requestType=getPosts", function(data) {
 		posts = jQuery.parseJSON(data);
 		for (var i = 0; i < posts.posts.length; i++) {
-			$("#list-group-newspost").append('<a href="#" class="list-group-item list-group-item-newspost" postid="'+ posts.posts[i].id +'">'+ posts.posts[i].title +'</a>');
+			$("#list-newspost").append('<a href="#" class="list-group-item list-group-item-newspost" postid="'+ posts.posts[i].id +'">'+ posts.posts[i].title +'</a>');
 		}
 	});
 }
 
+/*
 $(document).on("click", ".list-group-item-newspost", function(e) { 
 	var id = parseInt($(this).attr("postid"));
 	$.get( "api/?requestType=getPost&id=" + id, function(data) {
@@ -36,7 +32,6 @@ $(document).on("click", ".list-group-item-newspost", function(e) {
 		$("#newspost-modal").modal("show");
 	});
 });
-
 */
 
 $(document).on("click", ".list-group-item-department", function(e) {
@@ -161,54 +156,17 @@ $(document).on("click", "#filter-program", function(e) {
     $(".list-group-item-department").removeClass("active");
 });
 
-/*
-
-refreshNewsPosts();
-
-$("#filter-Program").click(function(e){
-	e.preventDefault();
-	$("#filter-lastname-container").fadeOut("fast");
-    setTimeout(function() {
-        $("#list-group-departments").fadeIn();
-    }, 350);
-    $("#filter-lastName, #filter-Program").removeClass("active");
-    $(this).addClass("active");
-});
-
-$("#filter-lastName").click(function(e){
-	e.preventDefault();
-	$("#list-group-departments").fadeOut("fast");
-    setTimeout(function() {
-        $("#filter-lastname-container").fadeIn();
-    }, 350);
-    $("#filter-lastName, #filter-Program").removeClass("active");
-    $(this).addClass("active");
-});
-
-
 $("#nav-button-professor").click(function() {
     $("#nav-button-professor, #nav-button-news").removeClass("active");
-    $(".pub-news-master").fadeOut("fast");
-    setTimeout(function() {
-        $(".pub-department-master").fadeIn();
-    }, 350);
+    $("#newsPosts").fadeOut();
     $(this).addClass("active");
 });
 
 $("#nav-button-news").click(function() {
     $("#nav-button-professor, #nav-button-news").removeClass("active");
     $(".pub-department-master").fadeOut();
-	setTimeout(function() {
-    	$(".pub-news-master").fadeIn();
-    }, 350);
+    $("#newsPosts").fadeIn();
     $(this).addClass("active");
-});
-
-$("#nav-back-button").click(function() {
-    $("#pub-container-professor-input").fadeOut("fast");
-    setTimeout(function() {
-        $("#pub-container-department-input").fadeIn();
-    }, 350);
 });
 
 var timeoutHandle = window.setInterval(function() {
@@ -222,5 +180,5 @@ $(document).click(function(e) {
     }, 60000);
 });
 
-$(".pub-news-master").hide();
-*/
+refreshDepartments();
+refreshNewsPosts();

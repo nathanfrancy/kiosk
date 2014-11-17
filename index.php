@@ -35,6 +35,10 @@ if ( isset($_SESSION['auth_id']) ) {
 		  <div id="alertBoxBody" class="alert" role="alert"></div>
 	    </div>
         
+        <div id="newsPosts">
+            <div id="list-newspost"></div>
+        </div>
+        
         <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation" style="border: 0px white solid;">
           <div class="container-fluid">
             <div class="navbar-header">
@@ -123,16 +127,16 @@ if ( isset($_SESSION['auth_id']) ) {
             </div>
             
             <div class="container-middle greyed">
-                <div style="height: 3%; max-height: 3%;">
+                <div style="height: 5%; max-height: 5%;">
                     <h3 class="sidebar-label-professors text-center" style="display: none;">&nbsp;Professors</h3>
                 </div>
-                <div style="height: 65%; max-height: 65%; overflow: auto;">
+                <div style="height: 60%; max-height: 60%; overflow: auto;">
                     <div id="list-group-professors" class="list-special"></div>
                 </div>
-                <div style="height: 3%; max-height: 3%;">
+                <div style="height: 5%; max-height: 5%;">
                     <h3 class="sidebar-label-classes text-center" style="display: none;">&nbsp;Classes</h3>
                 </div>
-                <div style="height: 25%; max-height: 25%; overflow: auto;">
+                <div style="height: 20%; max-height: 20%; overflow: auto;">
                     <div id="list-group-courses" class="list-special"></div>
                 </div>
             </div>

@@ -1,130 +1,120 @@
 * {
-	box-sizing: border-box !important;
+    box-sizing: border-box !important;
 }
-
-html, body {
+html,
+body {
     height: 100%;
 }
-
 body {
     padding-bottom: 40px;
     background-color: white;
     min-height: 100%;
 }
-
 /* index.php */
 
 .pub-header-box {
-	text-align: center;
+    text-align: center;
 }
-
-.pub-container-master {
-}
-
-.pub-department-master {
-}
-
-.pub-news-master {
-}
-
-#pub-container-professor-input {
+.pub-container-master {} .pub-department-master {} .pub-news-master {} #pub-container-professor-input {
     display: none;
 }
-
 #filter-lastname-container {
-	display: none;
+    display: none;
 }
-
-#nav-button-professor.active a, #nav-button-news.active a {
+#nav-button-professor.active a,
+#nav-button-news.active a {
     background-color: white;
     color: black !important;
 }
-
-#list-group-professors {
-}
-
-
+#list-group-professors {}
 /* group is a lot like clearfix */
+
 .group:after {
-	visibility: hidden;
-	display: block;
-	content: "";
-	clear: both;
-	height: 0;
-	}
-* html .group             { zoom: 1; } /* IE6 */
-*:first-child+html .group { zoom: 1; } /* IE7 */
+    visibility: hidden;
+    display: block;
+    content: "";
+    clear: both;
+    height: 0;
+}
+* html .group {
+    zoom: 1;
+}
+/* IE6 */
 
-
-
+*:first-child+html .group {
+    zoom: 1;
+}
+/* IE7 */
 
 /* index2.php */
 
-
-
-        .group {
-            height: 100%;
-            min-height: 100%;
-        }
-
-        .greyed {
-            background-color: #dddddd;
-        }
-
-        .container-left {
-            border-right: 1px rgb(221, 221, 221) solid;
-        }
-        
-        .container-left, .container-middle {
-            float: left;
-            width: 25%;
-            overflow: auto;
-            height: 100%;
-            min-height: 100%;
-        }
-        
-        .container-right {
-            height: 100%;
-            min-height: 100%;
-            float: left;
-            width: 50%;
-            padding: 0px 30px 0px 30px;
-            overflow: auto;
-        }
-        
-        #list-group-professors {
-            display: none;
-        }
-        
-        .list-special {
-            border-right-width: 0px !important;
-            border-right: 0px white solid !important;
-            border-left-width: 0px !important;
-            border-left: 0px white solid !important;
-        }
-        .list-special .list-group-item:first-child {
-          border-top-right-radius: 0px !important;
-          border-top-left-radius: 0px !important;
-        }
-        .list-special .list-group-item {
-            border-right-width: 0px !important;
-            border-right: 0px white solid !important;
-            border-left-width: 0px !important;
-            border-left: 0px white solid !important;
-        }
-        .list-special .list-group-item:last-child {
-          border-bottom-right-radius: 0px !important;
-          border-bottom-left-radius: 0px !important;
-        }
-
-        .prof-img {
-            max-height: 40px;
-        }
-
-        .prof-el {
-            display: none;
-            color: black;
-        }
-
-
-
+.group {
+    height: 100%;
+    min-height: 100%;
+}
+.greyed {
+    background-color: #000000;/*#dddddd;*/
+}
+.container-left {
+    border-right: 1px rgb(221, 221, 221) solid;
+}
+.container-left,
+.container-middle {
+    float: left;
+    width: 25%;
+    overflow: auto;
+    height: 100%;
+    min-height: 100%;
+}
+.container-right {
+    height: 100%;
+    min-height: 100%;
+    float: left;
+    width: 50%;
+    padding: 0px 30px 0px 30px;
+    overflow: auto;
+}
+#list-group-professors {
+    display: none;
+}
+.list-special {
+    border-right-width: 0px !important;
+    border-right: 0px white solid !important;
+    border-left-width: 0px !important;
+    border-left: 0px white solid !important;
+}
+.list-special .list-group-item:first-child {
+    border-top-right-radius: 0px !important;
+    border-top-left-radius: 0px !important;
+}
+.list-special .list-group-item {
+    border-right-width: 0px !important;
+    border-right: 0px white solid !important;
+    border-left-width: 0px !important;
+    border-left: 0px white solid !important;
+}
+.list-special .list-group-item:last-child {
+    border-bottom-right-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+}
+.prof-img {
+    max-height: 40px;
+}
+.prof-el {
+    display: none;
+    color: black;
+}
+#prof-el-name {
+    color: white;
+}
+#newsPosts {
+    background-color: white;
+    opacity: 1;
+    position: fixed;
+    top: 0;
+    width: 100% !important;
+    height: 100%;
+    min-height: 100%;
+    display: none;
+    z-index: 999;
+}
