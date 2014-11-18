@@ -11,7 +11,7 @@ if (!isset($redir)) {
             <div class="view" id="view-department">
                 <div class="row">
                     <div class="col-sm-6 col-sm-offset-3" id="container-department">
-						<h3 style="margin-bottom: 20px;">Departments <span class="glyphicon glyphicon-question-sign pull-right" rel="tooltip" data-toggle="tooltip" data-placement="top" title="These are departments you have access to. Click one to load professors and courses."></span></h3>
+						<h3 style="margin-bottom: 20px;">Select a Department <span class="glyphicon glyphicon-question-sign pull-right" rel="tooltip" data-toggle="tooltip" data-placement="top" title="These are departments you have access to. Click one to load professors and courses."></span></h3>
                         <div class="list-group">
                         <?php
                             $departments = getAccessedDepartments($user->id);

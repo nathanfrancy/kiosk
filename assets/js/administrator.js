@@ -36,8 +36,7 @@ $("#addDepartmentButton").click(function (e) {
 
 });
 
-$(document).on("click", "#addDepartmentModal", function(e) {
-    e.preventDefault();
+$("#addDepartmentModal").click(function() {
     $("#adddepartment-name").val('');
     $("#adddepartment-prefix").val('');
 });

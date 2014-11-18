@@ -7,7 +7,7 @@ require("header.php");
                 <div class="view" id="view-department">
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-3">
-                            <h3 style="margin-top: 0px; margin-bottom: 20px;">Department Manager</h3>
+                            <h3 style="margin-top: 0px; margin-bottom: 20px;">Manage Departments</h3>
 							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addDepartmentModal"><span class="glyphicon glyphicon-plus-sign"></span> Add</button><br /><br>
                                 <?php 
                                     $departments = getAllDepartments();

@@ -58,7 +58,7 @@ if ( isset($_SESSION['auth_id']) ) {
             </div>
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li class="active" id="nav-button-professor"><a href="#">Find a Professor</a></li>
+                <li class="active" id="nav-button-professor"><a href="#">Find a Person</a></li>
                 <li id="nav-button-news"><a href="#">News Posts</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
@@ -78,10 +78,10 @@ if ( isset($_SESSION['auth_id']) ) {
         
         <div class="group">
             <div class="container-left">
-                <h3 class="sidebar-label text-center">&nbsp;Find a Professor</h3>
+                <h2 class="sidebar-label text-center">&nbsp;Find a Person</h3>
                 <center>
                 <div class="btn-group text-center" style="margin-bottom: 20px;">
-                      <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                      <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         Find by&nbsp;&nbsp;<span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu" role="menu">
@@ -134,9 +134,9 @@ if ( isset($_SESSION['auth_id']) ) {
             
             <div class="container-middle greyed">
                 <div style="height: 100%; max-height: 100%; overflow: auto;">
-                    <h3 class="sidebar-label-professors text-center" style="display: none;">&nbsp;Professors</h3>
+                    <h2 class="sidebar-label-professors text-center" style="display: none;">&nbsp;Professors</h2>
                     <div id="list-group-professors" class="list-special"></div>
-                    <h3 class="sidebar-label-classes text-center" style="display: none; margin-top: 40px;">&nbsp;Classes</h3>
+                    <h2 class="sidebar-label-classes text-center" style="display: none; margin-top: 40px;">&nbsp;Classes</h2>
                     <div id="list-group-courses" class="list-special"></div>
                 </div>
             </div>

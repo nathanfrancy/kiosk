@@ -8,12 +8,12 @@ require("header.php");
                 <div class="view" id="view-user">
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-3">
-							<h3 style="margin-top: 0px;">User Manager</h3>
+							<h3 style="margin-top: 0px;">Manage Users</h3>
 							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserModal"><span class="glyphicon glyphicon-plus-sign"></span> Add</button><br /><br />
 									<div class="btn-group" id="list-user-filter" style="margin-bottom: 20px;">
 										<button type="button" class="btn btn-default btn-sm active" filtertype="all">All Users</button>
 										<button type="button" class="btn btn-default btn-sm" filtertype="admin">Administrator</button>
-										<button type="button" class="btn btn-default btn-sm" filtertype="editor">Editor</button>
+										<button type="button" class="btn btn-default btn-sm" filtertype="editor">Information Coordinator</button>
 										<button type="button" class="btn btn-default btn-sm" filtertype="poster">News Poster</button>
 									</div>
 									
@@ -25,9 +25,9 @@ require("header.php");
 										$usertype = $userobj->type;
 										$niceusertype = "";
 										if ($usertype === "admin") { $niceusertype = "Administrator"; }
-										if ($usertype === "editor") { $niceusertype = "Editor"; }
+										if ($usertype === "editor") { $niceusertype = "Information Coordinator"; }
 										if ($usertype === "poster") { $niceusertype = "News Poster"; }
-										if ($usertype === "editorposter") { $niceusertype = "Editor/News Poster"; }
+										if ($usertype === "editorposter") { $niceusertype = "Information Coordinator/News Poster"; }
 										
                                         $userList .= "<a class='list-group-item list-user-item' href='#' usertype='" . $usertype . "' userid='" . $userobj->id . "' style=''><h4 class='list-group-item-heading'><span class='label label-primary pull-right'>". $userobj->id ."</span>". $userobj->nicename ."&nbsp;<small>" . $userobj->username . "</small></h4><p class='list-group-item-text'>" . $niceusertype . "</p></a>";
                                     }
@@ -83,9 +83,9 @@ require("header.php");
                                     <div class="form-group">
                                         <label for="adduser-type">Type</label>
                                         <select class="form-control" id="adduser-type">
-                                            <option value="editor">Editor</option>
-                                            <option value="poster">Poster</option>
-                                            <option value="editorposter">Editor and Poster</option>
+                                            <option value="editor">Information Coordinator</option>
+                                            <option value="poster">News Poster</option>
+                                            <option value="editorposter">Information Coordinator and News Poster</option>
                                             <option value="admin">Administrator</option>
                                         </select>
                                     </div>
@@ -168,9 +168,9 @@ require("header.php");
                             <div class="form-group">
                                 <label for="edituser-type">Type</label>
                                 <select class="form-control" id="edituser-type">
-                                    <option value="editor">Editor</option>
-                                    <option value="poster">Poster</option>
-                                    <option value="editorposter">Editor and Poster</option>
+                                    <option value="editor">Information Coordinator</option>
+                                    <option value="poster">News Poster</option>
+                                    <option value="editorposter">Information Coordinator and News Poster</option>
                                     <option value="admin">Administrator</option>
                                 </select>
                             </div>
