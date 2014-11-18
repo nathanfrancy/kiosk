@@ -25,9 +25,11 @@ if ($controllerType === "userLogin") {
 }
 
 if ($userid !== 0) {
+    addUserTrack($userid, "LOGIN_SUCCESSFUL", "Successful login to {$_POST['username']}");
     header("Location: ../home.php");
 }
 else {
+    addUserTrack(0, "LOGIN_UNSUCCESSFUL", "Unsuccessful login to {$_POST['username']}");
     header("Location: ../login.php?feedback=Login unsuccessful. Please try again.");
 }
 

@@ -18,6 +18,8 @@ if ($controllerType === "addDepartment") {
 		$prefix = $_POST['prefix'];
 		$newid = addDepartment($name, $prefix);
 		$department = getDepartment($newid);
+        addUserTrack($_SESSION['auth_id'], "INSERT_DEPARTMENT", "Added department '{$department->name}' (id={$department->id}).");
+        header('Content-Type: application/json');
 		echo json_encode($department);
 	}
 	else { echo "You are not authorized to perform this action."; }
@@ -25,6 +27,7 @@ if ($controllerType === "addDepartment") {
 else if ($controllerType === "getAllDepartments") {
     if (isAdmin() === 1) {
 		$departments = getAllDepartments();
+        header('Content-Type: application/json');
 		echo json_encode($departments);
 	}
 	else { echo "You are not authorized to perform this action."; }
@@ -32,6 +35,7 @@ else if ($controllerType === "getAllDepartments") {
 else if ($controllerType === "getDepartment") {
     $id = $_POST['id'];
     $department = getDepartment($id);
+    header('Content-Type: application/json');
     echo json_encode($department);
 }
 else if ($controllerType === "updateDepartment") {
@@ -40,6 +44,8 @@ else if ($controllerType === "updateDepartment") {
 		$name = $_POST['name'];
 		$prefix = $_POST['prefix'];
 		$department = updateDepartment($id, $name, $prefix);
+        addUserTrack($_SESSION['auth_id'], "UPDATE_DEPARTMENT", "Updated department '{$department->name}' (id={$department->id})");
+        header('Content-Type: application/json');
 		echo json_encode($department);
 	}
 	else { echo "You are not authorized to perform this action."; }
@@ -47,6 +53,8 @@ else if ($controllerType === "updateDepartment") {
 else if ($controllerType === "deleteDepartment") {
 	if (isAdmin() === 1) {
 		$id = $_POST['id'];
+        addUserTrack($_SESSION['auth_id'], "DELETE_DEPARTMENT", "Deleted department (id={$id})");
+        header('Content-Type: application/json');
 		echo json_encode(deleteDepartment($id));
 	}
 	else { echo "You are not authorized to perform this action."; }
@@ -61,6 +69,8 @@ else if ($controllerType === "addUser") {
 		$status = $_POST['status'];
 		$userid = addUser($username, $password, $nicename, $email, $type, $status);
 		$user = getUser($userid);
+        addUserTrack($_SESSION['auth_id'], "INSERT_USER", "Added user '{$user->nicename}' (id={$user->id}).");
+        header('Content-Type: application/json');
 		echo json_encode($user);
 	}
 	else { echo "You are not authorized to perform this action."; }
@@ -69,6 +79,7 @@ else if ($controllerType === "getUser") {
 	if (isAdmin() === 1) {
 		$id = $_POST['id'];
 		$user = getUser($id);
+        header('Content-Type: application/json');
 		echo json_encode($user);
 	}
 	else { echo "You are not authorized to perform this action."; }
@@ -82,6 +93,8 @@ else if ($controllerType === "updateUser") {
 		$type = $_POST['type'];
 		$status = $_POST['status'];
 		$user = updateUser($id, $nicename, $username, $email, $type, $status);
+        addUserTrack($_SESSION['auth_id'], "UPDATE_USER", "Updated user '{$user->nicename}' (id={$user->id}).");
+        header('Content-Type: application/json');
 		echo json_encode($user);
 	}
 	else { echo "You are not authorized to perform this action."; }
@@ -89,12 +102,15 @@ else if ($controllerType === "updateUser") {
 else if ($controllerType === "deleteUser") {
 	if (isAdmin() === 1) {
 		$id = $_POST['id'];
+        addUserTrack($_SESSION['auth_id'], "DELETE_USER", "Deleted user (id={$id}).");
+        header('Content-Type: application/json');
 		echo json_encode(deleteUser($id));
 	}
 	else { echo "You are not authorized to perform this action."; }
 }
 else if ($controllerType === "getAllUsers") {
 	if (isAdmin() === 1) {
+        header('Content-Type: application/json');
     	echo json_encode(getAllUsers());
 	}
 	else { echo "You are not authorized to perform this action."; }
@@ -104,6 +120,8 @@ else if ($controllerType === "resetPassword") {
 		$id = $_POST['id'];
 		$password = $_POST['password'];
 		$newuser = resetPassword($id, $password);
+        addUserTrack($_SESSION['auth_id'], "RESET_PASSWORD_ADMIN", "Password reset for '{$newuser->nicename}' (id={$newuser->id}).");
+        header('Content-Type: application/json');
 		echo json_encode($newuser);
 	}
 	else { echo "You are not authorized to perform this action."; }
@@ -113,6 +131,8 @@ else if ($controllerType === "grantDepartmentAccess") {
 		$departmentid = $_POST['departmentid'];
 		$userid = $_POST['userid'];
 		$userid = grantDepartmentAccess($userid, $departmentid);
+        addUserTrack($_SESSION['auth_id'], "ACCESS_GRANTED", "Granted user(id={$userid}) to department(id={$departmentid}).");
+        header('Content-Type: application/json');
 		echo json_encode($userid);
 	}
 	else { echo "You are not authorized to perform this action."; }
@@ -122,6 +142,8 @@ else if ($controllerType === "revokeDepartmentAccess") {
 		$departmentid = $_POST['departmentid'];
 		$userid = $_POST['userid'];
 		$userid = revokeDepartmentAccess($userid, $departmentid);
+        addUserTrack($_SESSION['auth_id'], "ACCESS_REVOKED", "Revoked access from user(id={$userid}) to department(id={$departmentid}).");
+        header('Content-Type: application/json');
 		echo json_encode($userid);
 	}
 	else { echo "You are not authorized to perform this action."; }
@@ -130,6 +152,7 @@ else if ($controllerType === "getGrantedDepartmentIds") {
 	if (isAdmin() === 1) {
 		$userid = $_POST['userid'];
 		$departments = getGrantedDepartmentIds($userid);
+        header('Content-Type: application/json');
 		echo json_encode($departments);
 	}
 	else { echo "You are not authorized to perform this action."; }
@@ -138,11 +161,15 @@ else if ($controllerType === "changeTheme") {
 	$userid = $_POST['userid'];
 	$theme = $_POST['theme'];
 	$newuser = updateTheme($userid, $theme);
+    addUserTrack($_SESSION['auth_id'], "UPDATE_THEME", "User changed theme to {$theme}.");
+    header('Content-Type: application/json');
 	echo json_encode($newuser);
 }
 else if ($controllerType === "changePassword") {
     $auth_id = $_SESSION['auth_id'];
     $message = changePassword($auth_id, $_POST['newpassword']);
+    addUserTrack($_SESSION['auth_id'], "RESET_PASSWORD_SELF", "User reset password.");
+    header('Content-Type: application/json');
     echo $message;
 }
 

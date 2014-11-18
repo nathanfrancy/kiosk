@@ -144,7 +144,6 @@ if ( isset($_SESSION['auth_id']) ) {
             <div class="container-right greyed">
                 <h1 id="prof-el-name" class="prof-el text-center"></h1>
                 <div class="row">
-                    <br><br>
                     
                     <div class="col-sm-3 prof-el">
                         <center>
@@ -162,20 +161,34 @@ if ( isset($_SESSION['auth_id']) ) {
                               <tr><td><strong><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;Email</strong></td><td><span id="prof-el-email"></span></td></tr>
                           </table>
                         </div>
-                        <br>
                         <div class="panel panel-primary prof-el">
                           <div class="panel-heading">
                             <h3 class="panel-title">Courses</h3>
                           </div>
                           <table class="table" id="prof-el-courses"></table>
                         </div>
-                        <br>
                         <div class="panel panel-primary prof-el">
                           <div class="panel-heading">
                             <h3 class="panel-title">Office Hours</h3>
                           </div>
                           <table class="table" id="prof-el-officehours"></table>
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <h1 id="course-el-title" class="course-el text-center"></h1>
+                    <br>
+                    <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8">
+                        <div class="panel panel-primary course-el">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Available Courses</h3>
+                            </div>
+                            <table class="table" id="course-el-courses" class="course-el"></table>
+                        </div>
+                    </div>
+                    <div class="col-sm-2"></div>
                     </div>
                 </div>
             </div>

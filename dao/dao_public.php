@@ -27,7 +27,7 @@ function publicGetDepartmentsCourses($departmentid) {
     $courses = array();
 
     $link = connect_db();
-    $sql = "SELECT *, `course`.`id` AS `courseid` FROM `course` WHERE `department_id` = ? ORDER BY `course`.`id`";
+    $sql = "SELECT *, `course`.`id` AS `courseid` FROM `course` WHERE `department_id` = ? ORDER BY `course`.`number`";
     $stmt = $link->stmt_init();
     $stmt->prepare($sql);
     $stmt->bind_param('i', $departmentid);
@@ -43,6 +43,35 @@ function publicGetDepartmentsCourses($departmentid) {
 
     mysqli_stmt_close($stmt);
     return $courses;
+}
+
+function publicGetProfessorsThatTeachACourse($courseid) {
+    $items = array();
+
+    $link = connect_db();
+    $sql = "SELECT * FROM `course`, `professor_courses`, `professor` WHERE `course`.`id` = ? AND `course`.`id` = `professor_courses`.`course_id` AND `professor_courses`.`professor_id` = `professor`.`id` AND `professor`.`status` = 'enabled'";
+    $stmt = $link->stmt_init();
+    $stmt->prepare($sql);
+    $stmt->bind_param('i', $courseid);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    while ($row = $result->fetch_array(MYSQLI_BOTH)) {
+        $item = null;
+        $item['professor']['name'] = "{$row['firstname']}, {$row['lastname']}";
+        $item['professor']['office'] = "{$row['officebuilding']} {$row['officeroom']}";
+        $item['professor']['phone'] = $row['phonenumber'];
+        $item['professor']['email'] = $row['email'];
+        $item['professor']['pictureurl'] = $row['pictureurl'];
+        $item['course']['number'] = $row['number'];
+        $item['course']['name'] = $row['name'];
+        $item['course']['days'] = $row['days'];
+        $item['course']['time'] = $row['time'];
+        array_push($items, $item);
+    }
+
+    mysqli_stmt_close($stmt);
+    return $items;
 }
 
 function publicGetProfessorsWithLastName($letter) {

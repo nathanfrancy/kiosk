@@ -39,7 +39,7 @@ if (($extend !== 1) || (basename($_SERVER['PHP_SELF']) !== "home.php")) {
 				<h2>Administrator Dashboard</h2>
 				<nav class="nav-admin">
 					<div class="btn-group">
-						<a type="button" class="btn btn-default navigation active" href="home.php?page=department">Department Manager</a>
+						<a type="button" class="btn btn-default navigation" href="home.php?page=department">Department Manager</a>
 						<a type="button" class="btn btn-default navigation" href="home.php?page=user">User Manager</a>
 					</div>
 					<div class="btn-group" style="margin-left: 25px;">

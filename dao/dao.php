@@ -207,17 +207,21 @@ function updateRank($professorid) {
 	$rows = $link->affected_rows;
 	mysqli_stmt_close($stmt);
 	$link->close();
-    $department = getDepartment($id);
 	
 	return true;
 }
 
-
-
-
-
-
-
-
+function addUserTrack($user_id, $track_code, $description) {
+    $current_time = time();
+    $link = connect_db();
+	$sql = "INSERT INTO `user_track` (`user_id` ,`track_code` ,`description` ,`date_executed`) VALUES (?, ?,  ?,  ?)";
+	$stmt = $link->stmt_init();
+	$stmt->prepare($sql);
+	$stmt->bind_param('isss', $user_id, $link->real_escape_string($track_code), $link->real_escape_string($description), $current_time);
+	$stmt->execute();
+	$id = $link->insert_id;
+	mysqli_stmt_close($stmt);
+	$link->close();
+}
 
 ?>

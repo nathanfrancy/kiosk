@@ -104,8 +104,12 @@ body {
     display: none;
     color: black;
 }
-#prof-el-name {
+.course-el {
+    display: none;
+}
+#prof-el-name, #course-el-title {
     color: white;
+    margin-top: 40px;
 }
 #newsPosts {
     background-color: white;

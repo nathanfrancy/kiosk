@@ -209,6 +209,11 @@ require("header.php");
             </div>
           </div>
         </div>
+
+<script>
+$(".nav-admin .btn-group a:nth-child(2)").addClass("active");
+</script>
+
 <?php
 require("footer.php");
 ?>

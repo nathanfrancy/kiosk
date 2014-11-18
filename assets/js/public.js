@@ -97,10 +97,10 @@ $(document).on("click", "#filter-lastname-container button", function(e) {
 
 $(document).on("click", ".list-group-item-professor", function(e) {
     var thisEl = this;
-    $(".list-group-item-professor").removeClass("active");
+    $(".list-group-item-professor, .list-group-item-course").removeClass("active");
     $(this).addClass("active");
     var id = parseInt($(this).attr("professorid"));
-    $(".prof-el").fadeOut('fast').promise().done(function() {
+    $(".prof-el, .course-el").fadeOut('fast').promise().done(function() {
         $("#prof-el-courses").html('');
         $("#prof-el-officehours").html('');
         $.get( "api/?requestType=getProfessor&id=" + id, function(data) {
@@ -132,6 +132,33 @@ $(document).on("click", ".list-group-item-professor", function(e) {
     });
     setTimeout( function(){
         $(".prof-el").fadeIn('fast');
+    }, 500);
+});
+
+$(document).on("click", ".list-group-item-course", function(e) {
+    $("#course-el-courses").html('');
+    var thisEl = this;
+    $(".list-group-item-professor, .list-group-item-course").removeClass("active");
+    $(this).addClass("active");
+    var id = parseInt($(this).attr("courseid"));
+    $(".prof-el, .course-el").fadeOut('fast').promise().done(function() {
+        $.get( "api/?requestType=getProfessorsThatTeachACourse&id=" + id, function(data) {
+            var items = data;
+            if (items.items.length > 0) {
+                for (var i = 0; i < items.items.length; i++) {
+                    $("#course-el-courses").append("<tr><td><strong>"+ items.items[i].professor.name +"</strong><br>"+ items.items[i].course.days +" " + items.items[i].course.time + "</td><td><img class='pull-right img-responsive prof-img' src='"+ items.items[i].professor.pictureurl +"'></td></tr>");
+                }
+                $("#course-el-title").html(items.items[0].course.name);
+            }
+            else {
+                $("#course-el-title").html($(".list-group-item-course.active .list-group-item-heading").html());
+                $("#course-el-courses").append("<tr><td>None found.</td></tr>");
+            }
+
+        });
+    });
+    setTimeout( function(){
+        $(".course-el").fadeIn('fast');
     }, 500);
 });
 
