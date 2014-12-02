@@ -63,7 +63,7 @@ if ( isset($_SESSION['auth_id']) ) {
                     </a>
                 </div>
             </div>
-            <div class="container-middle" style="width: 75%;">
+            <div class="container-middle greyed" style="width: 75%;">
                 <img src="" class="img-responsive" width="100%" id="mapBox">
             </div>
         </div>

@@ -59,6 +59,8 @@ $(document).on("click", ".list-group-item-department", function(e) {
 $(document).on("click", ".list-group-item-map", function(e) {
     var mapid = $(this).attr("mapid");
     $("#mapBox").attr("src", "assets/img/maps/" + mapid + ".png");
+    $(".list-group-item-map").removeClass("active");
+    $(this).addClass("active");
 });
 
 function showCourses(courses) {

@@ -112,7 +112,7 @@ body {
     color: white;
     margin-top: 40px;
 }
-#newsPosts, #mapsContainer {
+#newsPosts {
     background-color: white;
     opacity: 1;
     position: fixed;
@@ -124,4 +124,18 @@ body {
     z-index: 999;
     overflow: auto;
     padding-bottom: 60px;
+}
+
+#mapsContainer {
+    background-color: white;
+    opacity: 1;
+    position: fixed;
+    top: 0;
+    width: 100% !important;
+    height: 100%;
+    min-height: 100%;
+    display: none;
+    z-index: 999;
+    overflow: auto;
+    padding-bottom: 40px;
 }
