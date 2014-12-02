@@ -42,7 +42,30 @@ if ( isset($_SESSION['auth_id']) ) {
                     <div id="list-newspost"></div>
                 </div>
             </div>
-            
+        </div>
+        
+        <div id="mapsContainer">
+            <div class="container-left">
+                <h2 class="sidebar-label text-center">&nbsp;Maps</h3>
+                <br>
+                <div id="list-group-maps" class="list-special">
+                    <a href="#" class="list-group-item list-group-item-map" mapid="1">
+                        <h4 class="list-group-item-heading">Dockery 1st Floor</h4>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-map" mapid="2">
+                        <h4 class="list-group-item-heading">Dockery 2nd Floor</h4>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-map" mapid="3">
+                        <h4 class="list-group-item-heading">Dockery 3rd Floor</h4>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-map" mapid="4">
+                        <h4 class="list-group-item-heading">Dockery 4th Floor</h4>
+                    </a>
+                </div>
+            </div>
+            <div class="container-middle" style="width: 75%;">
+                <img src="" class="img-responsive" width="100%" id="mapBox">
+            </div>
         </div>
         
         <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation" style="border: 0px white solid;">
@@ -60,6 +83,7 @@ if ( isset($_SESSION['auth_id']) ) {
               <ul class="nav navbar-nav">
                 <li class="active" id="nav-button-professor"><a href="#">Find a Person</a></li>
                 <li id="nav-button-news"><a href="#">News Posts</a></li>
+                <li id="nav-button-maps"><a href="#">Maps and Directions</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 <!--<li><a href="#">Link</a></li>-->
@@ -134,7 +158,7 @@ if ( isset($_SESSION['auth_id']) ) {
             
             <div class="container-middle greyed">
                 <div style="height: 100%; max-height: 100%; overflow: auto;">
-                    <h2 class="sidebar-label-professors text-center" style="display: none;">&nbsp;Professors</h2>
+                    <h2 class="sidebar-label-professors text-center" style="display: none;">&nbsp;People</h2>
                     <div id="list-group-professors" class="list-special"></div>
                     <h2 class="sidebar-label-classes text-center" style="display: none; margin-top: 40px;">&nbsp;Classes</h2>
                     <div id="list-group-courses" class="list-special"></div>
@@ -191,6 +215,9 @@ if ( isset($_SESSION['auth_id']) ) {
                     <div class="col-sm-2"></div>
                     </div>
                 </div>
+            </div>
+            <div id="mapsContainer" class="container-right greyed">
+                Hello
             </div>
         </div>
         

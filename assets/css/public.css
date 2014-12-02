@@ -22,7 +22,8 @@ body {
     display: none;
 }
 #nav-button-professor.active a,
-#nav-button-news.active a {
+#nav-button-news.active a, 
+#nav-button-maps.active a{
     background-color: white;
     color: black !important;
 }
@@ -111,7 +112,7 @@ body {
     color: white;
     margin-top: 40px;
 }
-#newsPosts {
+#newsPosts, #mapsContainer {
     background-color: white;
     opacity: 1;
     position: fixed;

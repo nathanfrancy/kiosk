@@ -56,6 +56,11 @@ $(document).on("click", ".list-group-item-department", function(e) {
     });
 });
 
+$(document).on("click", ".list-group-item-map", function(e) {
+    var mapid = $(this).attr("mapid");
+    $("#mapBox").attr("src", "assets/img/maps/" + mapid + ".png");
+});
+
 function showCourses(courses) {
     $("#list-group-courses").html('');
     if (courses.courses.length !== 0) {
@@ -185,15 +190,22 @@ $(document).on("click", "#filter-program", function(e) {
 });
 
 $("#nav-button-professor").click(function() {
-    $("#nav-button-professor, #nav-button-news").removeClass("active");
-    $("#newsPosts").fadeOut();
+    $("#nav-button-news, #nav-button-maps").removeClass("active");
+    $("#newsPosts, #mapsContainer").fadeOut();
     $(this).addClass("active");
 });
 
 $("#nav-button-news").click(function() {
+    $("#nav-button-professor, #nav-button-maps").removeClass("active");
+    $(".pub-department-master, #mapsContainer").fadeOut();
+    $("#newsPosts").fadeIn();
+    $(this).addClass("active");
+});
+
+$("#nav-button-maps").click(function() {
     $("#nav-button-professor, #nav-button-news").removeClass("active");
     $(".pub-department-master").fadeOut();
-    $("#newsPosts").fadeIn();
+    $("#mapsContainer").fadeIn();
     $(this).addClass("active");
 });
 
