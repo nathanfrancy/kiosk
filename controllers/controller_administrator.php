@@ -172,5 +172,12 @@ else if ($controllerType === "changePassword") {
     header('Content-Type: application/json');
     echo $message;
 }
+else if ($controllerType === "getAllTrackings") {
+    if (isAdmin() === 1) {
+        $tracks = getAllTrackings();
+        header('Content-Type: application/json');
+        echo json_encode($tracks);
+    }
+}
 
 ?>

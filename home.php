@@ -155,7 +155,7 @@ if ($enabled_user) {
 	 * Admin user groups
 	 ====================================================*/
     else if ($admin_logged_in) {
-        $admin_whitelist = array("department", "user");
+        $admin_whitelist = array("department", "user", "usertracking");
         
         if (in_array($page, $admin_whitelist)) {
             require('views/admin/admin-'. $page .'.php');

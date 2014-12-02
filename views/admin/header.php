@@ -41,6 +41,7 @@ if (($extend !== 1) || (basename($_SERVER['PHP_SELF']) !== "home.php")) {
 					<div class="btn-group">
 						<a type="button" class="btn btn-default navigation" href="home.php?page=department">Manage Departments</a>
 						<a type="button" class="btn btn-default navigation" href="home.php?page=user">Manage Users</a>
+                        <a type="button" class="btn btn-default navigation" href="home.php?page=usertracking">User Tracking</a>
 					</div>
 					<div class="btn-group" style="margin-left: 25px;">
 						<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">

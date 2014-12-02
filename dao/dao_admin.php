@@ -263,4 +263,33 @@ function changePassword($auth_id, $newpassword) {
 	return "Password changed successfully.";
 }
 
+function getAllTrackings() {
+    $tracks = array();
+	
+	// Connect and initialize sql and prepared statement template
+	$link = connect_db();
+	$sql = "SELECT * FROM `user_track`, `user` WHERE `user_track`.`user_id` = `user`.`id` ORDER BY `user_track`.`id` asc";
+	$stmt = $link->stmt_init();
+	$stmt->prepare($sql);
+	$stmt->execute();
+	$result = $stmt->get_result();
+	
+	// Bind result to Book object and push each one on the end of $books array
+    while ($row = $result->fetch_array(MYSQLI_BOTH)) {
+        $track['user']['id'] = $row['user_id'];
+        $track['user']['username'] = $row['username'];
+        $track['user']['nicename'] = $row['nicename'];
+        $track['user']['ip_address'] = $row['ip_address'];
+        $track['user']['type'] = $row['type'];
+        $track['track']['id'] = $row['id'];
+        $track['track']['track_code'] = $row['track_code'];
+        $track['track']['description'] = $row['description'];
+        $track['track']['date_executed'] = $row['date_executed'];
+		array_push($tracks, $track);
+	}
+	
+	mysqli_stmt_close($stmt);
+	return $tracks;
+}
+
 ?>
