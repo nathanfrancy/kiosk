@@ -139,3 +139,9 @@ body {
     overflow: auto;
     padding-bottom: 40px;
 }
+
+.mulebg {
+    background-image: url(../img/mulehead.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+}

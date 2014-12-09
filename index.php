@@ -68,7 +68,7 @@ if ( isset($_SESSION['auth_id']) ) {
             </div>
         </div>
         
-        <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation" style="border: 0px white solid;">
+        <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation" style="border: 0px white solid; font-size: 18px !important;">
           <div class="container-fluid">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -77,13 +77,12 @@ if ( isset($_SESSION['auth_id']) ) {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">kiosk</a>
             </div>
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li class="active" id="nav-button-professor"><a href="#">Find a Person</a></li>
-                <li id="nav-button-news"><a href="#">News Posts</a></li>
-                <li id="nav-button-maps"><a href="#">Maps and Directions</a></li>
+                <li class="active" id="nav-button-professor"><a href="#" style="padding-top: 10px; padding-bottom: 10px;">Find a Person</a></li>
+                <li id="nav-button-news"><a href="#" style="padding-top: 10px; padding-bottom: 10px;">News Posts</a></li>
+                <li id="nav-button-maps"><a href="#" style="padding-top: 10px; padding-bottom: 10px;">Maps</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 <!--<li><a href="#">Link</a></li>-->
@@ -123,34 +122,40 @@ if ( isset($_SESSION['auth_id']) ) {
                         <button type="button" class="btn btn-primary btn-lg">C</button>&nbsp;
                         <button type="button" class="btn btn-primary btn-lg">D</button>&nbsp;
                         <button type="button" class="btn btn-primary btn-lg">E</button>&nbsp;
-                        <button type="button" class="btn btn-primary btn-lg">F</button>
+                        
                         <br>
                         <br>
+                        <button type="button" class="btn btn-primary btn-lg">F</button>&nbsp;
                         <button type="button" class="btn btn-primary btn-lg">G</button>&nbsp;
                         <button type="button" class="btn btn-primary btn-lg">H</button>&nbsp;
                         <button type="button" class="btn btn-primary btn-lg">I</button>&nbsp;
                         <button type="button" class="btn btn-primary btn-lg">J</button>&nbsp;
+                        
+                        <br>
+                        <br>
                         <button type="button" class="btn btn-primary btn-lg">K</button>&nbsp;
-                        <button type="button" class="btn btn-primary btn-lg">L</button>
-                        <br>
-                        <br>
+                        <button type="button" class="btn btn-primary btn-lg">L</button>&nbsp;
                         <button type="button" class="btn btn-primary btn-lg">M</button>&nbsp;
                         <button type="button" class="btn btn-primary btn-lg">N</button>&nbsp;
                         <button type="button" class="btn btn-primary btn-lg">O</button>&nbsp;
+                        
+                        <br>
+                        <br>
                         <button type="button" class="btn btn-primary btn-lg">P</button>&nbsp;
                         <button type="button" class="btn btn-primary btn-lg">Q</button>&nbsp;
-                        <button type="button" class="btn btn-primary btn-lg">R</button>
-                        <br>
-                        <br>
+                        <button type="button" class="btn btn-primary btn-lg">R</button>&nbsp;
                         <button type="button" class="btn btn-primary btn-lg">S</button>&nbsp;
                         <button type="button" class="btn btn-primary btn-lg">T</button>&nbsp;
+                
+                        <br>
+                        <br>
                         <button type="button" class="btn btn-primary btn-lg">U</button>&nbsp;
                         <button type="button" class="btn btn-primary btn-lg">V</button>&nbsp;
                         <button type="button" class="btn btn-primary btn-lg">W</button>&nbsp;
-                        <button type="button" class="btn btn-primary btn-lg">X</button>
-                        <br>
-                        <br>
+                        <button type="button" class="btn btn-primary btn-lg">X</button>&nbsp;
                         <button type="button" class="btn btn-primary btn-lg">Y</button>&nbsp;
+                        <br>
+                        <br>
                         <button type="button" class="btn btn-primary btn-lg">Z</button>
                     </center>
                 </div>
@@ -166,7 +171,7 @@ if ( isset($_SESSION['auth_id']) ) {
                 </div>
             </div>
 
-            <div class="container-right greyed">
+            <div class="container-right greyed mulebg">
                 <h1 id="prof-el-name" class="prof-el text-center"></h1>
                 <div class="row">
                     
@@ -178,7 +183,7 @@ if ( isset($_SESSION['auth_id']) ) {
                     <div class="col-sm-9">
                         <div class="panel panel-primary prof-el">
                           <div class="panel-heading">
-                            <h3 class="panel-title">About this Professor</h3>
+                            <h3 class="panel-title">About this Person</h3>
                           </div>
                           <table class="table">
                               <tr><td><strong><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Office</strong></td><td><span id="prof-el-office"></span></td></tr>

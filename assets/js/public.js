@@ -37,6 +37,7 @@ $(document).on("click", ".list-group-item-department", function(e) {
     $(".list-group-item-department").removeClass("active");
     $(this).addClass("active");
     var office = $(this).attr("office");
+    $(".container-right").removeClass("mulebg");
     
     if (office !== null) { $("#office-duh").html(office); $("#office-duh").parent("h4").show(); }
     else { $("#office-duh").parent("h4").hide(); }
