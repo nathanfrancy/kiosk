@@ -268,7 +268,7 @@ function getAllTrackings() {
 	
 	// Connect and initialize sql and prepared statement template
 	$link = connect_db();
-	$sql = "SELECT * FROM `user_track`, `user` WHERE `user_track`.`user_id` = `user`.`id` ORDER BY `user_track`.`id` desc";
+	$sql = "SELECT * FROM `user_track` ORDER BY `user_track`.`id` desc";
 	$stmt = $link->stmt_init();
 	$stmt->prepare($sql);
 	$stmt->execute();
@@ -276,11 +276,22 @@ function getAllTrackings() {
 	
 	// Bind result to Book object and push each one on the end of $books array
     while ($row = $result->fetch_array(MYSQLI_BOTH)) {
-        $track['user']['id'] = $row['user_id'];
-        $track['user']['username'] = $row['username'];
-        $track['user']['nicename'] = $row['nicename'];
+        
+        if ($row['user_id'] !== 0) {
+            $user = getUser($row['user_id']);
+            $track['user']['id'] = $user->id;
+            $track['user']['username'] = $user->username;
+            $track['user']['nicename'] = $user->nicename;
+            $track['user']['type'] = $user->type;
+        }
+        else {
+            $track['user']['id'] = 0;
+            $track['user']['username'] = "N/A";
+            $track['user']['nicename'] = "N/A";
+            $track['user']['type'] = "N/A";
+        }
+        
         $track['user']['ip_address'] = $row['ip_address'];
-        $track['user']['type'] = $row['type'];
         $track['track']['id'] = $row['id'];
         $track['track']['track_code'] = $row['track_code'];
         $track['track']['description'] = $row['description'];
@@ -290,6 +301,18 @@ function getAllTrackings() {
 	
 	mysqli_stmt_close($stmt);
 	return $tracks;
+}
+
+function clearAllTrackings() {
+    $link = connect_db();
+	$sql = "truncate  `user_track`";
+	$stmt = $link->stmt_init();
+	$stmt->prepare($sql);
+    $stmt->execute();
+	mysqli_stmt_close($stmt);
+	$link->close();
+	
+	return "Table cleared.";
 }
 
 ?>

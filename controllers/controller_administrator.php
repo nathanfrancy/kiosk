@@ -181,5 +181,12 @@ else if ($controllerType === "getAllTrackings") {
         echo json_encode($tracks);
     }
 }
+else if ($controllerType === "clearAllTrackings") {
+    if (isAdmin() === 1) {
+        $track_msg = clearAllTrackings();
+        header('Content-Type: application/json');
+        echo json_encode($track_msg);
+    }
+}
 
 ?>

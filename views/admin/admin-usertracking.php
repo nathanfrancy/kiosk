@@ -7,7 +7,7 @@ require("header.php");
         <div class="view" id="view-user">
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
-                    <h3 style="margin-top: 0px;">User Tracking</h3>
+                    <h3 style="margin-top: 0px;">User Tracking <button class="btn btn-default" id="clearTrackings">Clear All Trackings</button></h3>
                     <div id="list-track-container"></div>
                 </div>
                 <div class="col-sm-3"></div>
@@ -29,6 +29,13 @@ function refreshTrackings() {
         $("#list-track-container").html(trackshtml);
     });
 }
+    
+$("#clearTrackings").click(function(e) {
+    $.post( "controllers/controller_administrator.php", {controllerType : "clearAllTrackings"}, function(data) {
+        refreshTrackings();
+        showAlertBox("Cleared all trackings.", "success", 3);
+    });
+});
     
 refreshTrackings();
     
