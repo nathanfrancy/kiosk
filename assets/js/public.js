@@ -37,7 +37,6 @@ $(document).on("click", ".list-group-item-department", function(e) {
     $(".list-group-item-department").removeClass("active");
     $(this).addClass("active");
     var office = $(this).attr("office");
-    $(".container-right").removeClass("mulebg");
     
     if (office !== null) { $("#office-duh").html(office); $("#office-duh").parent("h4").show(); }
     else { $("#office-duh").parent("h4").hide(); }
@@ -113,6 +112,7 @@ $(document).on("click", ".list-group-item-professor", function(e) {
     var thisEl = this;
     $(".list-group-item-professor, .list-group-item-course").removeClass("active");
     $(this).addClass("active");
+    $(".container-right").removeClass('mulebg');
     var id = parseInt($(this).attr("professorid"));
     $(".prof-el, .course-el").fadeOut('fast').promise().done(function() {
         $("#prof-el-courses").html('');
@@ -155,6 +155,7 @@ $(document).on("click", ".list-group-item-course", function(e) {
     $(".list-group-item-professor, .list-group-item-course").removeClass("active");
     $(this).addClass("active");
     var id = parseInt($(this).attr("courseid"));
+    $(".container-right").removeClass('mulebg');
     $(".prof-el, .course-el").fadeOut('fast').promise().done(function() {
         $.get( "api/?requestType=getProfessorsThatTeachACourse&id=" + id, function(data) {
             var items = data;
@@ -196,6 +197,7 @@ $(document).on("click", "#filter-program", function(e) {
     $(".sidebar-label-classes").hide();
     $("#list-group-professors").hide();
     $("#list-group-courses").hide();
+    $(".sidebar-label-location").hide();
     $(".list-group-item-department").removeClass("active");
 });
 
