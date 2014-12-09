@@ -14,6 +14,7 @@ class Department {
     public $id;
     public $name;
 	public $prefix;
+    public $office;
 }
 
 class Professor {

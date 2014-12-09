@@ -37,20 +37,25 @@ require("header.php");
               <div class="modal-body">
                 <form role="form">
 					<div class="row">
-						<div class="col-sm-6">
+						<div class="col-sm-4">
 							<div class="form-group">
 								<label for="adddepartment-name"><span class="required">*</span> Department Name</label>
 								<input type="text" class="form-control" id="adddepartment-name" placeholder="Enter name of department">
 							</div>
 						</div>
-						<div class="col-sm-6">
+						<div class="col-sm-4">
 							<div class="form-group">
 								<label for="adddepartment-prefix">Prefix</label>
 								<input type="text" class="form-control" id="adddepartment-prefix" placeholder="Enter the prefix">
 							</div>
 						</div>
+                        <div class="col-sm-4">
+							<div class="form-group">
+								<label for="adddepartment-prefix">Office</label>
+								<input type="text" class="form-control" id="adddepartment-office" placeholder="Enter the office">
+							</div>
+						</div>
 					</div>
-                  
                 </form>
               </div>
               <div class="modal-footer">
@@ -80,16 +85,22 @@ require("header.php");
                   </div>
 					
 				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-sm-4">
 						<div class="form-group">
 							<label for="adddepartment-name"><span class="required">*</span> Department Name</label>
 							<input type="text" class="form-control" id="editdepartment-name" placeholder="Enter name of department">
 						</div>
 					</div>
-					<div class="col-sm-6">
+					<div class="col-sm-4">
 						<div class="form-group">
 							<label for="adddepartment-prefix">Prefix</label>
 							<input type="text" class="form-control" id="editdepartment-prefix" placeholder="Enter prefix of department">
+						</div>
+					</div>
+                    <div class="col-sm-4">
+						<div class="form-group">
+							<label for="adddepartment-prefix">Office</label>
+							<input type="text" class="form-control" id="editdepartment-office" placeholder="Enter office">
 						</div>
 					</div>
 				</div>

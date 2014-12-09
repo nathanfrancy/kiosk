@@ -16,7 +16,8 @@ if ($controllerType === "addDepartment") {
 	if (isAdmin() === 1) {
 		$name = $_POST['name'];
 		$prefix = $_POST['prefix'];
-		$newid = addDepartment($name, $prefix);
+        $office = $_POST['office'];
+		$newid = addDepartment($name, $prefix, $office);
 		$department = getDepartment($newid);
         addUserTrack($_SESSION['auth_id'], "INSERT_DEPARTMENT", "Added department '{$department->name}' (id={$department->id}).");
         header('Content-Type: application/json');
@@ -43,7 +44,8 @@ else if ($controllerType === "updateDepartment") {
 		$id = $_POST['id'];
 		$name = $_POST['name'];
 		$prefix = $_POST['prefix'];
-		$department = updateDepartment($id, $name, $prefix);
+        $office = $_POST['office'];
+		$department = updateDepartment($id, $name, $prefix, $office);
         addUserTrack($_SESSION['auth_id'], "UPDATE_DEPARTMENT", "Updated department '{$department->name}' (id={$department->id})");
         header('Content-Type: application/json');
 		echo json_encode($department);

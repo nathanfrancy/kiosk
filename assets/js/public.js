@@ -8,7 +8,7 @@ function refreshDepartments() {
 	$.get( "api/?requestType=getDepartments", function(data) {
 		departments = jQuery.parseJSON(data);
 		for (var i = 0; i < departments.departments.length; i++) {
-			$("#list-group-departments").append('<a href="#" class="list-group-item list-group-item-department" departmentid="'+ departments.departments[i].id +'"><h4 class="list-group-item-heading">'+ departments.departments[i].name +'</h4></a>');
+			$("#list-group-departments").append('<a href="#" class="list-group-item list-group-item-department" departmentid="'+ departments.departments[i].id +'" office="'+ departments.departments[i].office +'"><h4 class="list-group-item-heading">'+ departments.departments[i].name +'</h4></a>');
 		}
 	});
 }
@@ -36,6 +36,11 @@ $(document).on("click", ".list-group-item-newspost", function(e) {
 $(document).on("click", ".list-group-item-department", function(e) {
     $(".list-group-item-department").removeClass("active");
     $(this).addClass("active");
+    var office = $(this).attr("office");
+    
+    if (office !== null) { $("#office-duh").html(office); $("#office-duh").parent("h4").show(); }
+    else { $("#office-duh").parent("h4").hide(); }
+    
     var id = parseInt($(this).attr("departmentid"));
     var name = $(this).find(".list-group-item-heading").html();
     $("#list-group-professors, #list-group-courses, .sidebar-label-professors, .sidebar-label-classes").fadeOut('fast', function(){
@@ -92,6 +97,7 @@ $(document).on("click", "#filter-lastname-container button", function(e) {
     $("#list-group-courses").hide();
     $(".prof-el").hide();
 	$("#list-group-professors").html('');
+    $("#office-duh").parent("h4").hide();
 	var letter = $(this).html();
     name = 'Last names starting with "' + letter + '"';
 	$.get( "api/?requestType=getProfessorsWithLastName&letter="+ letter, function(data) {
@@ -178,6 +184,7 @@ $(document).on("click", "#filter-lastname", function(e) {
     $("#list-group-professors").hide();
     $("#list-group-courses").hide();
     $(".list-group-item-department").removeClass("active");
+    $(".sidebar-label-location").hide();
 });
 
 $(document).on("click", "#filter-program", function(e) {

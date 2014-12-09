@@ -8,6 +8,7 @@ $("#addDepartmentButton").click(function (e) {
     else {
         var name = $("#adddepartment-name").val();
         var prefix = $("#adddepartment-prefix").val();
+        var office = $("#adddepartment-office").val();
 
         $.ajax({
             type: "POST",
@@ -15,13 +16,16 @@ $("#addDepartmentButton").click(function (e) {
             data: {
                 controllerType: "addDepartment",
                 name: name,
-                prefix: prefix
+                prefix: prefix,
+                office: office
             },
             dataType: "json",
             success: function (data) {
                 var department = {
                     id: data.id,
-                    name: data.name
+                    name: data.name,
+                    prefix: data.prefix,
+                    office: data.office
                 };
                 refreshDepartments();
                 $("#adddepartment-name").val('');
@@ -36,10 +40,13 @@ $("#addDepartmentButton").click(function (e) {
 
 });
 
+/*
 $("#addDepartmentModal").click(function() {
     $("#adddepartment-name").val('');
     $("#adddepartment-prefix").val('');
+    $("#adddepartment-office").val('');
 });
+*/
 
 function refreshDepartments() {
     $.get( "api/", {requestType : "getDepartments"}, function(data) {
@@ -64,6 +71,7 @@ $("#editDepartmentButton").click(function (e) {
         var id = parseInt($("#editdepartment-id").val());
         var name = $("#editdepartment-name").val();
         var prefix = $("#editdepartment-prefix").val();
+        var office = $("#editdepartment-office").val();
 
         $.ajax({
             type: "POST",
@@ -72,18 +80,22 @@ $("#editDepartmentButton").click(function (e) {
                 controllerType: "updateDepartment",
                 id: id,
                 name: name,
-                prefix: prefix
+                prefix: prefix,
+                office: office
             },
             dataType: "json",
             success: function (data) {
                 var department = {
                     id: data.id,
                     name: data.name,
-                    prefix: data.prefix
+                    prefix: data.prefix,
+                    office: data.office
                 };
                 current_delete_id = data.id;
                 refreshDepartments();
                 $("#editdepartment-name").val('');
+                $("#editdepartment-prefix").val('');
+                $("#editdepartment-office").val('');
                 $('#editDepartmentModal').modal('hide');
                 showAlertBox("Edited " + department.name + " successfully.", "success", 3);
             },
@@ -141,11 +153,13 @@ $(document).on("click", ".list-department-item", function (e) {
 			var department = {
 				id: data.id,
 				name: data.name,
-				prefix: data.prefix
+				prefix: data.prefix,
+                office: data.office
 			};
 			$("#editdepartment-id").val(department.id);
 			$("#editdepartment-name").val(department.name);
 			$("#editdepartment-prefix").val(department.prefix);
+            $("#editdepartment-office").val(department.office);
 			$('#editDepartmentModal').modal('show');
 		},
 		error: function (data) {

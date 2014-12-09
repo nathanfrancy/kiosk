@@ -87,14 +87,14 @@ if ( isset($_SESSION['auth_id']) ) {
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 <!--<li><a href="#">Link</a></li>-->
-                <li class="dropdown">
+                <!--<li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Help <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                     <li><a href="#">Help Section</a></li>
                     <li class="divider"></li>
                     <li><a href="#">Help Section 2</a></li>
                   </ul>
-                </li>
+                </li>-->
               </ul>
             </div>
           </div>
@@ -158,6 +158,7 @@ if ( isset($_SESSION['auth_id']) ) {
             
             <div class="container-middle greyed">
                 <div style="height: 100%; max-height: 100%; overflow: auto;">
+                    <h4 class="sidebar-label-location text-center" style="display: none;">Location: <span id="office-duh"></span></h4>
                     <h2 class="sidebar-label-professors text-center" style="display: none;">&nbsp;People</h2>
                     <div id="list-group-professors" class="list-special"></div>
                     <h2 class="sidebar-label-classes text-center" style="display: none; margin-top: 40px;">&nbsp;Classes</h2>

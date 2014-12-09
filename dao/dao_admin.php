@@ -20,12 +20,12 @@ function getAllDepartments() {
 	return $departments;
 }
 
-function addDepartment($name, $prefix) {
+function addDepartment($name, $prefix, $office) {
     $link = connect_db();
-	$sql = "INSERT INTO  `department` (`name`, `prefix`) VALUES (?, ?)";
+	$sql = "INSERT INTO  `department` (`name`, `prefix`, `office`) VALUES (?, ?, ?)";
 	$stmt = $link->stmt_init();
 	$stmt->prepare($sql);
-	$stmt->bind_param('ss', $link->real_escape_string($name), $link->real_escape_string($prefix));
+	$stmt->bind_param('sss', $link->real_escape_string($name), $link->real_escape_string($prefix), $link->real_escape_string($office));
 	$stmt->execute();
 	$id = $link->insert_id;
 	mysqli_stmt_close($stmt);
@@ -55,14 +55,14 @@ function getDepartment($id) {
 	return $theDepartment;
 }
 
-function updateDepartment($id, $name, $prefix) {
+function updateDepartment($id, $name, $prefix, $office) {
 	$link = connect_db();
-	$sql = "UPDATE  `department` SET `name`=?, `prefix`=? WHERE id = ?";
+	$sql = "UPDATE  `department` SET `name`=?, `prefix`=?, `office`=? WHERE id = ?";
 	
 	// Create prepared statement and bind parameters
 	$stmt = $link->stmt_init();
 	$stmt->prepare($sql);
-	$stmt->bind_param('ssi', $link->real_escape_string($name), $link->real_escape_string($prefix), $id);
+	$stmt->bind_param('sssi', $link->real_escape_string($name), $link->real_escape_string($prefix), $link->real_escape_string($office), $id);
 	
     // Execute the query, get the last inserted id
     $stmt->execute();
@@ -268,7 +268,7 @@ function getAllTrackings() {
 	
 	// Connect and initialize sql and prepared statement template
 	$link = connect_db();
-	$sql = "SELECT * FROM `user_track`, `user` WHERE `user_track`.`user_id` = `user`.`id` ORDER BY `user_track`.`id` asc";
+	$sql = "SELECT * FROM `user_track`, `user` WHERE `user_track`.`user_id` = `user`.`id` ORDER BY `user_track`.`id` desc";
 	$stmt = $link->stmt_init();
 	$stmt->prepare($sql);
 	$stmt->execute();
